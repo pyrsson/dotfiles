@@ -142,6 +142,39 @@ module.exports = {
       closeAlign: 'right',
     },
     opacity: 0.97,
+    paneNavigation: {
+      debug: false,
+      hotkeys: {
+        navigation: {
+          up: 'alt+up',
+          down: 'alt+down',
+          left: 'alt+left',
+          right: 'alt+right'
+        },
+        jump_prefix: 'ctrl', // completed with 1-9 digits
+        permutation_modifier: 'shift', // Added to jump and navigation hotkeys for pane permutation
+        maximize: 'meta+enter'
+      },
+      showIndicators: false, // Show pane number
+      // indicatorPrefix: '^⌥', // Will be completed with pane number
+      // indicatorStyle: { // Added to indicator <div>
+      //   position: 'absolute',
+      //   top: 0,
+      //   left: 0,
+      //   fontSize: '10px'
+      // },
+      focusOnMouseHover: false,
+      inactivePaneOpacity: 0.8 // Set to 1 to disable inactive panes dimming
+    },
+    MaterialTheme: {
+      // Set the theme variant,
+      // OPTIONS: 'Darker', 'Palenight', 'Ocean', ''
+      theme: 'Darker',
+
+      // [Optional] Set the rgba() app background opacity, useful when enableVibrance is true
+      // OPTIONS: From 0.1 to 1
+      backgroundOpacity: '1',
+    }, 
   },
 
   // a list of plugins to fetch and install from npm
@@ -151,12 +184,12 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
-	// "hyper-materialshell",
+	"hyper-material-theme",
 	// "hypercwd",
 	"hyper-opacity",
-	"hyper-one-dark-vivid",
-	"hyper-tabs-enhanced"
-	//"hyper-pane"
+	// "hyper-one-dark-vivid",
+	"hyper-tabs-enhanced",
+	"hyper-pane"
 	//"hyperterm-mild-dark"
 ],
 
@@ -168,5 +201,8 @@ module.exports = {
   keymaps: {
     // Example
     // 'window:devtools': 'cmd+alt+o',
+    "tab:jump:prefix": "alt",
+    "pane:splitVertical": "ctrl+shift+e",
+    "pane:splitHorizontal": "ctrl+shift+d",
   },
 };
