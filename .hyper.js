@@ -186,7 +186,7 @@ module.exports = {
   plugins: [
 	"hyper-material-theme",
 	// "hypercwd",
-	"hyper-opacity",
+	// "hyper-opacity",
 	// "hyper-one-dark-vivid",
 	"hyper-tabs-enhanced",
 	"hyper-pane"
@@ -204,5 +204,17 @@ module.exports = {
     "tab:jump:prefix": "alt",
     "pane:splitVertical": "ctrl+shift+e",
     "pane:splitHorizontal": "ctrl+shift+d",
+    "tab:next": [
+      // "ctrl+shift+]",
+      // "ctrl+shift+right",
+      // "ctrl+alt+right",
+      "ctrl+tab"
+    ],
+    "tab:prev": [
+      // "ctrl+shift+[",
+      // "ctrl+shift+left",
+      // "ctrl+alt+left",
+      "ctrl+shift+tab"
+    ],
   },
 };
