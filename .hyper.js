@@ -204,6 +204,13 @@ module.exports = {
     "tab:jump:prefix": "alt",
     "pane:splitVertical": "ctrl+shift+e",
     "pane:splitHorizontal": "ctrl+shift+d",
+    "editor:movePreviousWord": "",
+    "editor:moveNextWord": "",
+    "editor:deletePreviousWord": "",
+    "editor:deleteNextWord": "",
+    "editor:deleteBeginningLine": "",
+    "editor:deleteEndLine": "",
+    "editor:break": "",
     "tab:next": [
       // "ctrl+shift+]",
       // "ctrl+shift+right",

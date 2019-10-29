@@ -117,10 +117,10 @@ if ! shopt -oq posix; then
 fi
 
 
-#eval `keychain --eval --agents ssh $HOME/.ssh/id_rsa`
-if ! pgrep -x "ssh-agent" > /dev/null ; then
-  eval $(ssh-agent)
-fi
+eval `keychain --eval --agents ssh $HOME/.ssh/id_rsa`
+# if ! pgrep -x "ssh-agent" > /dev/null ; then
+#   eval $(ssh-agent -s)
+# fi
 
 LS_COLORS=$LS_COLORS:'ow=1;34:' ; export LS_COLORS
 #export DOCKER_HOST=tcp://localhost:2375
