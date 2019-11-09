@@ -133,4 +133,5 @@ source <(helm completion bash)
 fi
 
 alias nmap=nmap.exe
+alias psh=powershell.exe
 bind 'set mark-symlinked-directories on'
