@@ -141,7 +141,7 @@ module.exports = {
     hyperTabs: {
       closeAlign: 'right',
     },
-    opacity: 0.97,
+    opacity: 1,
     paneNavigation: {
       debug: false,
       hotkeys: {
@@ -174,7 +174,9 @@ module.exports = {
       // [Optional] Set the rgba() app background opacity, useful when enableVibrance is true
       // OPTIONS: From 0.1 to 1
       backgroundOpacity: '1',
-    }, 
+    },
+    // alt key fix
+    modifierKeys: { altIsMeta: false },
   },
 
   // a list of plugins to fetch and install from npm
@@ -186,7 +188,7 @@ module.exports = {
   plugins: [
 	"hyper-material-theme",
 	// "hypercwd",
-	// "hyper-opacity",
+	"hyper-opacity",
 	// "hyper-one-dark-vivid",
 	"hyper-tabs-enhanced",
 	"hyper-pane"
