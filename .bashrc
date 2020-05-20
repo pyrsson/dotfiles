@@ -116,6 +116,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+export GTK_THEME=Arc:dark
+export DISPLAY=localhost:0.0 #$(route -n |grep 'UG' |awk '{print $2}'):0.0
 
 eval `keychain --eval --agents ssh $HOME/.ssh/id_rsa`
 # if ! pgrep -x "ssh-agent" > /dev/null ; then
@@ -132,6 +134,8 @@ if hash helm 2>/dev/null; then
 source <(helm completion bash)
 fi
 
-alias nmap=nmap.exe
+#alias nmap=nmap.exe
 alias psh=powershell.exe
 bind 'set mark-symlinked-directories on'
+
+complete -C /usr/local/bin/terraform terraform
