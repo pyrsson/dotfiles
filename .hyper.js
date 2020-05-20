@@ -129,14 +129,16 @@ module.exports = {
     // or `'force'`, if you want to force selection regardless of whether the terminal is in mouse events mode
     // (inside tmux or vim with mouse mode enabled for example).
     macOptionSelectionMode: 'vertical',
-
+    
     // URL to custom bell
     // bellSoundURL: 'http://example.com/bell.mp3',
-
+    
     // Whether to use the WebGL renderer. Set it to false to use canvas-based
     // rendering (slower, but supports transparent backgrounds)
     webGLRenderer: true,
-
+    // alt key fix
+    // modifierKeys: { altIsMeta: false },
+    
     // for advanced config flags please refer to https://hyper.is/#cfg
     hyperTabs: {
       closeAlign: 'right',
@@ -175,8 +177,6 @@ module.exports = {
       // OPTIONS: From 0.1 to 1
       backgroundOpacity: '1',
     },
-    // alt key fix
-    modifierKeys: { altIsMeta: false },
   },
 
   // a list of plugins to fetch and install from npm
