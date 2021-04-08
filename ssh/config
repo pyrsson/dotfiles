@@ -1,0 +1,80 @@
+Include config.d/*
+
+# AddKeysToAgent yes
+# IdentityFile ~/.ssh/id_rsa.pub
+# IdentityFile ~/.ssh/id_rsa_home.pub
+
+Host github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa_home.pub
+  IdentitiesOnly yes
+
+Host gitlab f2f
+  HostName %h.rapidimages.se
+  User centos
+  ForwardAgent yes
+
+Host ri-fw-office-a
+  HostName 188.126.65.13
+  User spersson
+  IdentityFile ~/.ssh/id_rsa.pub
+
+Host fbg-z20-38-fw-a
+  HostName 172.16.20.1
+  User spersson
+  IdentityFile ~/.ssh/id_rsa.pub
+
+Host fbg-z20-38-cr
+  HostName 172.16.20.2
+  User spersson
+  IdentityFile ~/.ssh/id_rsa.pub
+
+Host fbg-z20-37-sw
+  HostName 172.16.20.3
+  User spersson
+  IdentityFile ~/.ssh/id_rsa.pub
+
+Host fbg-z20-39-sw
+  HostName 172.16.20.4
+  User spersson
+  IdentityFile ~/.ssh/id_rsa.pub
+
+Host siper
+  HostName 192.168.1.4
+  User spersson
+  IdentityFile ~/.ssh/id_rsa_home.pub
+  ForwardAgent yes
+
+Host hassio
+  HostName 192.168.1.3
+  IdentityFile ~/.ssh/id_rsa_home.pub
+
+Host pi-docker
+  HostName pi-docker
+  User pi
+  IdentityFile ~/.ssh/id_rsa_home.pub
+  ForwardAgent yes
+
+Host docker03 docker04 docker05 docker06 docker07 
+  HostName %h.office.rapidimages.se
+
+Host node1
+  HostName 172.16.26.60 
+Host node2
+  HostName 172.16.26.61 
+Host node3
+  HostName 172.16.26.62 
+Host node4
+  HostName 172.16.26.63 
+Host node5
+  HostName 172.16.26.64
+
+Host dpd-prod
+  HostName 172.16.22.70
+
+Host dpd-stage
+  HostName 172.16.22.71
+
+Host *
+  User root
+
