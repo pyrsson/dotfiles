@@ -72,7 +72,7 @@ ZSH_THEME="af-magic"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git ssh-agent)
 
-zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_home
+zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_work
 
 source $ZSH/oh-my-zsh.sh
 
@@ -113,6 +113,7 @@ export PATH="$PATH:/home/spersson/flutter/bin"
 # aliases
 alias reload="source ~/.zshrc"
 alias dc="docker-compose"
+alias kc="kubectl"
 
 # behavior
 autoload -Uz backward-kill-word-match
