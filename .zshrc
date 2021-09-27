@@ -112,10 +112,10 @@ if [[ $(( $(date +"%s") - $(stat -c %Y ~/github/dotfiles/.git/FETCH_HEAD) )) -gt
   if [[ $(git rev-parse HEAD) != $(git rev-parse @{u}) ]]; then
     echo "Updating dotfiles"
     if git diff-index --quiet HEAD --; then
+      git pull
+    else
       git pull --autostash
       echo "You should commit your local changes"
-    else
-      git pull
     fi
   else
     echo "Dotfiles already up to date"
