@@ -109,6 +109,8 @@ export COMPOSE_DOCKER_CLI_BUILD=1
 export N_PREFIX="$HOME/.n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH="$PATH:/home/spersson/flutter/bin"
+export PATH="/home/spersson/.local/bin:$PATH"
+eval "$(direnv hook zsh)"
 
 # aliases
 alias reload="source ~/.zshrc"
@@ -131,3 +133,4 @@ autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/mc mc
 
 complete -o nospace -C /usr/local/bin/terraform terraform
+source /etc/bash_completion.d/azure-cli
