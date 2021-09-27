@@ -102,20 +102,39 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# auto pull git dotfiles
+if [[ $(( $(date +"%s") - $(stat -c %Y ~/github/dotfiles/.git/FETCH_HEAD) )) -gt $(( 3600 * 20 )) ]]; then
+  cd ~/github/dotfiles
+  git fetch
+  if [[ $(git rev-parse HEAD) != $(git rev-parse @{u}) ]]; then
+    echo "Updating dotfiles"
+    if git diff-index --quiet HEAD --; then
+      git pull --autostash
+      echo "You should commit your local changes"
+    else
+      git pull
+    fi
+  else
+    echo "Dotfiles already up to date"
+  fi
+  cd - > /dev/null
+  exec -l zsh
+fi
+
 # env
 export EDITOR=vim
 export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
 export N_PREFIX="$HOME/.n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-export PATH="$PATH:/home/spersson/flutter/bin"
 export PATH="/home/spersson/.local/bin:$PATH"
-eval "$(direnv hook zsh)"
+if type direnv &> /dev/null; then eval "$(direnv hook zsh)"; fi
+
 
 # aliases
 alias reload="source ~/.zshrc"
-alias dc="docker-compose"
-alias kc="kubectl"
+if type docker-compose &> /dev/null; then alias dc="docker-compose"; fi
+if type kubectl &> /dev/null; then alias kc="kubectl"; fi
 
 # behavior
 autoload -Uz backward-kill-word-match
@@ -130,7 +149,10 @@ zstyle :zle:backward-kill-bash-word word-style bash
 
 # completion
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/mc mc
-
-complete -o nospace -C /usr/local/bin/terraform terraform
-source /etc/bash_completion.d/azure-cli
+if [[ -a /usr/local/bin/mc ]]; then complete -o nospace -C /usr/local/bin/mc mc; fi
+if [[ -a /usr/local/bin/terraform ]]; then
+  complete -o nospace -C /usr/local/bin/terraform terraform
+fi
+if [[ -a /etc/bash_completion.d/azure-cli ]]; then
+  source /etc/bash_completion.d/azure-cli
+fi
