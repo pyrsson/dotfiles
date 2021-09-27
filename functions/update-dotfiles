@@ -1,0 +1,16 @@
+#!/bin/bash
+cd ~/github/dotfiles || return
+git fetch
+if [[ $(git rev-parse HEAD) != $(git rev-parse "@{u}") ]]; then
+  echo "Updating dotfiles"
+  if git diff-index --quiet HEAD --; then
+    git pull
+  else
+    git pull --autostash
+    echo "You should commit your local changes"
+  fi
+else
+  echo "Dotfiles already up to date"
+fi
+cd - > /dev/null || return
+exec -l zsh
