@@ -128,6 +128,11 @@ if [[ $(( $(date +"%s") - $(stat -c %Y ~/github/dotfiles/.git/FETCH_HEAD) )) -gt
   update-dotfiles
 fi
 
+if [[ ! -h ~/.vimrc ]]; then
+  rm ~/.vimrc &> /dev/null
+  ln -s ~/github/dotfiles/.vimrc ~/.vimrc
+fi
+
 # env
 export EDITOR=vim
 export DOCKER_BUILDKIT=1
@@ -156,10 +161,10 @@ zstyle :zle:backward-kill-bash-word word-style bash
 
 # completion
 autoload -U +X bashcompinit && bashcompinit
-if [[ -a /usr/local/bin/mc ]]; then complete -o nospace -C /usr/local/bin/mc mc; fi
-if [[ -a /usr/local/bin/terraform ]]; then
+if [[ -e /usr/local/bin/mc ]]; then complete -o nospace -C /usr/local/bin/mc mc; fi
+if [[ -e /usr/local/bin/terraform ]]; then
   complete -o nospace -C /usr/local/bin/terraform terraform
 fi
-if [[ -a /etc/bash_completion.d/azure-cli ]]; then
+if [[ -e /etc/bash_completion.d/azure-cli ]]; then
   source /etc/bash_completion.d/azure-cli
 fi
