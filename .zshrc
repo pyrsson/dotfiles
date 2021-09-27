@@ -105,23 +105,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-function update-dotfiles () {
-  cd ~/github/dotfiles
-  git fetch
-  if [[ $(git rev-parse HEAD) != $(git rev-parse @{u}) ]]; then
-    echo "Updating dotfiles"
-    if git diff-index --quiet HEAD --; then
-      git pull
-    else
-      git pull --autostash
-      echo "You should commit your local changes"
-    fi
-  else
-    echo "Dotfiles already up to date"
-  fi
-  cd - > /dev/null
-  exec -l zsh
-}
+export FPATH=~/github/dotfiles/functions:$FPATH
+autoload -Uz update-dotfiles
 
 # auto pull git dotfiles
 if [[ $(( $(date +"%s") - $(stat -c %Y ~/github/dotfiles/.git/FETCH_HEAD) )) -gt $(( 3600 * 20 )) ]]; then
