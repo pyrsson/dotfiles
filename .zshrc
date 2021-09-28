@@ -70,7 +70,7 @@ ZSH_THEME="af-magic"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-if [[ -a ~/.ssh/id_rsa ]]; then
+if [[ -e ~/.ssh/id_rsa ]]; then
   plugins=(git ssh-agent)
   zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_work
 else
