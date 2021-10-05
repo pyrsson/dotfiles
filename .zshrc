@@ -125,6 +125,7 @@ export COMPOSE_DOCKER_CLI_BUILD=1
 export N_PREFIX="$HOME/.n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PATH="/home/spersson/.local/bin:$PATH"
+export PATH="/opt/istio-1.11.3/bin:$PATH"
 if type direnv &> /dev/null; then eval "$(direnv hook zsh)"; fi
 
 
