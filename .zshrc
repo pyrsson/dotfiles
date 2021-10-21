@@ -113,13 +113,9 @@ if [[ $(( $(date +"%s") - $(stat -c %Y ~/github/dotfiles/.git/FETCH_HEAD) )) -gt
   update-dotfiles
 fi
 
-if [[ ! -h ~/.vimrc ]]; then
-  rm ~/.vimrc &> /dev/null
-  ln -s ~/github/dotfiles/.vimrc ~/.vimrc
-fi
-
 # env
 export EDITOR=vim
+export CDPATH=.:~:~/work:~/github
 export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
 export N_PREFIX="$HOME/.n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
