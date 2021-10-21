@@ -1,5 +1,6 @@
 #!/bin/bash
-cd ~/github/dotfiles || return
+REPO="${HOME}/github/dotfiles"
+cd "${REPO}" || return
 git fetch
 if [[ $(git rev-parse HEAD) != $(git rev-parse "@{u}") ]]; then
   echo "Updating dotfiles"
@@ -10,7 +11,20 @@ if [[ $(git rev-parse HEAD) != $(git rev-parse "@{u}") ]]; then
     echo "You should commit your local changes"
   fi
 else
-  echo "Dotfiles already up to date"
+  if git diff-index --quiet HEAD --; then
+    echo "Dotfiles already up to date"
+  else
+    echo "Dotfiles up to date. Commit your local changes"
+  fi
 fi
+
+for f in .zshrc .vimrc .tmux.conf; do
+  if [[ ! -h "${HOME}/${f}" ]]; then
+    rm "${HOME}/${f}" &> /dev/null
+    ln -s "${REPO}/${f}" "${HOME}/${f}"
+  fi
+done
+
 cd - > /dev/null || return
 exec -l zsh
+

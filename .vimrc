@@ -44,6 +44,14 @@ augroup vimrcEx
   autocmd FileType text setlocal textwidth=78
 augroup END
 
+if &term =~ '^screen'
+" tmux will send xterm-style keys when its xterm-keys option is on
+  execute "set <xUp>=\e[1;*A"
+  execute "set <xDown>=\e[1;*B"
+  execute "set <xRight>=\e[1;*C"
+  execute "set <xLeft>=\e[1;*D"
+endif
+
 " Add optional packages.
 "
 " The matchit plugin makes the % command work better, but it is not backwards
@@ -86,9 +94,12 @@ let g:PaperColor_Theme_Options = {
 
 colorscheme PaperColor
 
+filetype indent on
 set number
 set laststatus=2
 set autoindent
+set smartindent
+set shiftwidth=2
 set expandtab
 set softtabstop=2
 set tabstop=2
