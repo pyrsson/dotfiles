@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/spersson/.oh-my-zsh"
+export ZSH="~/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -98,7 +98,7 @@ export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
 export N_PREFIX="$HOME/.n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-export PATH="/home/spersson/.local/bin:$PATH"
+export PATH="~/.local/bin:$PATH"
 export PATH="/opt/istio-1.11.3/bin:$PATH"
 if type direnv &> /dev/null; then eval "$(direnv hook zsh)"; fi
 
