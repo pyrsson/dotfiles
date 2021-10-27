@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="~/.oh-my-zsh"
+export ZSH="${HOME}/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -62,7 +62,7 @@ DISABLE_UPDATE_PROMPT="true"
 HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM="${HOME}/github/dotfiles/ohmyzsh"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -98,13 +98,13 @@ export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
 export N_PREFIX="$HOME/.n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-export PATH="~/.local/bin:$PATH"
+export PATH="${HOME}/.local/bin:$PATH"
 export PATH="/opt/istio-1.11.3/bin:$PATH"
 if type direnv &> /dev/null; then eval "$(direnv hook zsh)"; fi
 
 
 # aliases
-alias reload="source ~/.zshrc"
+alias reload="source ${HOME}/.zshrc"
 if type docker-compose &> /dev/null; then alias dc="docker-compose"; fi
 if type kubectl &> /dev/null; then alias kc="kubectl"; fi
 if type podman &> /dev/null; then alias pm="podman"; fi
