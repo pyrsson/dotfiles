@@ -14,7 +14,6 @@ ZSH_THEME="af-magic"
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -27,7 +26,7 @@ ZSH_THEME="af-magic"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -60,7 +59,7 @@ ZSH_THEME="af-magic"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -72,7 +71,7 @@ ZSH_THEME="af-magic"
 # Add wisely, as too many plugins slow down shell startup.
 if [[ -e ~/.ssh/id_rsa ]]; then
   plugins=(git ssh-agent)
-  zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_work
+  zstyle :omz:plugins:ssh-agent identities id_rsa
 else
   plugins=(git)
 fi
@@ -81,29 +80,8 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 export FPATH=~/github/dotfiles/functions:$FPATH
 autoload -Uz update-dotfiles
@@ -129,6 +107,7 @@ if type direnv &> /dev/null; then eval "$(direnv hook zsh)"; fi
 alias reload="source ~/.zshrc"
 if type docker-compose &> /dev/null; then alias dc="docker-compose"; fi
 if type kubectl &> /dev/null; then alias kc="kubectl"; fi
+if type podman &> /dev/null; then alias pm="podman"; fi
 
 # behavior
 autoload -Uz backward-kill-word-match
