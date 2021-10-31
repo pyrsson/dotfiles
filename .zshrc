@@ -107,6 +107,8 @@ if type direnv &> /dev/null; then eval "$(direnv hook zsh)"; fi
 alias reload="source ${HOME}/.zshrc"
 if type docker-compose &> /dev/null; then alias dc="docker-compose"; fi
 if type kubectl &> /dev/null; then alias kc="kubectl"; fi
+if type kubectx &> /dev/null; then alias kx="kubectx"; fi
+if type kubens &> /dev/null; then alias kn="kubens"; fi
 if type podman &> /dev/null; then alias pm="podman"; fi
 
 # behavior
