@@ -104,6 +104,7 @@ if type direnv &> /dev/null; then eval "$(direnv hook zsh)"; fi
 
 
 # aliases
+alias gst="git status -sb"
 alias reload="source ${HOME}/.zshrc"
 if type docker-compose &> /dev/null; then alias dc="docker-compose"; fi
 if type kubectl &> /dev/null; then alias kc="kubectl"; fi
