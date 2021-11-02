@@ -91,10 +91,12 @@ let g:PaperColor_Theme_Options = {
   \     }
   \   }
   \ }
+let g:airline_powerline_fonts = 1
 
 colorscheme PaperColor
 
 filetype indent on
+set mouse=a
 set number
 set laststatus=2
 set autoindent
