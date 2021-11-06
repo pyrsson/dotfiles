@@ -70,10 +70,10 @@ ZSH_CUSTOM="${HOME}/github/dotfiles/ohmyzsh"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 if [[ -e ~/.ssh/id_rsa ]]; then
-  plugins=(git ssh-agent)
+  plugins=(git ssh-agent fzf)
   zstyle :omz:plugins:ssh-agent identities id_rsa
 else
-  plugins=(git)
+  plugins=(git fzf)
 fi
 
 source $ZSH/oh-my-zsh.sh
