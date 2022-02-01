@@ -70,10 +70,10 @@ ZSH_CUSTOM="${HOME}/github/dotfiles/ohmyzsh"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 if [[ -e ~/.ssh/id_rsa ]]; then
-  plugins=(git ssh-agent fzf)
+  plugins=(git ssh-agent fzf golang)
   zstyle :omz:plugins:ssh-agent identities id_rsa
 else
-  plugins=(git fzf)
+  plugins=(git fzf golang)
 fi
 
 source $ZSH/oh-my-zsh.sh
@@ -84,7 +84,9 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 export FPATH="${HOME}/github/dotfiles/functions:${FPATH}"
-autoload -Uz update-dotfiles
+for f in "${HOME}"/github/dotfiles/functions/*; do
+  autoload -Uz $f
+done
 
 # auto pull git dotfiles
 if [[ $(( $(date +"%s") - $(stat -c %Y ~/github/dotfiles/.git/FETCH_HEAD) )) -gt $(( 3600 * 20 )) ]]; then
@@ -93,22 +95,34 @@ fi
 
 # env
 export EDITOR=vim
-export CDPATH=.:~:~/work:~/github
+export CDPATH=.:~:~/work:~/github:~/vasttrafik
+export BROWSER="/mnt/c/Program Files/Mozilla Firefox/firefox.exe"
 export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
 export N_PREFIX="$HOME/.n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-export PATH="${HOME}/.local/bin:$PATH"
-export PATH="/opt/istio-1.11.3/bin:$PATH"
+export PATH="$PATH:${KREW_ROOT:-$HOME/.krew}/bin"
+export PATH="$PATH:${HOME}/.local/bin"
+export PATH="$PATH:/opt/istio-1.12.0/bin"
+export PATH="$PATH:${HOME}/.linkerd2/bin"
+export PATH="$PATH:${HOME}/go/bin"
 if type direnv &> /dev/null; then eval "$(direnv hook zsh)"; fi
+export GPG_TTY=$(tty)
 
-
+if [[ -e ~/.dotnet ]]; then
+  export PATH="${HOME}/.dotnet/tools:$PATH"
+  export DOTNET_ROOT="${HOME}/.dotnet"
+fi
 # aliases
 alias gst="git status -sb"
 alias reload="source ${HOME}/.zshrc"
 alias sduo="command sudo "
 alias pls="command sudo "
 alias sudo="command sudo "
+alias start-k3s="tmux new -s k3s -d \"sudo ${HOME}/github/dotfiles/start-k3s\""
+alias docker="sudo podman"
+alias ta="tmux -l new-session -A -s main"
+alias stctl="systemctl"
+
 if type docker-compose &> /dev/null; then alias dc="docker-compose"; fi
 if type kubectl &> /dev/null; then alias k="kubectl"; fi
 if type kubectx &> /dev/null; then alias kx="kubectx"; fi
@@ -128,6 +142,7 @@ zstyle :zle:backward-kill-bash-word word-style bash
 
 # completion
 autoload -U +X bashcompinit && bashcompinit
+autoload -U +X compinit && compinit
 if [[ -e /usr/local/bin/mc ]]; then complete -o nospace -C /usr/local/bin/mc mc; fi
 if [[ -e /usr/local/bin/terraform ]]; then
   complete -o nospace -C /usr/local/bin/terraform terraform
@@ -135,4 +150,8 @@ fi
 if [[ -e /etc/bash_completion.d/azure-cli ]]; then
   source /etc/bash_completion.d/azure-cli
 fi
+
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
