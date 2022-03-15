@@ -99,6 +99,7 @@ export CDPATH=.:~:~/work:~/github:~/vasttrafik
 export BROWSER="/mnt/c/Program Files/Mozilla Firefox/firefox.exe"
 export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
+export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
 export N_PREFIX="$HOME/.n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 export PATH="$PATH:${KREW_ROOT:-$HOME/.krew}/bin"
 export PATH="$PATH:${HOME}/.local/bin"
