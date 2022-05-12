@@ -96,7 +96,6 @@ fi
 # env
 export EDITOR=vim
 export CDPATH=.:~:~/work:~/github:~/vasttrafik
-export BROWSER="/mnt/c/Program Files/Mozilla Firefox/firefox.exe"
 export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
 export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
