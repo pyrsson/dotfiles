@@ -107,6 +107,7 @@ export PATH="$PATH:${HOME}/.linkerd2/bin"
 export PATH="$PATH:${HOME}/go/bin"
 if type direnv &> /dev/null; then eval "$(direnv hook zsh)"; fi
 export GPG_TTY=$(tty)
+source "$HOME/.cargo/env"
 
 if [[ -e ~/.dotnet ]]; then
   export PATH="${HOME}/.dotnet/tools:$PATH"
