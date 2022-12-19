@@ -65,12 +65,14 @@ require('material').setup({
 
     -- custom_colors = nil, -- If you want to everride the default colors, set this to a function
     custom_colors = function(colors)
-      colors.editor.fg_dark = "#ACABAB"
+      colors.editor.fg_dark = colors.editor.fg
+      colors.editor.accent = "#71C6E7"
       -- colors.main.purple = "#SOME_COLOR"
       -- colors.lsp.error = "#SOME_COLOR"
     end,
 
     custom_highlights = {
+      -- ['@field'] = { fg = "#B0C9FF"--[[ "#89DDFF" ]] },
       -- Cursor = { bg = '#886600'}
     }, -- Overwrite highlights with your own
 })
