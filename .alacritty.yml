@@ -67,7 +67,7 @@ window:
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  #opacity: 1.0
+  #opacity: 0.85
 
   # Startup Mode (changes require restart)
   #
@@ -117,7 +117,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Source Code Pro
+    family: Hack Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -156,14 +156,14 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 12.5
+  size: 12
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
   # spacing.
   #offset:
   #  x: 0
-  #  y: -1
+  #  y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the
@@ -182,7 +182,7 @@ font:
 #draw_bold_text_with_bright_colors: false
 
 # Colors (Tomorrow Night)
-#colors:
+colors:
   # Default colors
   #primary:
   #  background: '#1d1f21'
@@ -273,8 +273,8 @@ font:
   #  background: CellForeground
 
   # Normal colors
-  #normal:
-  #  black:   '#1d1f21'
+  normal:
+    black:   '#666666'
   #  red:     '#cc6666'
   #  green:   '#b5bd68'
   #  yellow:  '#f0c674'
@@ -284,8 +284,8 @@ font:
   #  white:   '#c5c8c6'
 
   # Bright colors
-  #bright:
-  #  black:   '#666666'
+  bright:
+    black:   '#8d8d8d'
   #  red:     '#d54e53'
   #  green:   '#b9ca4a'
   #  yellow:  '#e7c547'
@@ -298,8 +298,8 @@ font:
   #
   # If the dim colors are not set, they will be calculated automatically based
   # on the `normal` colors.
-  #dim:
-  #  black:   '#131415'
+  dim:
+    black:   '#333333'
   #  red:     '#864343'
   #  green:   '#777c44'
   #  yellow:  '#9e824c'

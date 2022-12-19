@@ -89,7 +89,7 @@ for f in "${HOME}"/github/dotfiles/functions/*; do
 done
 
 # auto pull git dotfiles
-if [[ $(( $(date +"%s") - $(stat -c %Y ~/github/dotfiles/.git/FETCH_HEAD) )) -gt $(( 3600 * 20 )) ]]; then
+if [[ $(( $(date +"%s") - $(stat -c %Y ~/github/dotfiles/.git/FETCH_HEAD) )) -gt $(( 3600 * 24 * 5 )) ]]; then
   update-dotfiles
 fi
 
@@ -113,6 +113,7 @@ if [[ -e ~/.dotnet ]]; then
   export PATH="${HOME}/.dotnet/tools:$PATH"
   export DOTNET_ROOT="${HOME}/.dotnet"
 fi
+
 # aliases
 alias gst="git status -sb"
 alias reload="source ${HOME}/.zshrc"
