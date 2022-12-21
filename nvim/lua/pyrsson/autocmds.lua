@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 vim.api.nvim_create_autocmd("TermOpen", {
   group = "Terminal",
   pattern = {"term://*zsh*"},
-  command = "setlocal listchars= nonumber norelativenumber nocursorline"
+  command = "setlocal listchars= nonumber norelativenumber nocursorline nobuflisted"
 })
 vim.api.nvim_create_autocmd("BufEnter", {
   group = "Terminal",

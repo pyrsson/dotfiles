@@ -12,10 +12,10 @@ map({'n', 't'}, '<M-Up>', '<cmd>wincmd k<CR>', opts)
 map({'n', 't'}, '<M-Down>', '<cmd>wincmd j<CR>', opts)
 
 -- buffers
-map('n', '<M-.>', vim.cmd.bnext, opts)
-map('n', '<M-,>', vim.cmd.bprevious, opts)
+map('n', '<M-.>', ":bnext!<cr>", opts)
+map('n', '<M-,>', ":bprevious!<cr>", opts)
 map('n', '<M-p>', '<Cmd>b#<CR>', opts)
-map('n', '<M-c>', '<Cmd>b#|bd #<CR>', opts)
+map('n', '<M-c>', '<Cmd>bp|bd #<CR>', opts)
 map('n', '<leader>1', ':LualineBuffersJump! 1<CR>', opts)
 map('n', '<leader>2', ':LualineBuffersJump! 2<CR>', opts)
 map('n', '<leader>3', ':LualineBuffersJump! 3<CR>', opts)
