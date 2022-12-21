@@ -1,12 +1,6 @@
--- require('onedark').setup{
---   style = "darker",
--- }
--- require('onedark').load()
-
 vim.g.material_style = "darker"
 
 require('material').setup({
-
     contrast = {
         terminal = false, -- Enable contrast for the built-in terminal
         sidebars = true, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
@@ -15,7 +9,6 @@ require('material').setup({
         non_current_windows = false, -- Enable darker background for non-current windows
         filetypes = {}, -- Specify which filetypes get the contrasted (darker) background
     },
-
     styles = { -- Give comments style such as bold, italic, underline etc.
         comments = { --[[ italic = true  ]] },
         strings = { --[[ bold = true ]] },
@@ -25,7 +18,6 @@ require('material').setup({
         operators = {},
         types = {},
     },
-
     plugins = { -- Uncomment the plugins that you use to highlight them
         -- Available plugins:
         -- "dap",
@@ -36,7 +28,7 @@ require('material').setup({
         -- "lspsaga",
         -- "mini",
         -- "neogit",
-        -- "nvim-cmp",
+        "nvim-cmp",
         -- "nvim-navic",
         "nvim-tree",
         "nvim-web-devicons",
@@ -45,7 +37,6 @@ require('material').setup({
         -- "trouble",
         -- "which-key",
     },
-
     disable = {
         colored_cursor = true, -- Disable the colored cursor
         borders = true, -- Disable borders between verticaly split windows
@@ -53,16 +44,12 @@ require('material').setup({
         term_colors = false, -- Prevent the theme from setting terminal colors
         eob_lines = true -- Hide the end-of-buffer lines
     },
-
     high_visibility = {
         lighter = false, -- Enable higher contrast text for lighter style
         darker = false -- Enable higher contrast text for darker style
     },
-
     lualine_style = "default", -- Lualine style ( can be 'stealth' or 'default' )
-
     async_loading = true, -- Load parts of the theme asyncronously for faster startup (turned on by default)
-
     -- custom_colors = nil, -- If you want to everride the default colors, set this to a function
     custom_colors = function(colors)
       colors.editor.fg_dark = colors.editor.fg
@@ -70,7 +57,6 @@ require('material').setup({
       -- colors.main.purple = "#SOME_COLOR"
       -- colors.lsp.error = "#SOME_COLOR"
     end,
-
     custom_highlights = {
       -- ['@field'] = { fg = "#B0C9FF"--[[ "#89DDFF" ]] },
       -- Cursor = { bg = '#886600'}
