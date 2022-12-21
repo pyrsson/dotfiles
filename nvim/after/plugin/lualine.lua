@@ -20,9 +20,8 @@ require('lualine').setup {
   options = {
     disabled_filetypes = {
       statusline = {'NvimTree'},
-      winbar = {'NvimTree'},
+      winbar = {'NvimTree', 'toggleterm'},
     },
-    ignore_focus = {'NvimTree'},
     globalstatus = true,
   },
   tabline = {

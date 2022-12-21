@@ -27,7 +27,15 @@ lsp.set_preferences({
   }
 })
 
-lsp.ensure_installed({ "sumneko_lua", "rust_analyzer", "gopls", "bashls", "yamlls" })
+lsp.ensure_installed({
+  "sumneko_lua",
+  "rust_analyzer",
+  "gopls",
+  "bashls",
+  "yamlls",
+  "tsserver",
+  "eslint"
+})
 
 lsp.configure("yamlls", cfg)
 lsp.configure('sumneko_lua', {

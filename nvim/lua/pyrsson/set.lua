@@ -12,3 +12,4 @@ vim.opt.scrolloff = 16
 
 vim.opt.termguicolors = true
 
+vim.o.fillchars = 'eob: '
