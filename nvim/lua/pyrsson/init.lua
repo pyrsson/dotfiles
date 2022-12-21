@@ -1,0 +1,5 @@
+require("pyrsson.packer")
+require("pyrsson.autocmds")
+require("pyrsson.keymaps")
+require("pyrsson.set")
+require("pyrsson.theme")

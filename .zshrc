@@ -94,7 +94,7 @@ if [[ $(( $(date +"%s") - $(stat -c %Y ~/github/dotfiles/.git/FETCH_HEAD) )) -gt
 fi
 
 # env
-export EDITOR=vim
+export EDITOR=nvim
 export CDPATH=.:~:~/work:~/github:~/vasttrafik
 export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
