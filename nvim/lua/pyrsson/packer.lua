@@ -70,6 +70,7 @@ return require('packer').startup(function(use)
   use {"akinsho/toggleterm.nvim", tag = '*', config = function()
     require("toggleterm").setup()
   end}
+  use({ 'toppair/peek.nvim', run = 'deno task --quiet build:fast' })
   use('lewis6991/gitsigns.nvim')
   use('numToStr/Comment.nvim')
   use('marko-cerovac/material.nvim')

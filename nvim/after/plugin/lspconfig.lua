@@ -6,6 +6,14 @@ local cfg = require("yaml-companion").setup({
        name = "Kubernetes 1.23.6",
        uri = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.23.6-standalone-strict/all.json",
       },
+      {
+       name = "Application",
+       uri = "./schemas/application-argoproj-v1alpha1.json",
+      },
+      {
+       name = "ApplicationSet",
+       uri = "./schemas/applicationset-argoproj-v1alpha1.json",
+      },
     },
   },
 

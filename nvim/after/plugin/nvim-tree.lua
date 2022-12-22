@@ -20,10 +20,10 @@ require('nvim-tree').setup({
       enable = true,
       inline_arrows = true,
       icons = {
-        corner = "└",
-        edge = "│",
-        item = "│",
-        bottom = "─",
+        corner = "┗",
+        edge = "┃",
+        item = "┃",
+        bottom = "━",
         none = " ",
       },
     },
@@ -41,7 +41,7 @@ require('nvim-tree').setup({
       glyphs = {
         git = {
           unstaged = "M",
-          staged = "M",
+          staged = "S",
           unmerged = "M",
           renamed = "R",
           untracked = "U",

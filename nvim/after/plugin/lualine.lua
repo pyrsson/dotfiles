@@ -4,14 +4,14 @@ local function get_tree_size()
   return require'nvim-tree.view'.View.width
 end
 
-function Fmtcwd()
+local function fmtcwd()
   local cwd = vim.fn.getcwd()
   if string.find(cwd, vim.env.HOME) ~= nil then
     cwd = string.gsub(cwd, vim.env.HOME,"~")
   end
   local treesize = get_tree_size()
   if string.len(cwd) < treesize then
-    cwd = string.format(string.gsub("%-_._s","_", treesize-4), cwd)
+    cwd = string.format(string.gsub("%-_._s","_", treesize-3), cwd)
   end
   return cwd
 end
@@ -19,7 +19,7 @@ end
 require('lualine').setup {
   options = {
     disabled_filetypes = {
-      statusline = {'NvimTree'},
+      -- statusline = {'NvimTree', 'toggleterm'},
       winbar = {'NvimTree', 'toggleterm'},
     },
     globalstatus = true,
@@ -27,14 +27,18 @@ require('lualine').setup {
   tabline = {
     lualine_a = {
       {
-        "Fmtcwd()",
+        fmtcwd,
         separator = nil,
         icon = "",
         color = "NvimTreeRootFolder",
       },
       {
         'buffers',
-        mode = 2
+        show_filename_only = false,
+        mode = 2,
+        filetype_names = {
+          NvimTree = 'Tree'
+        },
       }
     },
     lualine_b = {},
@@ -46,7 +50,12 @@ require('lualine').setup {
   winbar = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
+    lualine_c = {
+      {
+        'filename',
+        path = 1,
+      }
+    },
     lualine_x = {},
     lualine_y = {},
     lualine_z = {}
@@ -54,10 +63,23 @@ require('lualine').setup {
   inactive_winbar = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
+    lualine_c = {
+      {
+        'filename',
+        path = 1,
+      }
+    },
     lualine_x = {},
     lualine_y = {},
     lualine_z = {}
   },
-  extensions = {'nvim-tree', 'toggleterm'}
+  sections = {
+    lualine_c = {
+      {
+        'filename',
+        path = 1,
+      }
+    },
+  },
+  extensions = {'toggleterm', 'nvim-tree'}
 }

@@ -114,6 +114,11 @@ if [[ -e ~/.dotnet ]]; then
   export DOTNET_ROOT="${HOME}/.dotnet"
 fi
 
+if [[ -e ~/.deno ]]; then
+  export DENO_INSTALL="/home/simon/.deno"
+  export PATH="$DENO_INSTALL/bin:$PATH"
+fi
+
 # aliases
 alias gst="git status -sb"
 alias reload="source ${HOME}/.zshrc"

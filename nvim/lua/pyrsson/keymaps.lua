@@ -10,6 +10,7 @@ map({'n', 't'}, '<M-Right>', '<cmd>wincmd l<CR>', opts)
 map({'n', 't'}, '<M-Left>', '<cmd>wincmd h<CR>', opts)
 map({'n', 't'}, '<M-Up>', '<cmd>wincmd k<CR>', opts)
 map({'n', 't'}, '<M-Down>', '<cmd>wincmd j<CR>', opts)
+map({'n', 't'}, '<M-w>', '<cmd>wincmd p<CR>', opts)
 
 -- buffers
 map('n', '<M-.>', ":bnext!<cr>", opts)
