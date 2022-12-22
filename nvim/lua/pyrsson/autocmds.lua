@@ -21,9 +21,3 @@ vim.api.nvim_create_autocmd("TermClose", {
   command = "bd"
 })
 
--- nvimtree
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "NvimTree",
-  command = "setlocal fillchars=eob:\\ "
-})
-

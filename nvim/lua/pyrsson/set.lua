@@ -12,4 +12,14 @@ vim.opt.scrolloff = 16
 
 vim.opt.termguicolors = true
 
-vim.o.fillchars = 'eob: '
+vim.opt.fillchars = {
+  -- horiz     = '━',
+  -- horizup   = '┻',
+  -- horizdown = '┳',
+  -- vert      = '┃',
+  -- vertleft  = '┫',
+  -- vertright = '┣',
+  -- verthoriz = '╋',
+  eob       = ' '
+}
+

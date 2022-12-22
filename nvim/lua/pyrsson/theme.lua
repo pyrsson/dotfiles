@@ -39,7 +39,7 @@ require('material').setup({
     },
     disable = {
         colored_cursor = true, -- Disable the colored cursor
-        borders = true, -- Disable borders between verticaly split windows
+        borders = false, -- Disable borders between verticaly split windows
         background = false, -- Prevent the theme from setting the background (NeoVim then uses your terminal background)
         term_colors = false, -- Prevent the theme from setting terminal colors
         eob_lines = true -- Hide the end-of-buffer lines
@@ -58,6 +58,8 @@ require('material').setup({
       -- colors.lsp.error = "#SOME_COLOR"
     end,
     custom_highlights = {
+      NvimTreeOpenedFolderName = { link = "NvimTreeFolderName" },
+      WinSeparator = { bg = "#1A1A1A", fg = "#1A1A1A" }
       -- ['@field'] = { fg = "#B0C9FF"--[[ "#89DDFF" ]] },
       -- Cursor = { bg = '#886600'}
     }, -- Overwrite highlights with your own
