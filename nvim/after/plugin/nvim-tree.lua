@@ -9,13 +9,18 @@ require('nvim-tree').setup({
     adaptive_size = true,
     mappings = {
       list = {
-        {key = {"<C-e>", "e"}, action = "edit"},
+        {key = {"<C-e>"}, action = ""},
+        {key = {"e"}, action = "edit"},
       },
     },
+  },
+  git = {
+    show_on_open_dirs = false,
   },
   renderer = {
     group_empty = true,
     indent_width = 2,
+    highlight_git = true,
     indent_markers = {
       enable = true,
       inline_arrows = true,
@@ -36,7 +41,7 @@ require('nvim-tree').setup({
         file = true,
         folder = true,
         folder_arrow = true,
-        git = true,
+        git = false,
       },
       glyphs = {
         git = {
