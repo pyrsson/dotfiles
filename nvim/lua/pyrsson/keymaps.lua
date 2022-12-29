@@ -49,4 +49,9 @@ map("v","<M-Down>",":m '>+1<CR>gv=gv", opts)
 -- toggleterm
 map('n', '<leader>t', ":ToggleTerm<CR>", opts)
 
--- terminal mappings
+-- yanking
+map('n', '<leader>y', '"+y', opts)
+map('n', '<leader>Y', '"+Y', opts)
+map('n', '<leader>p', '"+p', opts)
+map('n', '<leader>P', '"+P', opts)
+
