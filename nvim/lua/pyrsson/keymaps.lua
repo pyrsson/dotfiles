@@ -6,6 +6,10 @@ map("n", "<Space>", "<Nop>", opts)
 vim.g.mapleader = ' '
 
 -- nav
+map({'n', 't'}, '<M-l>', '<cmd>wincmd l<CR>', opts)
+map({'n', 't'}, '<M-h>', '<cmd>wincmd h<CR>', opts)
+map({'n', 't'}, '<M-k>', '<cmd>wincmd k<CR>', opts)
+map({'n', 't'}, '<M-j>', '<cmd>wincmd j<CR>', opts)
 map({'n', 't'}, '<M-Right>', '<cmd>wincmd l<CR>', opts)
 map({'n', 't'}, '<M-Left>', '<cmd>wincmd h<CR>', opts)
 map({'n', 't'}, '<M-Up>', '<cmd>wincmd k<CR>', opts)
@@ -29,7 +33,7 @@ map('n', '<leader>9', ':LualineBuffersJump! 9<CR>', opts)
 
 -- telescope
 local builtin = require('telescope.builtin')
-map('n', '<C-F>', builtin.find_files, opts)
+map('n', '<leader>ff', builtin.find_files, opts)
 map('n', '<leader>fg', builtin.live_grep, opts)
 map('n', '<leader>fb', builtin.buffers, opts)
 map('n', '<leader>fh', builtin.help_tags, opts)
@@ -54,4 +58,9 @@ map('n', '<leader>y', '"+y', opts)
 map('n', '<leader>Y', '"+Y', opts)
 map('n', '<leader>p', '"+p', opts)
 map('n', '<leader>P', '"+P', opts)
+
+-- editing
+map('n', '<leader>=', vim.cmd.LspZeroFormat, opts)
+map('n', ',', ';', opts)
+map('n', ';', ',', opts)
 

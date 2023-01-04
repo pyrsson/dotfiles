@@ -16,8 +16,8 @@ local cfg = require("yaml-companion").setup({
       },
     },
   },
-
 })
+
 local cmp = require 'cmp'
 -- toggle comment plugin
 require('Comment').setup()
