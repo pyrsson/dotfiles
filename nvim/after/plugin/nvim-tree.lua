@@ -14,9 +14,9 @@ require('nvim-tree').setup({
       },
     },
   },
-  git = {
-    show_on_open_dirs = false,
-  },
+  -- git = {
+  --   show_on_open_dirs = false,
+  -- },
   renderer = {
     group_empty = true,
     indent_width = 2,

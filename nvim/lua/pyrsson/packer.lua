@@ -76,6 +76,7 @@ return require('packer').startup(function(use)
   use('marko-cerovac/material.nvim')
   use('mbbill/undotree')
   use('rmagatti/auto-session')
+  use "lukas-reineke/indent-blankline.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
