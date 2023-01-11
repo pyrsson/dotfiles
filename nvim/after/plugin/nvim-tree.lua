@@ -6,7 +6,9 @@ require('nvim-tree').setup({
   },
   view = {
     hide_root_folder = true,
-    adaptive_size = true,
+    adaptive_size = false,
+    signcolumn = "auto",
+    width = 30,
     mappings = {
       list = {
         {key = {"<C-e>"}, action = ""},
