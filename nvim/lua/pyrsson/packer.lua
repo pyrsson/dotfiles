@@ -34,6 +34,7 @@ return require('packer').startup(function(use)
       {'rafamadriz/friendly-snippets'},
     }
   }
+  use "mfussenegger/nvim-dap"
   use "folke/neodev.nvim"
   use {
     'nvim-telescope/telescope.nvim',

@@ -8,7 +8,7 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.signcolumn = 'yes'
 
-vim.opt.scrolloff = 16
+vim.opt.scrolloff = 8
 
 vim.opt.termguicolors = true
 

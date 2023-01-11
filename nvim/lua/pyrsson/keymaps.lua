@@ -1,6 +1,22 @@
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
+local function bufdel()
+  local buffers = vim.api.nvim_list_bufs()
+  local loaded_buffers = 0
+  for _, value in ipairs(buffers) do
+    if vim.api.nvim_buf_is_loaded(value) and vim.api.nvim_buf_get_option(value, 'bufhidden') == '' and vim.api.nvim_buf_get_option(value, 'buflisted') == true then
+      loaded_buffers = loaded_buffers + 1
+    end
+  end
+  if loaded_buffers > 1 then
+    vim.cmd.bp()
+    vim.cmd.bd('#')
+  else
+    vim.cmd.bdelete()
+  end
+end
+
 -- general
 map("n", "<Space>", "<Nop>", opts)
 vim.g.mapleader = ' '
@@ -20,7 +36,7 @@ map({'n', 't'}, '<M-w>', '<cmd>wincmd p<CR>', opts)
 map('n', '<M-.>', ":bnext!<cr>", opts)
 map('n', '<M-,>', ":bprevious!<cr>", opts)
 map('n', '<M-p>', '<Cmd>b#<CR>', opts)
-map('n', '<M-c>', '<Cmd>bp|bd #<CR>', opts)
+map('n', '<M-c>', bufdel, opts)
 map('n', '<leader>1', ':LualineBuffersJump! 1<CR>', opts)
 map('n', '<leader>2', ':LualineBuffersJump! 2<CR>', opts)
 map('n', '<leader>3', ':LualineBuffersJump! 3<CR>', opts)

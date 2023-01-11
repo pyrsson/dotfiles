@@ -1,19 +1,17 @@
 local lsp = require('lsp-zero')
 local cfg = require("yaml-companion").setup({
   schemas = {
-    result = {
-      {
-       name = "Kubernetes 1.23.6",
-       uri = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.23.6-standalone-strict/all.json",
-      },
-      {
-       name = "Application",
-       uri = "./schemas/application-argoproj-v1alpha1.json",
-      },
-      {
-       name = "ApplicationSet",
-       uri = "./schemas/applicationset-argoproj-v1alpha1.json",
-      },
+    {
+      name = "Kubernetes 1.23.6",
+      uri = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.23.6-standalone-strict/all.json",
+    },
+    {
+      name = "Application",
+      uri = "./schemas/application-argoproj-v1alpha1.json",
+    },
+    {
+      name = "ApplicationSet",
+      uri = "./schemas/applicationset-argoproj-v1alpha1.json",
     },
   },
 })
@@ -91,14 +89,14 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
-local parser_config = require'nvim-treesitter.parsers'.get_parser_configs()
+local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
 parser_config.gotmpl = {
   install_info = {
     url = "https://github.com/ngalaiko/tree-sitter-go-template",
-    files = {"src/parser.c"}
+    files = { "src/parser.c" }
   },
   filetype = "gotmpl",
-  used_by = {"gohtmltmpl", "gotexttmpl", "gotmpl", "yaml"}
+  used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml" }
 }
 
 vim.api.nvim_set_hl(0, "@yamlkey", { link = "Function" })
