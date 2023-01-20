@@ -53,6 +53,8 @@ map('n', '<leader>ff', builtin.find_files, opts)
 map('n', '<leader>fg', builtin.live_grep, opts)
 map('n', '<leader>fb', builtin.buffers, opts)
 map('n', '<leader>fh', builtin.help_tags, opts)
+-- yaml_schema
+map('n', '<leader>s', ':Telescope yaml_schema<CR>', opts)
 
 -- lazygit
 map('n', '<leader>g', ':LazyGit<CR>', opts)
@@ -65,18 +67,22 @@ map("v","<Tab>",">gv",opts)
 map("v","<S-Tab>","<gv",opts)
 map("v","<M-Up>",":m '<-2<CR>gv=gv", opts)
 map("v","<M-Down>",":m '>+1<CR>gv=gv", opts)
+map("v","<leader>be", "c<c-r>=trim(system('base64',getreg('\"')))<cr><esc>", opts)
+map("v","<leader>bd", "c<c-r>=trim(system('base64 -D',getreg('\"')))<cr><esc>", opts)
+map("v","<leader>ve", "c<c-r>=trim(system('ansible-vault encrypt_string --vault-password-file=vault_password_file 2&> /dev/null',getreg('\"')))<cr><esc>", opts)
+map("v","<leader>vd", "c<c-r>=trim(system('grep -v \"!vault\" | tr -d \" \" | ansible-vault decrypt --vault-password-file=vault_password_file 2&> /dev/null',getreg('\"')))<cr><esc>", opts)
 
 -- toggleterm
 map('n', '<leader>t', ":ToggleTerm<CR>", opts)
 
 -- yanking
-map('n', '<leader>y', '"+y', opts)
-map('n', '<leader>Y', '"+Y', opts)
-map('n', '<leader>p', '"+p', opts)
-map('n', '<leader>P', '"+P', opts)
+map({'n', 'v'}, '<leader>y', '"+y', opts)
+map({'n', 'v'}, '<leader>Y', '"+Y', opts)
+map({'n', 'v'}, '<leader>p', '"+p', opts)
+map({'n', 'v'}, '<leader>P', '"+P', opts)
 
 -- editing
 map('n', '<leader>=', vim.cmd.LspZeroFormat, opts)
-map('n', ',', ';', opts)
-map('n', ';', ',', opts)
+map({'n', 'v'}, ',', ';', opts)
+map({'n', 'v'}, ';', ',', opts)
 
