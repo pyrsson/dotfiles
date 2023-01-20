@@ -129,6 +129,7 @@ alias start-k3s="tmux new -s k3s -d \"sudo ${HOME}/github/dotfiles/start-k3s\""
 alias docker="sudo podman"
 alias ta="tmux -l new-session -A -s main"
 alias stctl="systemctl"
+alias e="$EDITOR"
 
 if type docker-compose &> /dev/null; then alias dc="docker-compose"; fi
 if type kubectl &> /dev/null; then alias k="kubectl"; fi

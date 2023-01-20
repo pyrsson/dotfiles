@@ -21,6 +21,13 @@ local cmp = require 'cmp'
 require('Comment').setup()
 require('gitsigns').setup()
 require("neodev").setup({})
+-- copilot
+require("copilot").setup({
+  suggestion = { enabled = false },
+  panel      = { enabled = false },
+  filetypes  = { yaml = true }
+})
+require("copilot_cmp").setup()
 
 lsp.preset('recommended')
 
@@ -65,6 +72,8 @@ lsp.setup_nvim_cmp({
   sources = {
     { name = "nvim_lsp", group_index = 1 },
     { name = "buffer", group_index = 2 },
+    { name = "git", group_index = 2 },
+    { name = "copilot", group_index = 2 },
   },
 })
 
@@ -82,6 +91,7 @@ require('nvim-treesitter.configs').setup {
   },
   indent = {
     enable = true,
+    disable = { "yaml" },
   },
   auto_install = true,
   playground = {
@@ -99,6 +109,10 @@ parser_config.gotmpl = {
   used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml" }
 }
 
+local ft_to_parser = require "nvim-treesitter.parsers".filetype_to_parsername
+ft_to_parser.octo = "markdown"
+
+-- change color of yaml keys
 vim.api.nvim_set_hl(0, "@yamlkey", { link = "Function" })
 
 lsp.setup()

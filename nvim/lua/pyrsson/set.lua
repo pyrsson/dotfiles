@@ -7,6 +7,7 @@ vim.opt.relativenumber = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.signcolumn = 'yes'
+vim.opt.autoread = true
 
 vim.opt.scrolloff = 8
 
