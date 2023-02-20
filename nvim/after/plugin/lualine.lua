@@ -10,6 +10,10 @@ local function fmtcwd()
     cwd = string.gsub(cwd, vim.env.HOME,"~")
   end
   local treesize = get_tree_size()
+  if string.len(cwd) > treesize then
+    -- shorten the second path element
+    cwd = string.gsub(cwd, "/(%w)%w+/", "/%1/", 1)
+  end
   if string.len(cwd) < treesize then
     cwd = string.format(string.gsub("%-_._s","_", treesize-3), cwd)
   end

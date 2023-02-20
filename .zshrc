@@ -69,7 +69,7 @@ ZSH_CUSTOM="${HOME}/github/dotfiles/ohmyzsh"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-if [[ -e ~/.ssh/id_rsa ]]; then
+if [[ -e ~/.ssh/id_rsa && -n $WSL_DISTRO_NAME ]]; then
   plugins=(git ssh-agent fzf golang)
   zstyle :omz:plugins:ssh-agent identities id_rsa
 else
