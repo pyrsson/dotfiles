@@ -13,6 +13,10 @@ local cfg = require("yaml-companion").setup({
       name = "ApplicationSet",
       uri = "./schemas/applicationset-argoproj-v1alpha1.json",
     },
+    {
+      name = "RunnerDeployment",
+      uri = "./schemas/runnerdeployment-actions-v1alpha1.json",
+    },
   },
 })
 
@@ -29,7 +33,11 @@ require("copilot").setup({
 })
 require("copilot_cmp").setup()
 
-lsp.preset('recommended')
+lsp.preset({
+  name = 'recommended',
+  set_lsp_keymaps = true,
+  manage_nvim_cmp = true,
+})
 
 lsp.set_preferences({
   sign_icons = {
@@ -41,17 +49,17 @@ lsp.set_preferences({
 })
 
 lsp.ensure_installed({
-  "sumneko_lua",
+  "lua_ls",
   "rust_analyzer",
   "gopls",
   "bashls",
   "yamlls",
   "tsserver",
-  "eslint"
+  "eslint",
 })
 
 lsp.configure("yamlls", cfg)
-lsp.configure('sumneko_lua', {
+lsp.configure('lua_ls', {
   settings = {
     Lua = {
       completion = {
@@ -59,28 +67,115 @@ lsp.configure('sumneko_lua', {
       },
       diagnostics = {
         globals = { 'vim' }
+      },
+      format = {
+        enable = true,
+        defaultConfig = {
+          indent_style = "space",
+          indent_size = "2",
+        }
       }
     }
   }
 })
+lsp.configure('eslint', {
+  on_attach = function(client, _)
+    client.server_capabilities.documentFormattingProvider = true
+  end,
+  settings = {
+    format = { enable = true }, -- this will enable formatting
+  },
+})
+lsp.configure('tsserver', {
+  on_attach = function(client, _)
+    client.server_capabilities.documentFormattingProvider = false
+  end,
+  settings = {
+    format = { enable = false }, -- this will enable formatting
+  },
+})
+
+local has_words_before = function()
+  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
+end
 
 local cmp_mappings = lsp.defaults.cmp_mappings({
+  ["<PageUp>"] = function(fallback)
+    if cmp.visible() then
+      for _ = 1, 10 do
+        cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select })(nil)
+      end
+    else
+      fallback()
+    end
+  end,
+  ["<PageDown>"] = function(fallback)
+    if cmp.visible() then
+      for _ = 1, 10 do
+        cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select })(nil)
+      end
+    else
+      fallback()
+    end
+  end,
   ["<C-Space>"] = cmp.mapping.complete(),
+  ["<CR>"] = cmp.mapping.confirm({
+    -- this is the important line
+    behavior = cmp.ConfirmBehavior.Replace,
+    select = false,
+  }),
+  ["<C-s>"] = cmp.mapping.complete({
+    config = {
+      sources = {
+        {
+          name = 'copilot',
+        },
+      }
+    }
+  }),
+  ["<Tab>"] = vim.schedule_wrap(function(fallback)
+    if cmp.visible() and has_words_before() then
+      cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+    else
+      fallback()
+    end
+  end),
+  -- ["<Tab>"] = function(fallback)
+  --   if cmp.visible() then
+  --     cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+  --   else
+  --     fallback()
+  --   end
+  -- end,
+  ["<S-Tab>"] = function(fallback)
+    if cmp.visible() then
+      cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+    else
+      fallback()
+    end
+  end,
 })
+
 lsp.setup_nvim_cmp({
   mapping = cmp_mappings,
   sources = {
-    { name = "nvim_lsp", group_index = 1 },
-    { name = "buffer", group_index = 2 },
-    { name = "git", group_index = 2 },
+    { name = "nvim_lsp", group_index = 2 },
+    { name = "buffer", group_index = 3 },
+    { name = "git", group_index = 3 },
     { name = "copilot", group_index = 2 },
+  },
+  experimental = {
+    native_menu = false,
+    ghost_text = true
   },
 })
 
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on(
   'confirm_done',
-  cmp_autopairs.on_confirm_done()
+  cmp_autopairs.on_confirm_done({ map_char = { tex = "" } })
 )
 
 require('nvim-treesitter.configs').setup {

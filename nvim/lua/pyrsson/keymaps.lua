@@ -22,15 +22,15 @@ map("n", "<Space>", "<Nop>", opts)
 vim.g.mapleader = ' '
 
 -- nav
-map({'n', 't'}, '<M-l>', '<cmd>wincmd l<CR>', opts)
-map({'n', 't'}, '<M-h>', '<cmd>wincmd h<CR>', opts)
-map({'n', 't'}, '<M-k>', '<cmd>wincmd k<CR>', opts)
-map({'n', 't'}, '<M-j>', '<cmd>wincmd j<CR>', opts)
-map({'n', 't'}, '<M-Right>', '<cmd>wincmd l<CR>', opts)
-map({'n', 't'}, '<M-Left>', '<cmd>wincmd h<CR>', opts)
-map({'n', 't'}, '<M-Up>', '<cmd>wincmd k<CR>', opts)
-map({'n', 't'}, '<M-Down>', '<cmd>wincmd j<CR>', opts)
-map({'n', 't'}, '<M-w>', '<cmd>wincmd p<CR>', opts)
+map({ 'n', 't' }, '<M-l>', '<cmd>wincmd l<CR>', opts)
+map({ 'n', 't' }, '<M-h>', '<cmd>wincmd h<CR>', opts)
+map({ 'n', 't' }, '<M-k>', '<cmd>wincmd k<CR>', opts)
+map({ 'n', 't' }, '<M-j>', '<cmd>wincmd j<CR>', opts)
+map({ 'n', 't' }, '<M-Right>', '<cmd>wincmd l<CR>', opts)
+map({ 'n', 't' }, '<M-Left>', '<cmd>wincmd h<CR>', opts)
+map({ 'n', 't' }, '<M-Up>', '<cmd>wincmd k<CR>', opts)
+map({ 'n', 't' }, '<M-Down>', '<cmd>wincmd j<CR>', opts)
+map({ 'n', 't' }, '<M-w>', '<cmd>wincmd p<CR>', opts)
 
 -- buffers
 map('n', '<M-.>', ":bnext!<cr>", opts)
@@ -60,29 +60,48 @@ map('n', '<leader>s', ':Telescope yaml_schema<CR>', opts)
 map('n', '<leader>g', ':LazyGit<CR>', opts)
 
 -- tree
-map('n','<C-E>',":NvimTreeFocus<CR>",opts)
+map('n', '<C-E>', ":NvimTreeFindFile<CR>", opts)
 
 -- visual mode
-map("v","<Tab>",">gv",opts)
-map("v","<S-Tab>","<gv",opts)
-map("v","<M-Up>",":m '<-2<CR>gv=gv", opts)
-map("v","<M-Down>",":m '>+1<CR>gv=gv", opts)
-map("v","<leader>be", "c<c-r>=trim(system('base64',getreg('\"')))<cr><esc>", opts)
-map("v","<leader>bd", "c<c-r>=trim(system('base64 -D',getreg('\"')))<cr><esc>", opts)
-map("v","<leader>ve", "c<c-r>=trim(system('ansible-vault encrypt_string --vault-password-file=vault_password_file 2&> /dev/null',getreg('\"')))<cr><esc>", opts)
-map("v","<leader>vd", "c<c-r>=trim(system('grep -v \"!vault\" | tr -d \" \" | ansible-vault decrypt --vault-password-file=vault_password_file 2&> /dev/null',getreg('\"')))<cr><esc>", opts)
+map("v", "<Tab>", ">gv", opts)
+map("v", "<S-Tab>", "<gv", opts)
+map("v", "<M-Up>", ":m '<-2<CR>gv=gv", opts)
+map("v", "<M-Down>", ":m '>+1<CR>gv=gv", opts)
+map("v", "<leader>be", "c<c-r>=trim(system('base64',getreg('\"')))<cr><esc>", opts)
+map("v", "<leader>bd", "c<c-r>=trim(system('base64 -D',getreg('\"')))<cr><esc>", opts)
+map("v", "<leader>ve",
+    "c<c-r>=trim(system('ansible-vault encrypt_string --vault-password-file=vault_password_file 2&> /dev/null',getreg('\"')))<cr><esc>",
+    opts)
+map("v", "<leader>vd",
+    "c<c-r>=trim(system('grep -v \"!vault\" | tr -d \" \" | ansible-vault decrypt --vault-password-file=vault_password_file 2&> /dev/null',getreg('\"')))<cr><esc>",
+    opts)
 
 -- toggleterm
-map('n', '<leader>t', ":ToggleTerm<CR>", opts)
+local Terminal  = require('toggleterm.terminal').Terminal
+local floatterm = Terminal:new({ hidden = true, direction = "float" })
+
+local function _floatterm_toggle()
+  floatterm:toggle()
+end
+
+local function _floatterm_map()
+  vim.keymap.set("n", "<Esc>", _floatterm_toggle, { noremap = true, silent = true, buffer = true })
+end
+
+vim.api.nvim_create_autocmd("TermOpen", {
+    pattern = { "term://*toggleterm#*" },
+    callback = _floatterm_map,
+})
+
+map('n', '<leader>t', _floatterm_toggle)
 
 -- yanking
-map({'n', 'v'}, '<leader>y', '"+y', opts)
-map({'n', 'v'}, '<leader>Y', '"+Y', opts)
-map({'n', 'v'}, '<leader>p', '"+p', opts)
-map({'n', 'v'}, '<leader>P', '"+P', opts)
+map({ 'n', 'v' }, '<leader>y', '"+y', opts)
+map({ 'n', 'v' }, '<leader>Y', '"+Y', opts)
+map({ 'n', 'v' }, '<leader>p', '"+p', opts)
+map({ 'n', 'v' }, '<leader>P', '"+P', opts)
 
 -- editing
-map('n', '<leader>=', vim.cmd.LspZeroFormat, opts)
-map({'n', 'v'}, ',', ';', opts)
-map({'n', 'v'}, ';', ',', opts)
-
+map('n', '<leader>=', vim.lsp.buf.format, opts)
+map({ 'n', 'v' }, ',', ';', opts)
+map({ 'n', 'v' }, ';', ',', opts)

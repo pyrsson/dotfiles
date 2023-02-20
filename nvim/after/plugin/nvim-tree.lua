@@ -1,9 +1,9 @@
 require('nvim-tree').setup({
   sort_by = "case_sensitive",
-  open_on_setup = true,
-  ignore_ft_on_setup = {
-    "gitcommit",
-  },
+  -- open_on_setup = true,
+  -- ignore_ft_on_setup = {
+  --   "gitcommit",
+  -- },
   view = {
     hide_root_folder = true,
     adaptive_size = false,
@@ -11,8 +11,8 @@ require('nvim-tree').setup({
     width = 30,
     mappings = {
       list = {
-        {key = {"<C-e>"}, action = ""},
-        {key = {"e"}, action = "edit"},
+        { key = { "<C-e>" }, action = "" },
+        { key = { "e" }, action = "edit" },
       },
     },
   },
@@ -72,8 +72,19 @@ require('nvim-tree').setup({
     sync = {
       open = true,
       close = true,
-      ignore = {"term://"},
+      ignore = { "term://" },
     },
   },
 })
 
+local function open_nvim_tree(data)
+  if string.match(data.file, "/tmp/") or string.match(data.file, ".git/") then
+    return
+  end
+
+  -- open the tree but don't focus it
+  require("nvim-tree.api").tree.toggle({ focus = false, find_file = true })
+
+end
+
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
