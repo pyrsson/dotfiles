@@ -162,13 +162,14 @@ lsp.setup_nvim_cmp({
   mapping = cmp_mappings,
   sources = {
     { name = "nvim_lsp", group_index = 2 },
-    { name = "buffer", group_index = 3 },
-    { name = "git", group_index = 3 },
-    { name = "copilot", group_index = 2 },
+    { name = "buffer",   group_index = 3 },
+    { name = "git",      group_index = 3 },
+    { name = "copilot",  group_index = 2 },
+    { name = "path",     group_index = 3 },
   },
   experimental = {
     native_menu = false,
-    ghost_text = true
+    ghost_text = false
   },
 })
 

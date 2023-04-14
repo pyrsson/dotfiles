@@ -5,7 +5,6 @@ require('nvim-tree').setup({
   --   "gitcommit",
   -- },
   view = {
-    hide_root_folder = true,
     adaptive_size = false,
     signcolumn = "auto",
     width = 30,
@@ -23,6 +22,7 @@ require('nvim-tree').setup({
     group_empty = true,
     indent_width = 2,
     highlight_git = true,
+    root_folder_label = false,
     indent_markers = {
       enable = true,
       inline_arrows = true,
