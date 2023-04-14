@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 })
 vim.api.nvim_create_autocmd("BufEnter", {
   group = "Terminal",
-  pattern = {"term://*zsh*"},
+  pattern = {"term://*zsh*", "*toggleterm*"},
   command = "startinsert"
 })
 vim.api.nvim_create_autocmd("TermClose", {

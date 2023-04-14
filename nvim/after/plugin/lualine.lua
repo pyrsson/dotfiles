@@ -23,7 +23,7 @@ end
 require('lualine').setup {
   options = {
     disabled_filetypes = {
-      -- statusline = {'NvimTree', 'toggleterm'},
+      -- statusline = {'NvimTree'},
       winbar = {'NvimTree', 'toggleterm'},
     },
     globalstatus = true,
@@ -85,5 +85,5 @@ require('lualine').setup {
       }
     },
   },
-  extensions = {'toggleterm', 'nvim-tree'}
+  extensions = {'toggleterm'}
 }

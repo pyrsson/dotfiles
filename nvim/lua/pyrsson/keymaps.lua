@@ -68,7 +68,7 @@ map("v", "<S-Tab>", "<gv", opts)
 map("v", "<M-Up>", ":m '<-2<CR>gv=gv", opts)
 map("v", "<M-Down>", ":m '>+1<CR>gv=gv", opts)
 map("v", "<leader>be", "c<c-r>=trim(system('base64',getreg('\"')))<cr><esc>", opts)
-map("v", "<leader>bd", "c<c-r>=trim(system('base64 -D',getreg('\"')))<cr><esc>", opts)
+map("v", "<leader>bd", "c<c-r>=trim(system('base64 -di',getreg('\"')))<cr><esc>", opts)
 map("v", "<leader>ve",
     "c<c-r>=trim(system('ansible-vault encrypt_string --vault-password-file=vault_password_file 2&> /dev/null',getreg('\"')))<cr><esc>",
     opts)
@@ -85,7 +85,7 @@ local function _floatterm_toggle()
 end
 
 local function _floatterm_map()
-  vim.keymap.set("n", "<Esc>", _floatterm_toggle, { noremap = true, silent = true, buffer = true })
+  vim.keymap.set({"t", "n"}, "<Esc>", _floatterm_toggle, { noremap = true, silent = true, buffer = true })
 end
 
 vim.api.nvim_create_autocmd("TermOpen", {
@@ -105,3 +105,4 @@ map({ 'n', 'v' }, '<leader>P', '"+P', opts)
 map('n', '<leader>=', vim.lsp.buf.format, opts)
 map({ 'n', 'v' }, ',', ';', opts)
 map({ 'n', 'v' }, ';', ',', opts)
+map('v', '<leader>r', '"hy:%s/<C-r>h//g<left><left>', opts)

@@ -129,6 +129,7 @@ alias start-k3s="tmux new -s k3s -d \"sudo ${HOME}/github/dotfiles/start-k3s\""
 alias docker="sudo podman"
 alias ta="tmux -l new-session -A -s main"
 alias stctl="systemctl"
+alias vim="nvim"
 alias e="$EDITOR"
 
 if type docker-compose &> /dev/null; then alias dc="docker-compose"; fi
@@ -159,6 +160,8 @@ if [[ -e /etc/bash_completion.d/azure-cli ]]; then
   source /etc/bash_completion.d/azure-cli
 fi
 
+# fix strange bug with completion
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
