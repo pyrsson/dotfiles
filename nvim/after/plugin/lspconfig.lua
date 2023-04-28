@@ -205,9 +205,6 @@ parser_config.gotmpl = {
   used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml" }
 }
 
-local ft_to_parser = require "nvim-treesitter.parsers".filetype_to_parsername
-ft_to_parser.octo = "markdown"
-
 -- change color of yaml keys
 vim.api.nvim_set_hl(0, "@yamlkey", { link = "Function" })
 
