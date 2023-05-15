@@ -5,6 +5,10 @@ local function get_tree_size()
 end
 
 local function fmtcwd()
+  -- only when tree is open
+  if not require'nvim-tree.view'.is_visible() then
+    return ""
+  end
   local cwd = vim.fn.getcwd()
   if string.find(cwd, vim.env.HOME) ~= nil then
     cwd = string.gsub(cwd, vim.env.HOME,"~")

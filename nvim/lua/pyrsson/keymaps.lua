@@ -20,17 +20,18 @@ end
 -- general
 map("n", "<Space>", "<Nop>", opts)
 vim.g.mapleader = ' '
+vim.g.tmux_navigator_no_mappings = 1
 
 -- nav
-map({ 'n', 't' }, '<M-l>', '<cmd>wincmd l<CR>', opts)
-map({ 'n', 't' }, '<M-h>', '<cmd>wincmd h<CR>', opts)
-map({ 'n', 't' }, '<M-k>', '<cmd>wincmd k<CR>', opts)
-map({ 'n', 't' }, '<M-j>', '<cmd>wincmd j<CR>', opts)
-map({ 'n', 't' }, '<M-Right>', '<cmd>wincmd l<CR>', opts)
-map({ 'n', 't' }, '<M-Left>', '<cmd>wincmd h<CR>', opts)
-map({ 'n', 't' }, '<M-Up>', '<cmd>wincmd k<CR>', opts)
-map({ 'n', 't' }, '<M-Down>', '<cmd>wincmd j<CR>', opts)
-map({ 'n', 't' }, '<M-w>', '<cmd>wincmd p<CR>', opts)
+map({ 'n', 't' }, '<C-l>', '<cmd>TmuxNavigateRight<CR>', opts)
+map({ 'n', 't' }, '<C-h>', '<cmd>TmuxNavigateLeft<CR>', opts)
+map({ 'n', 't' }, '<C-k>', '<cmd>TmuxNavigateUp<CR>', opts)
+map({ 'n', 't' }, '<C-j>', '<cmd>TmuxNavigateDown<CR>', opts)
+map({ 'n', 't' }, '<M-Right>', '<cmd>TmuxNavigateRight<CR>', opts)
+map({ 'n', 't' }, '<M-Left>', '<cmd>TmuxNavigateLeft<CR>', opts)
+map({ 'n', 't' }, '<M-Up>', '<cmd>TmuxNavigateUp<CR>', opts)
+map({ 'n', 't' }, '<M-Down>', '<cmd>TmuxNavigateDown<CR>', opts)
+map({ 'n', 't' }, '<M-w>', '<cmd>TmuxNavigatePrevious<CR>', opts)
 
 -- buffers
 map('n', '<M-.>', ":bnext!<cr>", opts)

@@ -131,6 +131,7 @@ alias ta="tmux -l new-session -A -s main"
 alias stctl="systemctl"
 alias vim="nvim"
 alias e="$EDITOR"
+alias vimdiff="nvim -d"
 
 if type docker-compose &> /dev/null; then alias dc="docker-compose"; fi
 if type kubectl &> /dev/null; then alias k="kubectl"; fi
@@ -161,7 +162,7 @@ if [[ -e /etc/bash_completion.d/azure-cli ]]; then
 fi
 
 # fix strange bug with completion
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+# zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
