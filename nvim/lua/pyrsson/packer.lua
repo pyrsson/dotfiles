@@ -78,7 +78,7 @@ return require('packer').startup(function(use)
   use('numToStr/Comment.nvim')
   use('marko-cerovac/material.nvim')
   use('mbbill/undotree')
-  use('rmagatti/auto-session')
+  use('christoomey/vim-tmux-navigator')
   use "lukas-reineke/indent-blankline.nvim"
   use {
     'pwntester/octo.nvim',
