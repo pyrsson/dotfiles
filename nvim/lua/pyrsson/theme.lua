@@ -51,12 +51,15 @@ require('material').setup({
   lualine_style = "default", -- Lualine style ( can be 'stealth' or 'default' )
   async_loading = true, -- Load parts of the theme asyncronously for faster startup (turned on by default)
   -- custom_colors = function(colors)
-  --   -- colors.editor.fg_dark = colors.editor.fg
+  --   colors.editor.bg = "NONE"
   --   -- colors.editor.accent = "#71C6E7"
   --   -- colors.main.purple = "#SOME_COLOR"
-  --   -- colors.lsp.error = "#SOME_COLOR"
+  -- --   -- colors.lsp.error = "#SOME_COLOR"
   -- end,
   custom_highlights = {
+    Normal = { bg = "NONE" },
+    NormalNC = { bg = "NONE" },
+    NormalContrast = { bg = "NONE" },
     NvimTreeFolderName = { fg = colors.editor.fg, --[[ bold = true ]] },
     NvimTreeFolderIcon = { fg = colors.main.blue },
     NvimTreeOpenedFolderName = { link = "NvimTreeFolderName" },
