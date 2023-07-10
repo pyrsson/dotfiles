@@ -184,8 +184,8 @@ font:
 # Colors (Tomorrow Night)
 colors:
   # Default colors
-  #primary:
-  #  background: '#1d1f21'
+  primary:
+    background: '#101010'
   #  foreground: '#c5c8c6'
 
     # Bright and dim foreground colors
@@ -273,8 +273,8 @@ colors:
   #  background: CellForeground
 
   # Normal colors
-  normal:
-    black:   '#666666'
+  # normal:
+  #   black:   '#666666'
   #  red:     '#cc6666'
   #  green:   '#b5bd68'
   #  yellow:  '#f0c674'
@@ -284,8 +284,8 @@ colors:
   #  white:   '#c5c8c6'
 
   # Bright colors
-  bright:
-    black:   '#8d8d8d'
+  # bright:
+  #   black:   '#8d8d8d'
   #  red:     '#d54e53'
   #  green:   '#b9ca4a'
   #  yellow:  '#e7c547'
@@ -298,8 +298,8 @@ colors:
   #
   # If the dim colors are not set, they will be calculated automatically based
   # on the `normal` colors.
-  dim:
-    black:   '#333333'
+  # dim:
+  #   black:   '#333333'
   #  red:     '#864343'
   #  green:   '#777c44'
   #  yellow:  '#9e824c'
@@ -426,14 +426,14 @@ live_config_reload: true
 #   - (macOS) /bin/bash --login
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
-shell:
-  program: /bin/tmux
-  args:
-    - -l
-    - new-session
-    - -A
-    - -s
-    - main
+# shell:
+#   program: /bin/tmux
+#   args:
+#     - -l
+#     - new-session
+#     - -A
+#     - -s
+#     - main
 
 # Startup directory
 #

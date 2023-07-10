@@ -1,0 +1,51 @@
+#!/bin/zsh
+
+function ta() {
+  dir=$1
+  tb=0
+  rl=0
+  border="none"
+
+  read -r cols lines <<<$(tput cols lines| xargs)
+  if [[ $lines -gt 50 && $cols -gt 100 ]]; then
+    tb=10
+    rl=40
+    border="sharp"
+  fi
+
+  if [[ -z "$dir" && -z "$TMUX" ]]; then
+    tmux new-session -A -s main
+    return 0
+  fi
+
+  if [[ -z "$dir" ]]; then
+    sesh=$(tmux list-sessions -F#S | fzf --no-separator --reverse --margin $tb,$rl --color 16 --border $border --info hidden --prompt="Select session > ")
+    if [[ -n "$TMUX" ]]; then
+      tmux switch-client -t "$sesh"
+      return 0
+    fi
+    tmux attach -t "$sesh"
+    return 0
+  elif [[ -d "$dir" ]]; then
+    _session_name=$(cd $dir && ls -d */ | sed  "s|/||g" | fzf --no-separator --reverse --margin $tb,$rl --color 16 --border $border --info hidden --prompt="Select project from $(basename $dir) > ")
+    session_name=${_session_name//./_}
+    path_name=$dir/$_session_name
+
+    if tmux has-session -t $session_name 2>/dev/null; then
+      tmux switch-client -t $session_name
+      return 0
+    fi
+
+    tmux new-session -d -s "$session_name" -c "$path_name"
+    tmux send-keys -t $session_name "nvim" Enter
+    tmux split-window -t $session_name -l 12 -d -c $path_name
+    tmux switch-client -t $session_name
+    return 0
+  fi
+
+  if [[ -n "$TMUX" ]]; then
+    echo "Already in a tmux session"
+    return 1
+  fi
+  return 1
+}

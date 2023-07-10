@@ -83,11 +83,6 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-export FPATH="${HOME}/github/dotfiles/functions:${FPATH}"
-for f in "${HOME}"/github/dotfiles/functions/*; do
-  autoload -Uz $f
-done
-
 # auto pull git dotfiles
 if [[ $(( $(date +"%s") - $(stat -c %Y ~/github/dotfiles/.git/FETCH_HEAD) )) -gt $(( 3600 * 24 * 5 )) ]]; then
   update-dotfiles
@@ -127,7 +122,6 @@ alias pls="command sudo "
 alias sudo="command sudo "
 alias start-k3s="tmux new -s k3s -d \"sudo ${HOME}/github/dotfiles/start-k3s\""
 alias docker="sudo podman"
-alias ta="tmux -l new-session -A -s main"
 alias stctl="systemctl"
 alias vim="nvim"
 alias e="$EDITOR"

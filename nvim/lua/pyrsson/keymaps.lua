@@ -74,7 +74,7 @@ map("v", "<leader>ve",
     "c<c-r>=trim(system('ansible-vault encrypt_string --vault-password-file=vault_password_file 2&> /dev/null',getreg('\"')))<cr><esc>",
     opts)
 map("v", "<leader>vd",
-    "c<c-r>=trim(system('grep -v \"!vault\" | tr -d \" \" | ansible-vault decrypt --vault-password-file=vault_password_file 2&> /dev/null',getreg('\"')))<cr><esc>",
+    "c<c-r>=trim(system('grep -v \'!vault\' | tr -d \" \" | ansible-vault decrypt --vault-password-file=vault_password_file 2&> /dev/null',getreg('\"')))<cr><esc>",
     opts)
 
 -- toggleterm
