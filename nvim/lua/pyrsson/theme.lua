@@ -2,14 +2,14 @@ vim.g.material_style = "darker"
 local colors = require("material.colors")
 require('material').setup({
   contrast = {
-    terminal = false, -- Enable contrast for the built-in terminal
-    sidebars = true, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
-    floating_windows = true, -- Enable contrast for floating windows
-    cursor_line = false, -- Enable darker background for the cursor line
+    terminal = false,            -- Enable contrast for the built-in terminal
+    sidebars = true,             -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
+    floating_windows = true,     -- Enable contrast for floating windows
+    cursor_line = true,          -- Enable darker background for the cursor line
     non_current_windows = false, -- Enable darker background for non-current windows
-    filetypes = {}, -- Specify which filetypes get the contrasted (darker) background
+    filetypes = {},              -- Specify which filetypes get the contrasted (darker) background
   },
-  styles = { -- Give comments style such as bold, italic, underline etc.
+  styles = {                     -- Give comments style such as bold, italic, underline etc.
     comments = { --[[ italic = true  ]] },
     strings = { --[[ bold = true ]] },
     keywords = { --[[ underline = true ]] },
@@ -38,18 +38,18 @@ require('material').setup({
     -- "which-key",
   },
   disable = {
-    colored_cursor = true, -- Disable the colored cursor
-    borders = false, -- Disable borders between verticaly split windows
-    background = false, -- Prevent the theme from setting the background (NeoVim then uses your terminal background)
-    term_colors = false, -- Prevent the theme from setting terminal colors
-    eob_lines = true -- Hide the end-of-buffer lines
+    colored_cursor = false, -- Disable the colored cursor
+    borders = false,        -- Disable borders between verticaly split windows
+    background = false,     -- Prevent the theme from setting the background (NeoVim then uses your terminal background)
+    term_colors = false,    -- Prevent the theme from setting terminal colors
+    eob_lines = true        -- Hide the end-of-buffer lines
   },
   high_visibility = {
-    lighter = false, -- Enable higher contrast text for lighter style
-    darker = false -- Enable higher contrast text for darker style
+    lighter = false,         -- Enable higher contrast text for lighter style
+    darker = true            -- Enable higher contrast text for darker style
   },
-  lualine_style = "default", -- Lualine style ( can be 'stealth' or 'default' )
-  async_loading = true, -- Load parts of the theme asyncronously for faster startup (turned on by default)
+  lualine_style = "stealth", -- Lualine style ( can be 'stealth' or 'default' )
+  async_loading = true,      -- Load parts of the theme asyncronously for faster startup (turned on by default)
   -- custom_colors = function(colors)
   --   colors.editor.bg = "NONE"
   --   -- colors.editor.accent = "#71C6E7"
@@ -58,6 +58,7 @@ require('material').setup({
   -- end,
   custom_highlights = {
     Normal = { bg = "NONE" },
+    Cursor = { bg = colors.main.white },
     NormalNC = { bg = "NONE" },
     NormalContrast = { bg = "NONE" },
     NvimTreeFolderName = { fg = colors.editor.fg, --[[ bold = true ]] },
@@ -67,6 +68,7 @@ require('material').setup({
     NvimTreeExecFile = { fg = colors.editor.fg },
     NvimTreeFileStaged = { fg = colors.main.darkgreen },
     NvimTreeWindowPicker = { link = "lualine_a_normal" },
+    NvimTreeCursorLine = { bg = colors.editor.active },
   },
 })
 

@@ -68,7 +68,7 @@ map("v", "<Tab>", ">gv", opts)
 map("v", "<S-Tab>", "<gv", opts)
 map("v", "<M-Up>", ":m '<-2<CR>gv=gv", opts)
 map("v", "<M-Down>", ":m '>+1<CR>gv=gv", opts)
-map("v", "<leader>be", "c<c-r>=trim(system('base64',getreg('\"')))<cr><esc>", opts)
+map("v", "<leader>be", "c<c-r>=trim(system('base64 -w 0',getreg('\"')))<cr><esc>", opts)
 map("v", "<leader>bd", "c<c-r>=trim(system('base64 -di',getreg('\"')))<cr><esc>", opts)
 map("v", "<leader>ve",
     "c<c-r>=trim(system('ansible-vault encrypt_string --vault-password-file=vault_password_file 2&> /dev/null',getreg('\"')))<cr><esc>",

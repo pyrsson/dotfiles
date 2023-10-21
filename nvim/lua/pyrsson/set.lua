@@ -8,6 +8,7 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.signcolumn = 'yes'
 vim.opt.autoread = true
+vim.opt.cursorline = true
 
 vim.opt.scrolloff = 8
 
