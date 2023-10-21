@@ -1,3 +1,7 @@
-require('indent_blankline').setup {
-  show_current_context = true,
-}
+if not vim.g.vscode then
+  require('ibl').setup {
+    scope = {
+      enabled = false,
+    },
+  }
+end

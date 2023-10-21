@@ -104,7 +104,9 @@ if type direnv &> /dev/null; then eval "$(direnv hook zsh)"; fi
 export GPG_TTY=$(tty)
 source "$HOME/.cargo/env"
 
-if [[ -e ~/.dotnet ]]; then
+if [[ -e /usr/share/dotnet ]]; then
+  export DOTNET_ROOT="/usr/share/dotnet"
+elif [[ -e ~/.dotnet ]]; then
   export PATH="${HOME}/.dotnet/tools:$PATH"
   export DOTNET_ROOT="${HOME}/.dotnet"
 fi
