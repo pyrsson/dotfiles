@@ -206,9 +206,6 @@ if not vim.g.vscode then
     used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml" }
   }
 
-  -- change color of yaml keys
-  vim.api.nvim_set_hl(0, "@yamlkey", { link = "Function" })
-
   lsp.setup()
 
   vim.diagnostic.config({

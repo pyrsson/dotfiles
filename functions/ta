@@ -9,9 +9,15 @@ function ta() {
 
   # add margins to fzfs window if the terminal is big enough
   read -r cols lines <<< "$(tput cols lines| xargs)"
-  if [[ $lines -gt 50 && $cols -gt 100 ]]; then
+  if [[ $lines -gt 50 ]]; then
     tb=10
+    border="horizontal"
+  fi
+  if [[ $cols -gt 100 ]]; then
     rl=40
+    border="vertical"
+  fi
+  if [[ $lines -gt 50 && $cols -gt 100 ]]; then
     border="sharp"
   fi
 
@@ -23,7 +29,7 @@ function ta() {
 
   # if no dir is passed, list sessions
   if [[ -z "$dir" ]]; then
-    sesh=$(tmux list-sessions -F#S | fzf --no-separator --reverse --margin $tb,$rl --color 16 --border $border --info hidden --prompt="Select session > ")
+    sesh=$(tmux list-sessions -F#S | fzf --no-separator --reverse --margin $tb,$rl --border $border --info hidden --prompt="Select session > ")
     if [[ -n "$TMUX" ]]; then
       tmux switch-client -t "$sesh"
       return 0
@@ -32,7 +38,7 @@ function ta() {
     return 0
   elif [[ -d "$dir" ]]; then
     # if a dir is passed, list projects in that dir
-    _session_name=$(cd "$dir" && ls -d */ | sed  "s|/||g" | fzf --no-separator --reverse --margin $tb,$rl --color 16 --border $border --info hidden --prompt="Select project from $(basename "$dir") > ")
+    _session_name=$(cd "$dir" && ls -d */ | sed  "s|/||g" | fzf --no-separator --reverse --margin $tb,$rl --border $border --info hidden --prompt="Select project from $(basename "$dir") > ")
     # replace dots with underscores for tmux session names
     session_name=${_session_name//./_}
     path_name=$dir/$_session_name

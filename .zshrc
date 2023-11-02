@@ -8,7 +8,7 @@ export ZSH="${HOME}/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="af-magic"
+ZSH_THEME="pyrsson"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -102,8 +102,11 @@ export PATH="$PATH:${HOME}/.linkerd2/bin"
 export PATH="$PATH:${HOME}/go/bin"
 if type direnv &> /dev/null; then eval "$(direnv hook zsh)"; fi
 export GPG_TTY=$(tty)
-source "$HOME/.cargo/env"
+export FZF_DEFAULT_OPTS="--color dark,prompt:blue,hl+:cyan,hl:cyan,bg+:gray,gutter:-1,fg+:blue:bold,pointer:cyan,info:blue,border:gray"
 
+if [[ -e "$HOME/.cargo/env" ]]; then
+  source "$HOME/.cargo/env"
+fi
 if [[ -e /usr/share/dotnet ]]; then
   export DOTNET_ROOT="/usr/share/dotnet"
 elif [[ -e ~/.dotnet ]]; then

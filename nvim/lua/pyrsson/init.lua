@@ -8,6 +8,8 @@ else
     require("pyrsson.packer")
     require("pyrsson.keymaps")
     require("pyrsson.set")
-    require("pyrsson.theme")
+    -- require("pyrsson.materialtheme")
+    require("pyrsson.tokyonight")
+    -- require("pyrsson.kanagawa")
 end
 

@@ -57,10 +57,10 @@ require('material').setup({
   -- --   -- colors.lsp.error = "#SOME_COLOR"
   -- end,
   custom_highlights = {
-    Normal = { bg = "NONE" },
+    -- Normal = { bg = "NONE" },
     Cursor = { bg = colors.main.white },
-    NormalNC = { bg = "NONE" },
-    NormalContrast = { bg = "NONE" },
+    -- NormalNC = { bg = "NONE" },
+    -- NormalContrast = { bg = "NONE" },
     NvimTreeFolderName = { fg = colors.editor.fg, --[[ bold = true ]] },
     NvimTreeFolderIcon = { fg = colors.main.blue },
     NvimTreeOpenedFolderName = { link = "NvimTreeFolderName" },
@@ -71,5 +71,8 @@ require('material').setup({
     NvimTreeCursorLine = { bg = colors.editor.active },
   },
 })
+
+-- change color of yaml keys
+vim.api.nvim_set_hl(0, "@yamlkey", { link = "Function" })
 
 vim.cmd "colorscheme material"

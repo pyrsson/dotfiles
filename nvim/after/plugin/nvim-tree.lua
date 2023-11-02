@@ -116,7 +116,7 @@ require('nvim-tree').setup({
     },
     icons = {
       webdev_colors = true,
-      git_placement = "after",
+      git_placement = "signcolumn",
       padding = " ",
       symlink_arrow = " ➛ ",
       show = {
