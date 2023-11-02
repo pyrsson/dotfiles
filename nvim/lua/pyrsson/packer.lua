@@ -38,6 +38,8 @@ return require('packer').startup(function(use)
   use "petertriho/cmp-git"
   use "mfussenegger/nvim-dap"
   use "folke/neodev.nvim"
+  use "folke/tokyonight.nvim"
+  use "rebelot/kanagawa.nvim"
   use {
     'nvim-telescope/telescope.nvim',
     requires = { { 'nvim-lua/plenary.nvim' }, { "kdheepak/lazygit.nvim" } },
