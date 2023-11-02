@@ -162,7 +162,3 @@ fi
 
 # fix strange bug with completion
 # zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-# Generated for envman. Do not edit.
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-
