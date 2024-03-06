@@ -1,7 +1,7 @@
 if vim.g.vscode then
     -- VSCode extension
     -- require("pyrsson.autocmds")
-    -- require("pyrsson.keymaps")
+    require("pyrsson.keymaps")
 else
     -- ordinary Neovim
     require("pyrsson.autocmds")
