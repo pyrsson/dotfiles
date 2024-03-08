@@ -160,5 +160,5 @@ if [[ -e /etc/bash_completion.d/azure-cli ]]; then
   source /etc/bash_completion.d/azure-cli
 fi
 
-# fix strange bug with completion
-# zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+if type cortextool &> /dev/null; then eval "$(cortextool --completion-script-zsh)"; fi
+if type logcli &> /dev/null; then eval "$(logcli --completion-script-zsh)"; fi

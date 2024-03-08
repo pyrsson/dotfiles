@@ -20,6 +20,10 @@ return {
         "rust",
         "go",
       })
+      opts.indent = {
+        enable = true,
+        disable = { "yaml" },
+      }
     end,
   },
   { "christoomey/vim-tmux-navigator" },
