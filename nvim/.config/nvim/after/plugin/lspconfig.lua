@@ -8,11 +8,11 @@ if not vim.g.vscode then
       },
       {
         name = "Application",
-        uri = "./schemas/application-argoproj-v1alpha1.json",
+        uri = "./schemas/application.json",
       },
       {
         name = "ApplicationSet",
-        uri = "./schemas/applicationset-argoproj-v1alpha1.json",
+        uri = "./schemas/applicationset.json",
       },
       {
         name = "RunnerDeployment",
@@ -79,6 +79,11 @@ if not vim.g.vscode then
       }
     }
   })
+  lsp.format_mapping('<leader>=', {
+    servers = {
+      ['eslint'] = { 'javascript', 'typescript' },
+    }
+  })
   lsp.configure('eslint', {
     on_attach = function(client, _)
       client.server_capabilities.documentFormattingProvider = true
@@ -87,14 +92,14 @@ if not vim.g.vscode then
       format = { enable = true }, -- this will enable formatting
     },
   })
-  lsp.configure('tsserver', {
-    on_attach = function(client, _)
-      client.server_capabilities.documentFormattingProvider = false
-    end,
-    settings = {
-      format = { enable = false }, -- this will enable formatting
-    },
-  })
+  -- lsp.configure('tsserver', {
+  --   on_attach = function(client, _)
+  --     client.server_capabilities.documentFormattingProvider = false
+  --   end,
+  --   settings = {
+  --     format = { enable = false }, -- this will disable formatting
+  --   },
+  -- })
 
   local has_words_before = function()
     if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end

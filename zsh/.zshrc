@@ -62,7 +62,7 @@ DISABLE_UPDATE_PROMPT="true"
 HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM="${HOME}/github/dotfiles/ohmyzsh"
+# ZSH_CUSTOM="${HOME}/github/dotfiles/ohmyzsh"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/

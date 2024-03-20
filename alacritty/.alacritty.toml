@@ -1,0 +1,16 @@
+import = ["/home/simon/.local/share/nvim/site/pack/packer/start/tokyonight.nvim/extras/alacritty/tokyonight_moon.toml"]
+live_config_reload = true
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 12
+
+[font.normal]
+family = "Hack Nerd Font"
+
+[window]
+decorations = "none"
+dynamic_title = false
+startup_mode = "Maximized"
