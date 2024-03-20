@@ -11,6 +11,14 @@ return {
       colorscheme = "tokyonight",
     },
   },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      window = {
+        width = 30,
+      },
+    },
+  },
   -- add more treesitter parsers
   {
     "nvim-treesitter/nvim-treesitter",
@@ -25,6 +33,17 @@ return {
         disable = { "yaml" },
       }
     end,
+  },
+  {
+    "stevearc/conform.nvim",
+    --@class ConfomOpts
+    opts = {
+      formatters = {
+        shfmt = {
+          prepend_args = { "-i", "2", "-ci" },
+        },
+      },
+    },
   },
   { "christoomey/vim-tmux-navigator" },
   {
