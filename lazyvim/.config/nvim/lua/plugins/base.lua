@@ -17,6 +17,16 @@ return {
       window = {
         width = 30,
       },
+      filesystem = {
+        filtered_items = {
+          always_show = { -- remains visible even if other settings would normally hide it
+            ".gitignore",
+            ".gitignored",
+            ".github",
+            ".config",
+          },
+        },
+      },
     },
   },
   -- add more treesitter parsers
@@ -47,16 +57,6 @@ return {
   },
   { "christoomey/vim-tmux-navigator" },
   {
-    "telescope.nvim",
-    dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-      config = function()
-        require("telescope").load_extension("fzf")
-      end,
-    },
-  },
-  {
     "toppair/peek.nvim",
     build = "deno task --quiet build:fast",
     opts = {
@@ -82,5 +82,34 @@ return {
       vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
       vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
     end,
+  },
+  {
+    "someone-stole-my-name/yaml-companion.nvim",
+    ft = { "yaml" },
+    dependencies = {
+      { "neovim/nvim-lspconfig" },
+      { "nvim-lua/plenary.nvim" },
+    },
+    opts = {
+      builtin_matchers = {
+        kubernetes = { enabled = true },
+      },
+    },
+    config = function(_, opts)
+      local cfg = require("yaml-companion").setup(opts)
+      require("lspconfig")["yamlls"].setup(cfg)
+    end,
+  },
+  -- {
+  --   "hinell/lsp-timeout.nvim",
+  --   dependencies = { "neovim/nvim-lspconfig" }
+  -- },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      inlay_hints = {
+        enabled = false,
+      },
+    },
   },
 }

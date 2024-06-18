@@ -1,4 +1,3 @@
-export FPATH="${HOME}/github/dotfiles/functions:${FPATH}"
-for f in "${HOME}"/github/dotfiles/functions/*; do
+for f in "${HOME}"/.oh-my-zsh/functions/*; do
   autoload -Uz $f
 done
