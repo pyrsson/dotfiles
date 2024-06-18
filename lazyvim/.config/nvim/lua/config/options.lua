@@ -32,3 +32,4 @@ vim.opt.fillchars = {
 
 vim.opt.timeoutlen = 700
 vim.g.root_spec = { "cwd" }
+vim.g.lazyvim_picker = "fzf"

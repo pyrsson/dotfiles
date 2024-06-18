@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# set up some defaults for the fzf options
+dir=$1
+
+# if no tmux session is running, start one
+if [[ -z "$dir" && -z "$TMUX" ]]; then
+  tmux new-session -A -s main
+  exit 0
+fi
+
+# if no dir is passed, list sessions
+if [[ -z "$dir" ]]; then
+  sesh=$(tmux list-sessions -F#S | fzf --no-separator --reverse --info hidden --prompt="Select session > ")
+  if [[ -z $sesh ]]; then
+    exit 1
+  fi
+  if [[ -n "$TMUX" ]]; then
+    tmux switch-client -t "$sesh"
+    exit 0
+  fi
+  tmux attach -t "$sesh"
+  exit 0
+elif [[ -d "$dir" ]]; then
+  # if a dir is passed, list projects in that dir
+  _session_name=$(find "$dir" -maxdepth 1 -mindepth 1 -printf '%f\n' | fzf --no-separator --reverse --info hidden --prompt="Select project from $(basename "$dir") > ")
+  # replace dots with underscores for tmux session names
+  session_name=${_session_name//./_}
+  path_name=$dir/$_session_name
+
+  if [[ -z $_session_name ]]; then
+    exit 0
+  fi
+
+  if tmux has-session -t "$session_name" 2>/dev/null; then
+    tmux switch-client -t "$session_name"
+    exit 0
+  fi
+
+  tmux new-session -d -s "$session_name" -c "$path_name"
+  tmux send-keys -t "$session_name" "nvim" Enter
+  tmux split-window -t "$session_name" -l 12 -d -c "$path_name"
+  tmux switch-client -t "$session_name"
+  exit 0
+fi
+
+if [[ -n "$TMUX" ]]; then
+  echo "Already in a tmux session"
+  exit 1
+fi
+exit 1
