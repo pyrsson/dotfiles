@@ -1,6 +1,19 @@
 #!/bin/bash
 
-# set up some defaults for the fzf options
+# check for kill flag
+if [[ $1 == "-k" || $1 == "--kill" ]]; then
+  if [[ -n $2 ]]; then
+    tmux kill-session -t "$2"
+    exit 0
+  fi
+  killsesh=$(tmux list-sessions -F"#{session_name}" | fzf --no-separator --reverse --info hidden --prompt="Select session to kill > ")
+  if [[ -z $killsesh ]]; then
+    exit 1
+  fi
+  tmux kill-session -t "$killsesh"
+  exit 0
+fi
+
 dir=$1
 
 # if no tmux session is running, start one

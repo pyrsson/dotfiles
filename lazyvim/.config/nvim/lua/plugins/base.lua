@@ -30,6 +30,7 @@ return {
             ".zshenv",
             ".stowrc",
             ".envrc",
+            ".tmux.conf",
           },
         },
       },
