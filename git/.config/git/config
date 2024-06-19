@@ -1,0 +1,17 @@
+[user]
+  email = 55557230+pyrsson@users.noreply.github.com
+  name = pyrsson
+  signingkey = B4E4AA02DBE62BF5
+[core]
+  sshCommand = "ssh -i ~/.ssh/id_rsa.pub -o IdentitiesOnly=yes"
+[include]
+  path = ~/.config/git/user
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

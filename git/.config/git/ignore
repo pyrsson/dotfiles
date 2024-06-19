@@ -1,0 +1,4 @@
+/event.json
+/workflow**
+.vscode
+.envrc
