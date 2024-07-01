@@ -1,7 +1,12 @@
 #!/bin/bash
 
-# check for kill flag
+# session killer
 if [[ $1 == "-k" || $1 == "--kill" ]]; then
+  if [[ $2 == "all" ]]; then
+    tmux switch-client -t main
+    tmux kill-session -a -t main
+    exit 0
+  fi
   if [[ -n $2 ]]; then
     tmux kill-session -t "$2"
     exit 0
