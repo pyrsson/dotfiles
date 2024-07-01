@@ -69,13 +69,14 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fzf)
 if [[ -e ~/.ssh/id_rsa && -n $WSL_DISTRO_NAME ]]; then
   plugins+=(ssh-agent)
   zstyle :omz:plugins:ssh-agent identities id_rsa
 fi
+if type git &> /dev/null; then plugins+=(git); fi
 if type direnv &> /dev/null; then plugins+=(direnv); fi
 if type go &> /dev/null; then plugins+=(golang); fi
+if type fzf &> /dev/null; then plugins+=(fzf); fi
 
 source $ZSH/oh-my-zsh.sh
 
