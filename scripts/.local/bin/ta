@@ -1,5 +1,5 @@
 #!/bin/bash
-
+FZF_DEFAULT_OPTS+=" --reverse --no-separator --info hidden --border rounded"
 # session killer
 if [[ $1 == "-k" || $1 == "--kill" ]]; then
   if [[ $2 == "all" ]]; then
@@ -11,7 +11,7 @@ if [[ $1 == "-k" || $1 == "--kill" ]]; then
     tmux kill-session -t "$2"
     exit 0
   fi
-  killsesh=$(tmux list-sessions -F"#{session_name}" | fzf --no-separator --reverse --info hidden --prompt="Select session to kill > ")
+  killsesh=$(tmux list-sessions -F"#{session_name}" | fzf --prompt="Select session to kill > ")
   if [[ -z $killsesh ]]; then
     exit 1
   fi
@@ -29,7 +29,7 @@ fi
 
 # if no dir is passed, list sessions
 if [[ -z "$dir" ]]; then
-  sesh=$(tmux list-sessions -F#S | fzf --no-separator --reverse --info hidden --prompt="Select session > ")
+  sesh=$(tmux list-sessions -F#S | fzf --prompt="Select session > ")
   if [[ -z $sesh ]]; then
     exit 1
   fi
@@ -41,7 +41,7 @@ if [[ -z "$dir" ]]; then
   exit 0
 elif [[ -d "$dir" ]]; then
   # if a dir is passed, list projects in that dir
-  _session_name=$(find "$dir" -maxdepth 1 -mindepth 1 -printf '%f\n' | fzf --no-separator --reverse --info hidden --prompt="Select project from $(basename "$dir") > ")
+  _session_name=$(find "$dir" -maxdepth 1 -mindepth 1 -printf '%f\n' | fzf --prompt="Select project from $(basename "$dir") > ")
   # replace dots with underscores for tmux session names
   session_name=${_session_name//./_}
   path_name=$dir/$_session_name

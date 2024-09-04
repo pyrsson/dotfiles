@@ -104,7 +104,10 @@ export PATH="$PATH:${HOME}/.linkerd2/bin"
 export PATH="$PATH:${HOME}/go/bin"
 if type direnv &> /dev/null; then eval "$(direnv hook zsh)"; fi
 export GPG_TTY=$(tty)
-export FZF_DEFAULT_OPTS="--color dark,prompt:blue,hl+:cyan,hl:cyan,bg+:gray,gutter:-1,fg+:blue:bold,pointer:cyan,info:blue,border:gray"
+
+# makes fzf open in tmux popup
+export FZF_DEFAULT_OPTS="--tmux 80%,50% --reverse --color dark,prompt:blue,hl+:cyan,hl:cyan,bg+:gray,gutter:-1,fg+:blue:bold,pointer:cyan,info:blue,border:gray"
+export FZF_CTRL_R_OPTS="--reverse --preview 'echo {}' --preview-window down:3:wrap:hidden:border-horizontal --bind '?:toggle-preview'"
 
 if [[ -e "$HOME/.cargo/env" ]]; then
   source "$HOME/.cargo/env"
