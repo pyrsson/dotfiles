@@ -40,4 +40,17 @@ return {
       })
     end,
   },
+  {
+    "hrsh7th/nvim-cmp",
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
+      opts.preselect = "None"
+      opts.sources[1] = {
+        name = "codeium",
+        group_index = 1,
+        priority = 1,
+        dup = 0,
+      }
+    end,
+  },
 }
