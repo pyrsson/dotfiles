@@ -13,6 +13,20 @@ return {
       builtin_matchers = {
         kubernetes = { enabled = true },
       },
+      schemas = {
+        {
+          name = "ArgoCD Application",
+          uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json",
+        },
+        {
+          name = "ArgoCD ApplicationSet",
+          uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/applicationset_v1alpha1.json",
+        },
+        {
+          name = "ArgoCD AppProject",
+          uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/appproject_v1alpha1.json",
+        },
+      },
     },
     config = function(_, opts)
       local cfg = require("yaml-companion").setup(opts)

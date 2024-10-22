@@ -23,7 +23,7 @@ map({ "n", "t" }, "<M-w>", "<cmd>TmuxNavigatePrevious<CR>", opts)
 -- buffers
 map("n", "<M-.>", ":bnext!<cr>", opts)
 map("n", "<M-,>", ":bprevious!<cr>", opts)
-map("n", "<M-p>", "<Cmd>b#<CR>", opts)
+map("n", "<leader>p", "<Cmd>b#<CR>", opts)
 -- map('n', '<M-c>', bufdel, opts)
 
 -- visual mode
@@ -49,7 +49,7 @@ map(
 -- yanking
 map({ "n", "v" }, "<leader>y", '"+y', opts)
 map({ "n", "v" }, "<leader>Y", '"+Y', opts)
-map({ "n", "v" }, "<leader>p", '"+p', opts)
+-- map({ "n", "v" }, "<leader>p", '"+p', opts)
 map({ "n", "v" }, "<leader>P", '"+P', opts)
 
 -- editing
