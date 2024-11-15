@@ -14,6 +14,8 @@ if status is-interactive
     type -q stern && stern --completion fish | source
 
     # alias
+    type -q eza && alias ls=eza
+    type -q bat && alias cat=bat
     alias k=kubectl
     alias kx=kubectx
     alias kn=kubens
@@ -24,6 +26,7 @@ end
 set fish_greeting
 
 set -gx EDITOR nvim
+set -gx DOCKER_HOST "unix://$XDG_RUNTIME_DIR/podman/podman.sock"
 
 set -gx N_PREFIX "$HOME/.n"
 fish_add_path "$N_PREFIX/bin"
@@ -32,6 +35,7 @@ fish_add_path "$HOME/.krew/bin"
 fish_add_path "$HOME/.local/bin"
 fish_add_path "$HOME/go/bin"
 fish_add_path "$HOME/.deno/bin"
+fish_add_path "$HOME/.cargo/bin"
 
 set theme tokyonight_moon
 
