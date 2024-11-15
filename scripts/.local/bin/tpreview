@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+name="${1}"
+id=$(tmux ls -F '#{session_id}' -f "#{==:#{session_name},${name}}")
+if test -z "${id}"; then
+  exit 1
+fi
+tmux capture-pane -ep -t "${id}"

@@ -2,8 +2,8 @@ return {
   {
     -- "someone-stole-my-name/yaml-companion.nvim",
     -- temporary until PR is merged
-    "agorgl/yaml-companion.nvim",
-    branch = "patch-1",
+    "astephanh/yaml-companion.nvim",
+    branch = "kubernetes_crd_detection",
     ft = { "yaml" },
     dependencies = {
       { "neovim/nvim-lspconfig" },
