@@ -5,7 +5,7 @@ My collection of dotfiles, scripts and configurations.
 Setup for installing via `stow`, expects to be cloned to `~/github/dotfiles`.
 
 ```bash
-stow *
+stow */
 ```
 
 ## package notes
