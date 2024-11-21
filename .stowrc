@@ -1,3 +1,4 @@
 --target ~/
 --ignore='firefox'
 --ignore='functions'
+--dotfiles
