@@ -1,6 +1,8 @@
 #!/bin/bash
+set -ex
+
 REPO="${HOME}/github/dotfiles"
-cd "${REPO}" || return
+cd "${REPO}" || (echo "dir not found" && exit 1)
 git fetch
 if [[ $(git rev-parse HEAD) != $(git rev-parse "@{u}") ]]; then
   echo "Updating dotfiles"
@@ -18,13 +20,4 @@ else
   fi
 fi
 
-for f in .zshrc .vimrc .tmux.conf; do
-  if [[ ! -h "${HOME}/${f}" ]]; then
-    rm "${HOME}/${f}" &> /dev/null
-    ln -s "${REPO}/${f}" "${HOME}/${f}"
-  fi
-done
-
-cd - > /dev/null || return
-exec -l zsh
-
+stow */

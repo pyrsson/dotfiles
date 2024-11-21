@@ -88,6 +88,8 @@ source $ZSH/oh-my-zsh.sh
 # auto pull git dotfiles
 if [[ $(( $(date +"%s") - $(stat -c %Y ~/github/dotfiles/.git/FETCH_HEAD) )) -gt $(( 3600 * 24 * 5 )) ]]; then
   update-dotfiles
+  # restart shell
+  exec -l zsh
 fi
 
 # env
@@ -137,6 +139,8 @@ alias vim="nvim"
 alias e="$EDITOR"
 alias vimdiff="nvim -d"
 
+if type bat &> /dev/null; then alias cat="bat"; fi
+if type eza &> /dev/null; then alias ls="eza"; fi
 if type docker-compose &> /dev/null; then alias dc="docker-compose"; fi
 if type kubectl &> /dev/null; then alias k="kubectl"; fi
 if type kubectx &> /dev/null; then alias kx="kubectx"; fi
