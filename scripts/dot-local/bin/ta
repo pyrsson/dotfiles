@@ -1,25 +1,6 @@
 #!/bin/bash
 FZF_DEFAULT_OPTS+=" --reverse --no-separator --info hidden --border rounded"
 
-# session killer
-if [[ $1 == "-k" || $1 == "--kill" ]]; then
-  if [[ $2 == "all" ]]; then
-    tmux switch-client -t main
-    tmux kill-session -a -t main
-    exit 0
-  fi
-  if [[ -n $2 ]]; then
-    tmux kill-session -t "$2"
-    exit 0
-  fi
-  killsesh=$(tmux list-sessions -F"#{session_name}" | fzf --prompt="Select session to kill > ")
-  if [[ -z $killsesh ]]; then
-    exit 1
-  fi
-  tmux kill-session -t "$killsesh"
-  exit 0
-fi
-
 dir=$1
 
 # if no tmux session is running, start one
@@ -30,7 +11,7 @@ fi
 
 # if no dir is passed, list sessions
 if [[ -z "$dir" ]]; then
-  sesh=$(tmux list-sessions -F#S | fzf --prompt="Select session > " --preview 'tpreview {}' --preview-window right,70%,border-left)
+  sesh=$(tmux list-sessions -F#S | fzf --prompt="Select session > " --preview 'tpreview {}' --preview-window right,70%,border-left --bind "ctrl-d:execute-silent(tmux kill-session -t {})+reload(tmux list-sessions -F#S)" --header "ctrl-d: kill session" --bind "ctrl-k:abort")
   if [[ -z $sesh ]]; then
     exit 1
   fi
