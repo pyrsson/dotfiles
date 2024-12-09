@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+set -e
 
 REPO="${HOME}/github/dotfiles"
 cd "${REPO}" || (echo "dir not found" && exit 1)

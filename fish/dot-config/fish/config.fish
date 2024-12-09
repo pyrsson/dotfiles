@@ -1,4 +1,9 @@
 if status is-interactive
+    # set date (date +"%s")
+    # set last_update (stat -c %Y ~/github/dotfiles/.git/FETCH_HEAD)
+    # if $date - $last_update -gt 432000
+    #     update-dotfiles
+    # end
     # Commands to run in interactive sessions can go here
     set -gx CDPATH . ~ ~/work ~/github ~/vasttrafik
     type -q direnv && direnv hook fish | source
@@ -12,6 +17,8 @@ if status is-interactive
     type -q kustomize && kustomize completion fish | source
     type -q talosctl && talosctl completion fish | source
     type -q stern && stern --completion fish | source
+    type -q cue && cue completion fish | source
+    type -q kcl && kcl completion fish | source
 
     # alias
     type -q eza && alias ls=eza

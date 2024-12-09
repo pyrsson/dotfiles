@@ -11,7 +11,7 @@ fi
 
 # if no dir is passed, list sessions
 if [[ -z "$dir" ]]; then
-  sesh=$(tmux list-sessions -F#S | fzf --prompt="Select session > " --preview 'tpreview {}' --preview-window right,70%,border-left --bind "ctrl-d:execute-silent(tmux kill-session -t {})+reload(tmux list-sessions -F#S)" --header "ctrl-d: kill session" --bind "ctrl-k:abort")
+  sesh=$(tmux list-sessions -F#S | fzf --prompt="Select session > " --preview 'tpreview {}' --preview-window right,70%,border-left --bind "ctrl-d:execute-silent(tmux kill-session -t {})+reload(tmux list-sessions -F#S)" --header "ctrl-d: kill session")
   if [[ -z $sesh ]]; then
     exit 1
   fi

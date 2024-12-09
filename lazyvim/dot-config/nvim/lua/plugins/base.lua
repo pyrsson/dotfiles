@@ -66,10 +66,6 @@ return {
     },
   },
   { "christoomey/vim-tmux-navigator" },
-  -- {
-  --   "hinell/lsp-timeout.nvim",
-  --   dependencies = { "neovim/nvim-lspconfig" }
-  -- },
   {
     "neovim/nvim-lspconfig",
     opts = {
