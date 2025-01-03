@@ -34,3 +34,9 @@ vim.opt.timeoutlen = 700
 vim.g.root_spec = { "cwd" }
 vim.g.lazyvim_picker = "fzf"
 vim.g.ai_cmp = false
+
+vim.filetype.add({
+  extension = {
+    dtsi = "dts",
+  },
+})

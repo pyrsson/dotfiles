@@ -6,3 +6,10 @@ gui:
     selectedLineBgColor:
       - white
       - bold
+git:
+  paging:
+    pager: diff-so-fancy
+keybinding:
+  universal:
+    nextTab: ä
+    prevTab: ö

@@ -1,11 +1,12 @@
 [user]
-  email = 55557230+pyrsson@users.noreply.github.com
-  name = pyrsson
-  signingkey = B4E4AA02DBE62BF5
+	email = 55557230+pyrsson@users.noreply.github.com
+	name = pyrsson
+	signingkey = B4E4AA02DBE62BF5
 [core]
-  sshCommand = "ssh -i ~/.ssh/id_rsa.pub -o IdentitiesOnly=yes"
+	sshCommand = "ssh -i ~/.ssh/id_rsa.pub -o IdentitiesOnly=yes"
+	pager = diff-so-fancy | less --tabs=4 -RF
 [include]
-  path = ~/.config/git/user
+	path = ~/.config/git/user
 [init]
 	defaultBranch = main
 [pull]
@@ -15,3 +16,20 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[interactive]
+	diffFilter = diff-so-fancy --patch
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = 11
+	frag = magenta bold
+	func = 146 bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
