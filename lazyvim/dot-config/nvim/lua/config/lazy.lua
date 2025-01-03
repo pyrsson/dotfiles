@@ -26,7 +26,6 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.coding.mini-comment" },
     { import = "lazyvim.plugins.extras.editor.fzf" },
     { import = "lazyvim.plugins.extras.ai.supermaven" },
-    { import = "lazyvim.plugins.extras.coding.blink" },
 
     -- import/override with your plugins
     { import = "plugins" },
