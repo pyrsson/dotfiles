@@ -1,6 +1,6 @@
 [general]
 import = [
-  "/home/simon/.local/share/nvim/lazy/tokyonight.nvim/extras/alacritty/tokyonight_moon.toml",
+    "/home/simon/.local/share/nvim/lazy/tokyonight.nvim/extras/alacritty/tokyonight_moon.toml",
 ]
 live_config_reload = true
 
@@ -14,6 +14,7 @@ size = 12
 family = "Hack Nerd Font"
 
 [window]
-decorations = "none"
+decorations = "full"
+dynamic_padding = true
 dynamic_title = false
 startup_mode = "Maximized"
