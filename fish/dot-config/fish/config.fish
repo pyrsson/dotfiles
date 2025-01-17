@@ -19,6 +19,7 @@ if status is-interactive
     type -q stern && stern --completion fish | source
     type -q cue && cue completion fish | source
     type -q kcl && kcl completion fish | source
+    type -q hcp && hcp completion fish | source
 
     # alias
     type -q eza && alias ls=eza
