@@ -65,7 +65,21 @@ return {
       },
     },
   },
-  { "christoomey/vim-tmux-navigator" },
+  {
+    "christoomey/vim-tmux-navigator",
+    keys = {
+
+      { "<C-l>", "<cmd>TmuxNavigateRight<CR>", { silent = true, desc = "navigate right" } },
+      { "<C-h>", "<cmd>TmuxNavigateLeft<CR>", { silent = true, desc = "navigate left" } },
+      { "<C-k>", "<cmd>TmuxNavigateUp<CR>", { silent = true, desc = "navigate up" } },
+      { "<C-j>", "<cmd>TmuxNavigateDown<CR>", { silent = true, desc = "navigate down" } },
+      { "<M-Right>", "<cmd>TmuxNavigateRight<CR>", { silent = true, desc = "navigate right" } },
+      { "<M-Left>", "<cmd>TmuxNavigateLeft<CR>", { silent = true, desc = "navigate left" } },
+      { "<M-Up>", "<cmd>TmuxNavigateUp<CR>", { silent = true, desc = "navigate up" } },
+      { "<M-Down>", "<cmd>TmuxNavigateDown<CR>", { silent = true, desc = "navigate down" } },
+      { "<M-w>", "<cmd>TmuxNavigatePrevious<CR>", { silent = true, desc = "navigate previous" } },
+    },
+  },
   {
     "neovim/nvim-lspconfig",
     opts = {
