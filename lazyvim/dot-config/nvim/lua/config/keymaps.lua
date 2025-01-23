@@ -9,17 +9,6 @@ map("n", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.tmux_navigator_no_mappings = 1
 
--- nav
-map({ "n", "t" }, "<C-l>", "<cmd>TmuxNavigateRight<CR>", opts)
-map({ "n", "t" }, "<C-h>", "<cmd>TmuxNavigateLeft<CR>", opts)
-map({ "n", "t" }, "<C-k>", "<cmd>TmuxNavigateUp<CR>", opts)
-map({ "n", "t" }, "<C-j>", "<cmd>TmuxNavigateDown<CR>", opts)
-map({ "n", "t" }, "<M-Right>", "<cmd>TmuxNavigateRight<CR>", opts)
-map({ "n", "t" }, "<M-Left>", "<cmd>TmuxNavigateLeft<CR>", opts)
-map({ "n", "t" }, "<M-Up>", "<cmd>TmuxNavigateUp<CR>", opts)
-map({ "n", "t" }, "<M-Down>", "<cmd>TmuxNavigateDown<CR>", opts)
-map({ "n", "t" }, "<M-w>", "<cmd>TmuxNavigatePrevious<CR>", opts)
-
 -- diagnostic
 local diagnostic_goto = function(next, severity)
   local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
