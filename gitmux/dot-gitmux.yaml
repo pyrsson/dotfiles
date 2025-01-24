@@ -1,0 +1,42 @@
+tmux:
+  # modified for zjstatus background
+  styles:
+    # Clear previous style.
+    clear: "#[bg=$bg,fg=default]"
+    # Special tree state strings such as [rebase], [merge], etc.
+    state: "#[bg=$bg,fg=red,bold]"
+    # Local branch name
+    branch: "#[bg=$bg,fg=white,bold]"
+    # Remote branch name
+    remote: "#[bg=$bg,fg=cyan]"
+    # 'divergence' counts
+    divergence: "#[bg=$bg,fg=yellow]"
+    # 'staged' count
+    staged: "#[bg=$bg,fg=green,bold]"
+    # 'conflicts' count
+    conflict: "#[bg=$bg,fg=red,bold]"
+    # 'modified' count
+    modified: "#[bg=$bg,fg=red,bold]"
+    # 'untracked' count
+    untracked: "#[bg=$bg,fg=magenta,bold]"
+    # 'stash' count
+    stashed: "#[bg=$bg,fg=cyan,bold]"
+    # 'insertions' count
+    insertions: "#[bg=$bg,fg=green]"
+    # 'deletions' count
+    deletions: "#[bg=$bg,fg=red]"
+    # 'clean' symbol
+    clean: "#[bg=$bg,fg=green,bold]"
+
+  # The layout section defines what components gitmux shows and the order in
+  # which they appear on tmux status bar.
+  #
+  # Allowed components:
+  #  - branch:            local branch name. Examples: `⎇ main`, `⎇ :345e7a0` or `[rebase]`
+  #  - remote-branch:     remote branch name, for example: `origin/main`.
+  #  - divergence:        divergence between local and remote branch, if any. Example: `↓·2↑·1`
+  #  - remote:            alias for `remote-branch` followed by `divergence`, for example: `origin/main ↓·2↑·1`
+  #  - flags:             symbols representing the working tree state, for example `✚ 1 ⚑ 1 … 2`
+  #  - stats:             insertions/deletions (lines), for example`Σ56 Δ21`
+  #  - some string `foo`: any other character of string is directly shown, for example `foo` or `|`
+  layout: [branch, divergence, " - ", flags]

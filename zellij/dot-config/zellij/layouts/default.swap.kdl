@@ -1,11 +1,14 @@
 tab_template name="ui" {
+  pane size=1 borderless=true {
+    plugin location="zjstatus"
+  }
    children
    pane size=1 borderless=true {
-       plugin location="compact-bar"
+       plugin location="zjstatus"
    }
 }
 
-swap_tiled_layout name="vertical" {
+swap_tiled_layout name="VERTICAL" min_panes=2 {
     ui max_panes=5 {
         pane split_direction="vertical" {
             pane
@@ -27,7 +30,7 @@ swap_tiled_layout name="vertical" {
     }
 }
 
-swap_tiled_layout name="horizontal" {
+swap_tiled_layout name="HORIZONTAL" min_panes=2 {
     ui max_panes=5 {
         pane
         pane

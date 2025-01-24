@@ -1,9 +1,41 @@
 layout {
+  default_tab_template {
     pane size=1 borderless=true {
-        plugin location="tab-bar"
+      plugin location="zjstatus" {
+        format_left        "{mode}#[fg=$blue,bg=$gray,bold] {session} "
+        format_right       "{swap_layout}"
+
+        mode_normal        "#[bold,fg=$black,bg=$blue] NORMAL "
+        mode_locked        "#[bold,fg=$black,bg=$red] LOCKED "
+        mode_resize        "#[bold,fg=$black,bg=$yellow] RESIZE "
+        mode_pane          "#[bold,fg=$black,bg=$green] PANE "
+        mode_tab           "#[bold,fg=$black,bg=$cyan] TAB "
+        mode_scroll        "#[bold,fg=$black,bg=$orange] SCROLL "
+        mode_enter_search  "#[bold,fg=$black,bg=$orange] SEARCH "
+        mode_search        "#[bold,fg=$black,bg=$orange] SEARCH "
+        mode_rename_tab    "#[bold,fg=$black,bg=$red] RENAME "
+        mode_rename_pane   "#[bold,fg=$black,bg=$red] RENAME "
+        mode_session       "#[bold,fg=$black,bg=$red] SESSION "
+        mode_move          "#[bold,fg=$black,bg=$red] MOVE "
+        mode_prompt        "#[bold,fg=$black,bg=$red] PROMPT "
+        mode_tmux          "#[bold,fg=$black,bg=$green] TMUX "
+      }
     }
-    pane
+    children
     pane size=1 borderless=true {
-        plugin location="status-bar"
+      plugin location="zjstatus" {
+        format_left "{tabs}"
+        format_right  "{command_git_branch}"
+        format_space  ""
+
+        tab_normal   "#[fg=#6C7086] {index} {name} "
+        tab_active   "#[fg=$black,bg=$blue,bold] {index} #[fg=$blue,bg=$gray,bold] {name} "
+
+        command_gitmux_command     "gitmux"
+        command_gitmux_format      " {stdout} "
+        command_gitmux_interval    "10"
+        command_gitmux_rendermode  "dynamic"
+      }
     }
+  }
 }
