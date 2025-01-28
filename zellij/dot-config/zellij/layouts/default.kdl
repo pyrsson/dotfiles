@@ -2,8 +2,10 @@ layout {
   default_tab_template {
     pane size=1 borderless=true {
       plugin location="zjstatus" {
-        format_left        "{mode}#[fg=$blue,bg=$gray,bold] {session} "
-        format_right       "{swap_layout}"
+        format_left "{mode}"
+        format_center "#[fg=$blue,bg=$gray,bold] {session} "
+        format_right "#[fg=$black,bg=$blue] {swap_layout} "
+        format_space  "#[bg=$bg]"
 
         mode_normal        "#[bold,fg=$black,bg=$blue] NORMAL "
         mode_locked        "#[bold,fg=$black,bg=$red] LOCKED "
@@ -24,16 +26,16 @@ layout {
     children
     pane size=1 borderless=true {
       plugin location="zjstatus" {
-        format_left "{tabs}"
-        format_right  "{command_git_branch}"
-        format_space  ""
+        format_center "{tabs}"
+        format_right  "#[bg=$bg] {command_gitmux}#[bg=$bg] "
+        format_space  "#[bg=$bg]"
 
-        tab_normal   "#[fg=#6C7086] {index} {name} "
+        tab_normal   "#[fg=$gray,bg=$bg] {index}  {name} "
         tab_active   "#[fg=$black,bg=$blue,bold] {index} #[fg=$blue,bg=$gray,bold] {name} "
 
-        command_gitmux_command     "gitmux"
-        command_gitmux_format      " {stdout} "
-        command_gitmux_interval    "10"
+        command_gitmux_command     "gitmux -cfg /home/simon/.gitmux.yaml"
+        command_gitmux_format      "{stdout}"
+        command_gitmux_interval    "5"
         command_gitmux_rendermode  "dynamic"
       }
     }

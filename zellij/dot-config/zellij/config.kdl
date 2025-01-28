@@ -116,7 +116,17 @@ keybinds clear-defaults=true {
         bind "Ctrl o" { SwitchToMode "Normal"; }
         bind "Ctrl s" { SwitchToMode "Scroll"; }
         bind "d" { Detach; }
-        bind "w" {
+        bind "Ctrl n" {
+            LaunchOrFocusPlugin "sessionizer" {
+              floating true
+              move_to_focused_tab true
+              cwd "/"
+              root_dirs "/home/simon/github;/home/simon/work;/home/simon/vasttrafik"
+              session_layout "project"
+          };
+          SwitchToMode "Normal"
+        }
+        bind "Ctrl k" {
             LaunchOrFocusPlugin "session-manager" {
                 floating true
                 move_to_focused_tab true
@@ -158,7 +168,7 @@ keybinds clear-defaults=true {
         bind "Alt 8" { GoToTab 8; }
         bind "Alt 9" { GoToTab 9; }
 
-        bind "Alt h" {
+        bind "Alt h" "Alt Left" {
             MessagePlugin "navigator" {
                 name "move_focus_or_tab";
                 payload "left";
@@ -168,7 +178,7 @@ keybinds clear-defaults=true {
             };
         }
 
-        bind "Alt j" {
+        bind "Alt j" "Alt Down" {
             MessagePlugin "navigator" {
                 name "move_focus";
                 payload "down";
@@ -177,7 +187,7 @@ keybinds clear-defaults=true {
             };
         }
 
-        bind "Alt k" {
+        bind "Alt k" "Alt Up" {
             MessagePlugin "navigator" {
                 name "move_focus";
                 payload "up";
@@ -186,7 +196,7 @@ keybinds clear-defaults=true {
             };
         }
 
-        bind "Alt l" {
+        bind "Alt l" "Alt Right" {
             MessagePlugin "navigator" {
                 name "move_focus_or_tab";
                 payload "right";
@@ -197,17 +207,12 @@ keybinds clear-defaults=true {
     }
     shared_except "locked" {
         bind "Ctrl g" {
-          // MessagePlugin "autolock" {payload "disable";};  // Disable the autolock plugin.
           SwitchToMode "Locked";
         }
         bind "Ctrl q" { Quit; }
         bind "Alt n" { NewPane; }
         bind "Alt i" { MoveTab "Left"; }
         bind "Alt o" { MoveTab "Right"; }
-        bind "Alt Left" { MoveFocusOrTab "Left"; }
-        bind "Alt Right" { MoveFocusOrTab "Right"; }
-        bind "Alt Down" { MoveFocus "Down"; }
-        bind "Alt Up" { MoveFocus "Up"; }
         bind "Alt =" "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt ö" { PreviousSwapLayout; }
@@ -249,6 +254,7 @@ plugins {
     welcome-screen location="zellij:session-manager" {
         welcome_screen true
     }
+    sessionizer location="https://github.com/laperlej/zellij-sessionizer/releases/download/v0.4.3/zellij-sessionizer.wasm"
     filepicker location="zellij:strider" {
         cwd "/"
     }
@@ -269,16 +275,9 @@ plugins {
       color_orange "#ff966c"
     }
     zjframes location="https://github.com/dj95/zjstatus/releases/download/v0.20.0/zjframes.wasm"
-    // autolock location="https://github.com/fresh2dev/zellij-autolock/releases/latest/download/zellij-autolock.wasm" {
-    //   is_enabled true
-    //   triggers "nvim|vim|v|nv"  // Lock when any open these programs open. They are expected to unlock themselves when closed (e.g., using zellij.vim plugin).
-    //     watch_triggers "fzf|zoxide|atuin|atac"  // Lock when any of these open and monitor until closed.
-    //     watch_interval "1.0"  // When monitoring, check every X seconds.
-    // }
 }
 
 load_plugins {
-  // autolock
   navigator
   zjframes {
     hide_frame_for_single_pane       "false"
