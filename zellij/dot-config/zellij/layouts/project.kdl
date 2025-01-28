@@ -45,6 +45,6 @@ layout {
     pane command="nvim"
   }
   tab name="shell" {
-    pane
+    pane split_direction="vertical"
   }
 }
