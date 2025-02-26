@@ -53,14 +53,14 @@ set fish_greeting
 set -gx EDITOR nvim
 set -gx DOCKER_HOST "unix://$XDG_RUNTIME_DIR/podman/podman.sock"
 
-set -gx N_PREFIX "$HOME/.n"
-fish_add_path "$N_PREFIX/bin"
+fish_add_path -m "$HOME/.local/bin"
 
-fish_add_path "$HOME/.krew/bin"
-fish_add_path "$HOME/.local/bin"
-fish_add_path "$HOME/go/bin"
-fish_add_path "$HOME/.deno/bin"
-fish_add_path "$HOME/.cargo/bin"
+set -gx N_PREFIX "$HOME/.n"
+fish_add_path -m "$N_PREFIX/bin"
+fish_add_path -m "$HOME/.krew/bin"
+fish_add_path -m "$HOME/go/bin"
+fish_add_path -m "$HOME/.deno/bin"
+fish_add_path -m "$HOME/.cargo/bin"
 
 set hydro_color_pwd $fish_color_command
 set hydro_color_git $fish_color_param
