@@ -18,6 +18,7 @@
 @define-color foreground #c8d3f5;
 
 @define-color cc-bg alpha(@background, 0.8);
+@define-color urgent-bg alpha(@color1, 0.3);
 @define-color noti-border-color alpha(@color14, 0.15);
 @define-color noti-bg alpha(@background, 0.9);
 @define-color noti-bg-opaque @background;
@@ -91,6 +92,7 @@
 
 .notification-row .notification-background .notification.critical {
   /* Critical Priority Notification */
+  background: @urgent-bg;
 }
 
 .notification-row .notification-background .notification .notification-action,
@@ -99,7 +101,8 @@
   .notification
   .notification-default-action {
   padding: 4px;
-  margin: 0;
+  margin-left: 0;
+  margin-right: 0;
   box-shadow: none;
   background: transparent;
   border: none;
@@ -326,6 +329,8 @@
 
 .notification-group {
   /* Styling only for Grouped Notifications */
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .notification-group.low {
