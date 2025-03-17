@@ -1,0 +1,29 @@
+#!/bin/bash
+
+if [[ -z "$2" ]]; then
+  echo "Usage: $0 <connection_name> <route>"
+  exit 1
+fi
+
+connection_name="$1"
+host="$2"
+route="$(dig +short "$host" | tail -n 1)"
+
+# Check if the connection exists
+if ! nmcli connection show "$connection_name" >/dev/null 2>&1; then
+  echo "Connection '$connection_name' does not exist"
+  exit 1
+fi
+
+# Check if the route already exists
+if nmcli connection show "$connection_name" | grep -q "$route"; then
+  echo "Route '$route' already exists for connection '$connection_name'"
+  exit 1
+fi
+
+# Add the route
+nmcli connection modify "$connection_name" +ipv4.routes "$route"
+
+sudo ip route add "$route" dev vpn0 proto static scope link metric 50
+
+echo "Route '$route' added for connection '$connection_name'"

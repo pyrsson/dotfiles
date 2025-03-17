@@ -5,7 +5,7 @@ if status is-interactive
     #     update-dotfiles
     # end
     # Commands to run in interactive sessions can go here
-    set -gx CDPATH . ~ ~/work ~/github ~/vasttrafik
+    set -gx CDPATH . ~ ~/work ~/github ~/projects
     type -q direnv && direnv hook fish | source
     type -q fzf && fzf --fish | source
     # makes fzf history preview open in tmux popup

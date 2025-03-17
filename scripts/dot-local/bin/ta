@@ -2,6 +2,7 @@
 FZF_DEFAULT_OPTS+=" --reverse --no-separator --info hidden --border rounded"
 
 dir=$1
+depth=${2:-1}
 
 # if no tmux session is running, start one
 if [[ -z "$dir" && -z "$TMUX" ]]; then
@@ -23,7 +24,7 @@ if [[ -z "$dir" ]]; then
   exit 0
 elif [[ -d "$dir" ]]; then
   # if a dir is passed, list projects in that dir
-  _session_name=$(find "$dir" -maxdepth 1 -mindepth 1 -printf '%f\n' | fzf --prompt="Select project from $(basename "$dir") > " --preview "eza -l --color=always $dir/{}")
+  _session_name=$(fd --base-directory "$dir" --exact-depth "$depth" --type d | sed 's/\/$//' | fzf --prompt="Select project > " --preview "eza -l --color=always $dir/{}")
   # replace dots with underscores for tmux session names
   session_name=${_session_name//./_}
   path_name=$dir/$_session_name

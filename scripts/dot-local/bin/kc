@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Switch between kubeconfig files
+# Usage: kc <kubeconfig>
+
+FZF_DEFAULT_OPTS+=" --reverse --no-separator --info hidden --border rounded"
+
+desired_kubeconfig="$1"
+
+if [[ -z "$desired_kubeconfig" ]]; then
+  desired_kubeconfig="$(fd --base-directory ~/.kube/config.d/ | fzf --prompt "Select kubeconfig > ")"
+  if [[ -z "$desired_kubeconfig" ]]; then
+    exit 1
+  fi
+fi
+
+rm -f ~/.kube/config
+ln -rs ~/.kube/config.d/"$desired_kubeconfig" ~/.kube/config
