@@ -3,16 +3,19 @@
 # Switch between kubeconfig files
 # Usage: kc <kubeconfig>
 
-FZF_DEFAULT_OPTS+=" --reverse --no-separator --info hidden --border rounded"
+FZF_DEFAULT_OPTS+=" --reverse --no-separator --info hidden --border rounded --ansi"
 
+current="$(readlink ~/.kube/config | cut -d/ -f2)"
 desired_kubeconfig="$1"
+yellow=$'\033[33;1m'
 
 if [[ -z "$desired_kubeconfig" ]]; then
-  desired_kubeconfig="$(fd --base-directory ~/.kube/config.d/ | fzf --prompt "Select kubeconfig > ")"
+  desired_kubeconfig="$(fd --base-directory ~/.kube/config.d/ | sed s/"$current"/"$yellow$current"/g | fzf --prompt "Select kubeconfig > ")"
   if [[ -z "$desired_kubeconfig" ]]; then
     exit 1
   fi
 fi
 
 rm -f ~/.kube/config
-ln -rs ~/.kube/config.d/"$desired_kubeconfig" ~/.kube/config
+ln -rs ~/.kube/config.d/"$desired_kubeconfig" ~/.kube/config || exit 1
+echo "Switched to $desired_kubeconfig"
