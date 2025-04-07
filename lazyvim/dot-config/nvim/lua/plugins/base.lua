@@ -92,18 +92,18 @@ return {
       end
     end,
   },
-  {
-    "ibhagwan/fzf-lua",
-    opts = function(_, opts)
-      local actions = require("fzf-lua.actions")
-      opts.files.actions = {
-        ["alt-t"] = { actions.toggle_hidden },
-        ["alt-i"] = { actions.toggle_ignore },
-      }
-      opts.grep.actions = {
-        ["alt-t"] = { actions.toggle_hidden },
-        ["alt-i"] = { actions.toggle_ignore },
-      }
-    end,
-  },
+  -- {
+  --   "ibhagwan/fzf-lua",
+  --   opts = function(_, opts)
+  --     local actions = require("fzf-lua.actions")
+  --     opts.files.actions = {
+  --       ["alt-t"] = { actions.toggle_hidden },
+  --       ["alt-i"] = { actions.toggle_ignore },
+  --     }
+  --     opts.grep.actions = {
+  --       ["alt-t"] = { actions.toggle_hidden },
+  --       ["alt-i"] = { actions.toggle_ignore },
+  --     }
+  --   end,
+  -- },
 }

@@ -16,13 +16,6 @@ return {
     local opts = {
       bottom = {
         {
-          ft = "toggleterm",
-          size = { height = 0.4 },
-          filter = function(buf, win)
-            return vim.api.nvim_win_get_config(win).relative == ""
-          end,
-        },
-        {
           ft = "noice",
           size = { height = 0.4 },
           filter = function(buf, win)
@@ -30,11 +23,14 @@ return {
           end,
         },
         {
-          ft = "lazyterm",
-          title = "LazyTerm",
-          size = { height = 0.4 },
-          filter = function(buf)
-            return not vim.b[buf].lazyterm_cmd
+          ft = "snacks_terminal",
+          size = { height = 0.3 },
+          title = "%{b:snacks_terminal.id}: %{b:term_title}",
+          filter = function(_buf, win)
+            return vim.w[win].snacks_win
+              and vim.w[win].snacks_win.position == "bottom"
+              and vim.w[win].snacks_win.relative == "editor"
+              and not vim.w[win].trouble_preview
           end,
         },
         "Trouble",
@@ -53,8 +49,6 @@ return {
             return vim.bo[buf].buftype == "help"
           end,
         },
-        { title = "Spectre", ft = "spectre_panel", size = { height = 0.4 } },
-        { title = "Neotest Output", ft = "neotest-output-panel", size = { height = 15 } },
       },
       -- NOTE: disable all. enable only neo-tree is so sluggish. use native neo-tree spawn window instead.
       left = {
