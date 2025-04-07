@@ -20,7 +20,7 @@
 @define-color mycolor @color14;
 
 * {
-  font-size: 17px;
+  font-size: 16px;
   font-family: "CodeNewRoman Nerd Font Propo";
 }
 window#waybar {
@@ -30,6 +30,7 @@ window#waybar {
   padding: 7px;
   margin: 5px;
   margin-bottom: 0px;
+  margin-top: 2px;
   border-radius: 5px;
   background: alpha(@background, 0.8);
 }
@@ -37,13 +38,16 @@ window#waybar {
   padding: 7px;
   margin: 5px;
   margin-bottom: 0px;
-  border-radius: 5px;
+  margin-top: 2px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
   background: alpha(@background, 0.8);
 }
 .modules-right {
   padding: 7px;
   margin: 5px;
   margin-bottom: 0px;
+  margin-top: 2px;
   border-radius: 5px;
   background: alpha(@background, 0.8);
 }
@@ -64,8 +68,9 @@ tooltip {
   color: @mycolor;
 }
 #custom-notification {
+  font-size: 14px;
   padding: 0px 5px;
-  min-height: 25px;
+  min-height: 20px;
   transition: all 0.3s ease;
   color: @color7;
 }
