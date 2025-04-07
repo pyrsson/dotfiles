@@ -41,7 +41,8 @@ if status is-interactive
     # alias
     type -q eza && alias ls=eza
     type -q bat && alias cat=bat
-    alias k=kubectl
+    alias kubectl=kubecolor
+    alias k=kubecolor
     alias kx=kubectx
     alias kn=kubens
     alias vim=nvim
