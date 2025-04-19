@@ -2,7 +2,14 @@ return {
   {
     "folke/tokyonight.nvim",
     lazy = false,
-    opts = { style = "moon" },
+    opts = {
+      transparent = true,
+      style = "moon",
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
+    },
   },
   -- Configure LazyVim to load gruvbox
   {
@@ -11,35 +18,35 @@ return {
       colorscheme = "tokyonight",
     },
   },
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      window = {
-        width = 30,
-      },
-      filesystem = {
-        filtered_items = {
-          always_show = { -- remains visible even if other settings would normally hide it
-            ".gitignore",
-            ".gitlab-ci.yml",
-            ".gitignored",
-            ".github",
-            ".config",
-            ".oh-my-zsh",
-            ".local",
-            ".zshrc",
-            ".zshenv",
-            ".stowrc",
-            ".envrc",
-            ".env",
-            ".tmux.conf",
-            ".Xresources",
-            ".alacritty.toml",
-          },
-        },
-      },
-    },
-  },
+  -- {
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   opts = {
+  --     window = {
+  --       width = 30,
+  --     },
+  --     filesystem = {
+  --       filtered_items = {
+  --         always_show = { -- remains visible even if other settings would normally hide it
+  --           ".gitignore",
+  --           ".gitlab-ci.yml",
+  --           ".gitignored",
+  --           ".github",
+  --           ".config",
+  --           ".oh-my-zsh",
+  --           ".local",
+  --           ".zshrc",
+  --           ".zshenv",
+  --           ".stowrc",
+  --           ".envrc",
+  --           ".env",
+  --           ".tmux.conf",
+  --           ".Xresources",
+  --           ".alacritty.toml",
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
   -- add more treesitter parsers
   {
     "nvim-treesitter/nvim-treesitter",

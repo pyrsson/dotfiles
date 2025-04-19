@@ -32,6 +32,7 @@ window#waybar {
   margin-bottom: 0px;
   margin-top: 2px;
   border-radius: 5px;
+  border: 1px solid alpha(@color4, 0.8);
   background: alpha(@background, 0.8);
 }
 .modules-center {
@@ -39,8 +40,8 @@ window#waybar {
   margin: 5px;
   margin-bottom: 0px;
   margin-top: 2px;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid alpha(@color4, 0.8);
   background: alpha(@background, 0.8);
 }
 .modules-right {
@@ -49,14 +50,13 @@ window#waybar {
   margin-bottom: 0px;
   margin-top: 2px;
   border-radius: 5px;
-  background: alpha(@background, 0.8);
+  border: 1px solid alpha(@color4, 0.8);
 }
 tooltip {
   background: @background;
   color: @color7;
 }
 #clock:hover,
-#custom-pacman:hover,
 #custom-notification:hover,
 #bluetooth:hover,
 #network:hover,
