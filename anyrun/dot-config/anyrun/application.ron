@@ -1,0 +1,5 @@
+Config(
+  // Also show the Desktop Actions defined in the desktop files, e.g. "New Window" from LibreWolf
+  desktop_actions: true,
+  preprocess_exec_script: Some("uwsm app --")
+)

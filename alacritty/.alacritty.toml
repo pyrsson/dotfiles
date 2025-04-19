@@ -21,3 +21,4 @@ decorations = "full"
 dynamic_padding = true
 dynamic_title = false
 startup_mode = "Maximized"
+opacity = 0.95
