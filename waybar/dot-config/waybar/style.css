@@ -1,23 +1,35 @@
-@define-color color0 #1b1d2b;
-@define-color color1 #ff757f;
-@define-color color2 #c3e88d;
-@define-color color3 #ffc777;
-@define-color color4 #82aaff;
-@define-color color5 #c099ff;
-@define-color color6 #86e1fc;
-@define-color color7 #828bb8;
-@define-color color8 #444a73;
-@define-color color9 #ff8d94;
-@define-color color10 #c7fb6d;
-@define-color color11 #ffd8ab;
-@define-color color12 #9ab8ff;
-@define-color color13 #caabff;
-@define-color color14 #b2ebff;
-@define-color color15 #c8d3f5;
-@define-color background #222436;
-@define-color foreground #c8d3f5;
+@define-color bg #222436;
+@define-color bg_dark #1e2030;
+@define-color bg_dark1 #191B29;
+@define-color bg_highlight #2f334d;
+@define-color blue #82aaff;
+@define-color blue0 #3e68d7;
+@define-color blue1 #65bcff;
+@define-color blue2 #0db9d7;
+@define-color blue5 #89ddff;
+@define-color blue6 #b4f9f8;
+@define-color blue7 #394b70;
+@define-color comment #636da6;
+@define-color cyan #86e1fc;
+@define-color dark3 #545c7e;
+@define-color dark5 #737aa2;
+@define-color fg #c8d3f5;
+@define-color fg_dark #828bb8;
+@define-color fg_gutter #3b4261;
+@define-color green #c3e88d;
+@define-color green1 #4fd6be;
+@define-color green2 #41a6b5;
+@define-color magenta #c099ff;
+@define-color magenta2 #ff007c;
+@define-color orange #ff966c;
+@define-color purple #fca7ea;
+@define-color red #ff757f;
+@define-color red1 #c53b53;
+@define-color teal #4fd6be;
+@define-color terminal_black #444a73;
+@define-color yellow #ffc777;
 
-@define-color mycolor @color14;
+@define-color mycolor @cyan;
 
 * {
   font-size: 16px;
@@ -32,8 +44,8 @@ window#waybar {
   margin-bottom: 0px;
   margin-top: 2px;
   border-radius: 5px;
-  border: 1px solid alpha(@color4, 0.8);
-  background: alpha(@background, 0.8);
+  border: 1px solid alpha(@blue, 0.8);
+  background: alpha(@bg, 0.8);
 }
 .modules-center {
   padding: 7px;
@@ -41,8 +53,8 @@ window#waybar {
   margin-bottom: 0px;
   margin-top: 2px;
   border-radius: 5px;
-  border: 1px solid alpha(@color4, 0.8);
-  background: alpha(@background, 0.8);
+  border: 1px solid alpha(@blue, 0.8);
+  background: alpha(@bg, 0.8);
 }
 .modules-right {
   padding: 7px;
@@ -50,11 +62,12 @@ window#waybar {
   margin-bottom: 0px;
   margin-top: 2px;
   border-radius: 5px;
-  border: 1px solid alpha(@color4, 0.8);
+  border: 1px solid alpha(@blue, 0.8);
+  background: alpha(@bg, 0.8);
 }
 tooltip {
-  background: @background;
-  color: @color7;
+  background: @bg;
+  color: @fg_dark;
 }
 #clock:hover,
 #custom-notification:hover,
@@ -72,17 +85,17 @@ tooltip {
   padding: 0px 5px;
   min-height: 20px;
   transition: all 0.3s ease;
-  color: @color7;
+  color: @fg_dark;
 }
 #clock {
   padding: 0px 5px;
-  color: @color7;
+  color: @fg_dark;
   transition: all 0.3s ease;
 }
 #custom-pacman {
   padding: 0px 5px;
   transition: all 0.3s ease;
-  color: @color7;
+  color: @fg_dark;
 }
 #workspaces {
   padding: 0px 5px;
@@ -123,17 +136,17 @@ tooltip {
 #bluetooth {
   padding: 0px 5px;
   transition: all 0.3s ease;
-  color: @color7;
+  color: @fg_dark;
 }
 #network {
   padding: 0px 5px;
   transition: all 0.3s ease;
-  color: @color7;
+  color: @fg_dark;
 }
 #battery {
   padding: 0px 5px;
   transition: all 0.3s ease;
-  color: @color7;
+  color: @fg_dark;
 }
 #battery.charging {
   color: #26a65b;
@@ -173,7 +186,7 @@ tooltip {
 #temperature {
   padding: 0px 5px;
   transition: all 0.3s ease;
-  color: @color7;
+  color: @fg_dark;
 }
 #custom-endpoint {
   color: transparent;

@@ -13,7 +13,6 @@ Config(
   plugins: [
     "libapplications.so",
     "librink.so",
-    "libshell.so",
     "libtranslate.so",
     "librandr.so"
   ],
