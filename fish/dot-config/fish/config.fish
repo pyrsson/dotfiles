@@ -10,10 +10,10 @@ if status is-interactive
     type -q fzf && fzf --fish | source
     # makes fzf history preview open in tmux popup
     set -gx FZF_DEFAULT_OPTS "--reverse --tmux 80%,50% --color=bg+:#2d3f76 \
-    --color=bg:#1e2030 \
+    --color=bg:-1 \
     --color=border:#589ed7 \
     --color=fg:#c8d3f5 \
-    --color=gutter:#1e2030 \
+    --color=gutter:-1 \
     --color=header:#ff966c \
     --color=hl+:#65bcff \
     --color=hl:#65bcff \
