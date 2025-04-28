@@ -47,6 +47,7 @@ if status is-interactive
     alias kn=kubens
     alias vim=nvim
     alias pm=podman
+    alias h=hyprctl
 end
 
 set fish_greeting

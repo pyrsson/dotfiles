@@ -76,6 +76,7 @@ tooltip {
 #battery:hover,
 #cpu:hover,
 #memory:hover,
+#wireplumber:hover,
 #temperature:hover {
   transition: all 0.3s ease;
   color: @mycolor;
@@ -183,6 +184,7 @@ tooltip {
 }
 #cpu,
 #memory,
+#wireplumber,
 #temperature {
   padding: 0px 5px;
   transition: all 0.3s ease;
