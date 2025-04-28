@@ -1,6 +1,8 @@
 #!/bin/bash
 FZF_DEFAULT_OPTS+=" --reverse --no-separator --info hidden --border rounded"
 
+set -e
+
 dir=$1
 depth=${2:-1}
 

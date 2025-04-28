@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+stdin=$(cliphist list)
+line=$(echo "$stdin" | awk '{$1="";$0=$0; print NR, $0 }' | tofi --width 1000 | cut -d\  -f1)
+
+if [[ -z "$line" ]]; then
+  exit 1
+fi
+echo "$stdin" | sed -n "$line"p

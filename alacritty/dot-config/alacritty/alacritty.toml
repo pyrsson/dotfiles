@@ -14,7 +14,7 @@ TERM = "xterm-256color"
 size = 12
 
 [font.normal]
-family = "Hack Nerd Font"
+family = "Hack Nerd Font Mono"
 
 [window]
 decorations = "full"

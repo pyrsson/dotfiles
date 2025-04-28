@@ -4,7 +4,13 @@
   "reload_style_on_change": true,
   "modules-left": ["custom/notification", "clock", "hyprland/window"],
   "modules-center": ["hyprland/workspaces"],
-  "modules-right": ["group/expand", "tray", "network", "battery"],
+  "modules-right": [
+    "group/expand",
+    "tray",
+    "wireplumber",
+    "network",
+    "battery",
+  ],
 
   "hyprland/workspaces": {
     "format": "{icon}",
@@ -50,6 +56,13 @@
       "on-click-right": "shift_down",
       "on-click": "shift_up",
     },
+  },
+  "wireplumber": {
+    "format": "{icon} {volume}",
+    "format-muted": "",
+    "tooltip-format": "{node_name}\n{volume}%",
+    "on-click": "pavucontrol",
+    "format-icons": ["", "", ""],
   },
   "network": {
     "format-wifi": "",
