@@ -1,23 +1,34 @@
 /* @import url('/home/simon/.cache/wal/colors-waybar.css'); */
-
-@define-color color0 #1b1d2b;
-@define-color color1 #ff757f;
-@define-color color2 #c3e88d;
-@define-color color3 #ffc777;
-@define-color color4 #82aaff;
-@define-color color5 #c099ff;
-@define-color color6 #86e1fc;
-@define-color color7 #828bb8;
-@define-color color8 #444a73;
-@define-color color9 #ff8d94;
-@define-color color10 #c7fb6d;
-@define-color color11 #ffd8ab;
-@define-color color12 #9ab8ff;
-@define-color color13 #caabff;
-@define-color color14 #b2ebff;
-@define-color color15 #c8d3f5;
-@define-color background #222436;
-@define-color foreground #c8d3f5;
+@define-color bg #222436;
+@define-color bg_dark #1e2030;
+@define-color bg_dark1 #191B29;
+@define-color bg_highlight #2f334d;
+@define-color blue #82aaff;
+@define-color blue0 #3e68d7;
+@define-color blue1 #65bcff;
+@define-color blue2 #0db9d7;
+@define-color blue5 #89ddff;
+@define-color blue6 #b4f9f8;
+@define-color blue7 #394b70;
+@define-color comment #636da6;
+@define-color cyan #86e1fc;
+@define-color dark3 #545c7e;
+@define-color dark5 #737aa2;
+@define-color fg #c8d3f5;
+@define-color fg_dark #828bb8;
+@define-color fg_gutter #3b4261;
+@define-color green #c3e88d;
+@define-color green1 #4fd6be;
+@define-color green2 #41a6b5;
+@define-color magenta #c099ff;
+@define-color magenta2 #ff007c;
+@define-color orange #ff966c;
+@define-color purple #fca7ea;
+@define-color red #ff757f;
+@define-color red1 #c53b53;
+@define-color teal #4fd6be;
+@define-color terminal_black #444a73;
+@define-color yellow #ffc777;
 
 * {
   all: unset;
@@ -28,7 +39,7 @@
 }
 button {
   font-family: "CodeNewRoman Nerd Font Mono";
-  background-color: alpha(@background, 1);
+  background-color: alpha(@bg, 0.9);
   border-radius: 5px;
   background-repeat: no-repeat;
   background-position: center;
@@ -60,26 +71,29 @@ button {
 
 #lock:focus {
   background-image: image(url("/home/simon/.config/wlogout/lock.png"));
-  margin: 5px 5px 5px 200px;
+  margin: 5px 5px 5px 300px;
   padding: 5px;
 }
 #shutdown:focus {
   background-image: image(url("/home/simon/.config/wlogout/power.png"));
-  margin: 5px 200px 5px 5px;
+  margin: 5px 300px 5px 5px;
   padding: 5px;
+  background-color: alpha(@red, 0.9);
 }
 #logout:focus {
   background-image: image(url("/home/simon/.config/wlogout/logout.png"));
-  margin: 5px 200px 5px 5px;
+  margin: 5px 300px 5px 5px;
   padding: 5px;
+  background-color: alpha(@magenta, 0.9);
 }
 #reboot:focus {
   background-image: image(url("/home/simon/.config/wlogout/restart.png"));
-  margin: 5px 5px 5px 200px;
+  margin: 5px 5px 5px 300px;
   padding: 5px;
+  background-color: alpha(@yellow, 0.9);
 }
 button:focus {
-  background-color: alpha(@color4, 1);
+  background-color: alpha(@blue, 0.9);
   color: #000000;
 
   background-position: center;
