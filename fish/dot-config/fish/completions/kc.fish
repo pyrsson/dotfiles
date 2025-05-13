@@ -1,4 +1,4 @@
 # kc
 
-complete -f -c kc
-complete -f -x -c kc -n '__fish_complete_path ~/.kube/config.d/'
+complete -c kc -e
+complete -f -x -c kc -a '(find ~/.kube/config.d/* -printf "%f\n")'

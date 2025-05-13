@@ -18,35 +18,6 @@ return {
       colorscheme = "tokyonight",
     },
   },
-  -- {
-  --   "nvim-neo-tree/neo-tree.nvim",
-  --   opts = {
-  --     window = {
-  --       width = 30,
-  --     },
-  --     filesystem = {
-  --       filtered_items = {
-  --         always_show = { -- remains visible even if other settings would normally hide it
-  --           ".gitignore",
-  --           ".gitlab-ci.yml",
-  --           ".gitignored",
-  --           ".github",
-  --           ".config",
-  --           ".oh-my-zsh",
-  --           ".local",
-  --           ".zshrc",
-  --           ".zshenv",
-  --           ".stowrc",
-  --           ".envrc",
-  --           ".env",
-  --           ".tmux.conf",
-  --           ".Xresources",
-  --           ".alacritty.toml",
-  --         },
-  --       },
-  --     },
-  --   },
-  -- },
   -- add more treesitter parsers
   {
     "nvim-treesitter/nvim-treesitter",
@@ -99,18 +70,4 @@ return {
       end
     end,
   },
-  -- {
-  --   "ibhagwan/fzf-lua",
-  --   opts = function(_, opts)
-  --     local actions = require("fzf-lua.actions")
-  --     opts.files.actions = {
-  --       ["alt-t"] = { actions.toggle_hidden },
-  --       ["alt-i"] = { actions.toggle_ignore },
-  --     }
-  --     opts.grep.actions = {
-  --       ["alt-t"] = { actions.toggle_hidden },
-  --       ["alt-i"] = { actions.toggle_ignore },
-  --     }
-  --   end,
-  -- },
 }
