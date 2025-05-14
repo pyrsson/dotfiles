@@ -1,6 +1,7 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
     set -gx CDPATH . ~ ~/work ~/github ~/projects
+    abbr vim nvim
 end
 
 set fish_greeting
