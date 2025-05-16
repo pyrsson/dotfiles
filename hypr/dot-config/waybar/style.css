@@ -44,7 +44,7 @@ window#waybar {
   margin-bottom: 0px;
   margin-top: 2px;
   border-radius: 5px;
-  border: 1px solid alpha(@blue, 0.8);
+  border: 2px solid alpha(@blue, 0.7);
   background: alpha(@bg, 0.8);
 }
 .modules-center {
@@ -53,7 +53,7 @@ window#waybar {
   margin-bottom: 0px;
   margin-top: 2px;
   border-radius: 5px;
-  border: 1px solid alpha(@blue, 0.8);
+  border: 2px solid alpha(@blue, 0.7);
   background: alpha(@bg, 0.8);
 }
 .modules-right {
@@ -62,7 +62,7 @@ window#waybar {
   margin-bottom: 0px;
   margin-top: 2px;
   border-radius: 5px;
-  border: 1px solid alpha(@blue, 0.8);
+  border: 2px solid alpha(@blue, 0.7);
   background: alpha(@bg, 0.8);
 }
 tooltip {
