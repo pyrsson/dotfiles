@@ -3,7 +3,6 @@
 	name = pyrsson
 	signingkey = B4E4AA02DBE62BF5
 [core]
-	sshCommand = "ssh -i ~/.ssh/id_rsa.pub -o IdentitiesOnly=yes"
 	pager = diff-so-fancy | less --tabs=4 -RF
 [include]
 	path = ~/.config/git/user
