@@ -121,7 +121,7 @@ keybinds clear-defaults=true {
         floating true
         move_to_focused_tab true
         cwd "/"
-        root_dirs "/home/simon/github;/home/simon/work;/home/simon/vasttrafik"
+        root_dirs "/home/simon/github;/home/simon/projects"
         session_layout "project"
       };
       SwitchToMode "Normal"

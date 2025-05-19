@@ -44,7 +44,7 @@
 @define-color text-color-disabled @fg_dark;
 @define-color bg-selected alpha(@teal, 0.8);
 
-@define-color highlight-color @teal;
+@define-color highlight-color @blue;
 
 * {
   font-family: "CodeNewRoman Nerd Font Propo";
