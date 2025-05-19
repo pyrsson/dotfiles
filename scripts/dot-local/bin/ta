@@ -6,27 +6,56 @@ set -e
 dir=$1
 depth=${2:-1}
 
-# if no tmux session is running, start one
+# if not in a tmux session, start or attach to a new one
 if [[ -z "$dir" && -z "$TMUX" ]]; then
   tmux new-session -A -s main
   exit 0
 fi
 
+session_prompt="change-prompt(Select session > )"
+project_prompt="change-prompt(Select project > )"
+
+session_header="change-header(c-d: kill, c-p: projects, c-g: github projects)"
+project_header="change-header(c-g: github projects, c-s: sessions)"
+git_header="change-header(c-p: projects, c-s: sessions)"
+
 # if no dir is passed, list sessions
 if [[ -z "$dir" ]]; then
-  sesh=$(tmux list-sessions -F#S | fzf --prompt="Select session > " --preview 'tpreview {}' --preview-window right,70%,border-left --bind "ctrl-d:execute-silent(tmux kill-session -t {})+reload(tmux list-sessions -F#S)" --header "ctrl-d: kill session")
-  if [[ -z $sesh ]]; then
+  _session_name=$(
+    tmux list-sessions -F#S | fzf --prompt="Select session > " \
+      --preview 'tpreview {}' \
+      --preview-window right,60%,border-left \
+      --bind "ctrl-d:execute-silent(tmux kill-session -t {})+reload(tmux list-sessions -F#S)" \
+      --header "c-d: kill, c-p: projects, c-g: github projects" \
+      --delimiter "/" \
+      --bind "ctrl-p:reload(fd --base-directory ~/projects --exact-depth 2 --type d --absolute-path | sed 's/\/$//')+change-preview(eza -l --color=always {})+$project_prompt+$project_header+change-nth(-2..)" \
+      --bind "ctrl-g:reload(fd --base-directory ~/github --absolute-path --exact-depth 1 --type d --absolute-path | sed 's/\/$//')+change-preview(eza -l --color=always {})+$project_prompt+$git_header+change-nth(-1)" \
+      --bind "ctrl-s:reload(tmux list-sessions -F#S)+change-preview(tpreview {})+$session_prompt+$session_header+change-nth(0)"
+  )
+  if [[ -z $_session_name ]]; then
     exit 1
   fi
+  relative=${_session_name##*/}
+  session_name=${relative//./_}
+  echo $relative
+  path_name=$_session_name
   if [[ -n "$TMUX" ]]; then
-    tmux switch-client -t "$sesh"
+    if tmux has-session -t "$session_name" 2>/dev/null; then
+      tmux switch-client -t "$session_name"
+      exit 0
+    else
+      tmux new-session -d -s "$session_name" -c "$path_name"
+      tmux send-keys -t "$session_name" "nvim" Enter
+      tmux split-window -t "$session_name" -l 12 -d -c "$path_name"
+      tmux switch-client -t "$session_name"
+    fi
     exit 0
   fi
-  tmux attach -t "$sesh"
+  tmux attach -t "$session_name"
   exit 0
 elif [[ -d "$dir" ]]; then
   # if a dir is passed, list projects in that dir
-  _session_name=$(fd --base-directory "$dir" --exact-depth "$depth" --type d | sed 's/\/$//' | fzf --prompt="Select project > " --preview "eza -l --color=always $dir/{}")
+  _session_name=$(fd --base-directory "$dir" --exact-depth "$depth" --type d | sed 's/\/$//' | fzf --prompt="Select project > " --preview "eza -l --color=always $dir/{}" --preview-window right,70%,border-left)
   # replace dots with underscores for tmux session names
   session_name=${_session_name//./_}
   path_name=$dir/$_session_name
