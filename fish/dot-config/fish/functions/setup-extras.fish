@@ -9,4 +9,5 @@ function setup-extras -d 'setup extras'
     type -q vcluster && vcluster completion fish >$XDG_CONFIG_HOME/fish/completions/vcluster.fish
     type -q argocd && argocd completion fish >$XDG_CONFIG_HOME/fish/completions/argocd.fish
     type -q direnv && direnv hook fish >$XDG_CONFIG_HOME/fish/conf.d/direnv.fish
+    type -q kcp && kcp completion fish >$XDG_CONFIG_HOME/fish/completions/kcp.fish
 end

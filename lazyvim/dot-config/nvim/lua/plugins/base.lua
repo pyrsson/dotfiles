@@ -4,7 +4,7 @@ return {
     lazy = false,
     opts = {
       transparent = true,
-      style = "moon",
+      style = "storm",
       styles = {
         sidebars = "transparent",
         floats = "transparent",
@@ -69,5 +69,11 @@ return {
         return package.loaded["nvim-web-devicons"]
       end
     end,
+  },
+  {
+    "mbbill/undotree",
+    keys = {
+      { "<leader>U", "<cmd>UndotreeToggle<CR>", desc = "Undo tree" },
+    },
   },
 }

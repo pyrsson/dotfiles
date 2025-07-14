@@ -3,6 +3,7 @@ if command -q kubectl
         kubectl $argv
     end
     if command -q kubecolor
+        alias kubectl=kubecolor
         function k -d "kubecolor alias" --wraps kubecolor
             kubecolor $argv
         end
