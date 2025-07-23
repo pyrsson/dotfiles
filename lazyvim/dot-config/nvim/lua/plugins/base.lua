@@ -50,6 +50,10 @@ return {
       inlay_hints = {
         enabled = false,
       },
+      diagnostics = {
+        virtual_lines = true,
+        virtual_text = false,
+      },
     },
   },
   {
