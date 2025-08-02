@@ -40,26 +40,18 @@ export default function NotificationPopups() {
   });
 
   return (
-    <For each={monitors} cleanup={(win) => (win as Gtk.Window).destroy()}>
+    <For each={monitors}>
       {(monitor) => (
         <window
           class="NotificationPopups"
           gdkmonitor={monitor}
           visible={notifications((ns) => ns.length > 0)}
           anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
+          $={(self) => onCleanup(() => self.destroy())}
         >
           <box orientation={Gtk.Orientation.VERTICAL}>
             <For each={notifications}>
-              {(notification) => (
-                <Notification
-                  notification={notification}
-                  onHoverLost={() =>
-                    setNotifications((ns) =>
-                      ns.filter((n) => n.id !== notification.id),
-                    )
-                  }
-                />
-              )}
+              {(notification) => <Notification notification={notification} />}
             </For>
           </box>
         </window>
