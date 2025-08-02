@@ -11,7 +11,7 @@ return {
       },
     },
   },
-  -- Configure LazyVim to load gruvbox
+  -- Configure LazyVim to load tokyonight
   {
     "LazyVim/LazyVim",
     opts = {
@@ -22,9 +22,8 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
-      -- add tsx and treesitter
       vim.list_extend(opts.ensure_installed, {
-        "rust",
+        "yaml",
         "go",
       })
       opts.indent = {
@@ -51,8 +50,8 @@ return {
         enabled = false,
       },
       diagnostics = {
-        virtual_lines = true,
-        virtual_text = false,
+        virtual_lines = false,
+        virtual_text = true,
       },
     },
   },
