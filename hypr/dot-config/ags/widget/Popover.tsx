@@ -1,4 +1,4 @@
-import { opened, setOpened } from "./quicksettings/Submenu";
+import { setOpened } from "./quicksettings/Submenu";
 import { Requests } from "../app";
 import { Gtk } from "ags/gtk4";
 import GObject from "gi://GObject?version=2.0";
