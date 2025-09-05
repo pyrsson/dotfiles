@@ -4,7 +4,8 @@ import Popover from "../Popover";
 import { Gtk } from "ags/gtk4";
 import AstalNotifd from "gi://AstalNotifd";
 import Notification from "../notifications/Notification";
-import { createState, For, onCleanup } from "ags";
+import { createBinding, createState, For, onCleanup, With } from "ags";
+import Adw from "gi://Adw";
 
 export default function Dashboard() {
   const format = "%A %e %b - %H:%M";
@@ -15,6 +16,18 @@ export default function Dashboard() {
   );
 
   const notifd = AstalNotifd.get_default();
+
+  const [dnd, setDnd] = createState(
+    "preferences-system-notifications-symbolic",
+  );
+
+  const dndHandler = notifd.connect("notify::dont-disturb", () => {
+    setDnd(
+      notifd.get_dont_disturb()
+        ? "preferences-system-notifications-symbolic"
+        : "notifications-disabled-symbolic",
+    );
+  });
 
   const [notifications, setNotifications] = createState(
     new Array<AstalNotifd.Notification>(),
@@ -38,6 +51,7 @@ export default function Dashboard() {
   onCleanup(() => {
     notifd.disconnect(notifiedHandler);
     notifd.disconnect(resolvedHandler);
+    notifd.disconnect(dndHandler);
   });
 
   return (
@@ -45,13 +59,61 @@ export default function Dashboard() {
       <box orientation={Gtk.Orientation.VERTICAL}>
         <label label={"Dashboard"} class="Title" />
         <box orientation={Gtk.Orientation.HORIZONTAL}>
-          <box halign={Gtk.Align.END} vexpand={false}>
-            <Gtk.Calendar showWeekNumbers={true} />
+          <box halign={Gtk.Align.START} vexpand={false}>
+            <Gtk.Calendar
+              showWeekNumbers={true}
+              heightRequest={300}
+              widthRequest={450}
+            />
           </box>
+          <Gtk.Separator orientation={Gtk.Orientation.VERTICAL} />
           <box orientation={Gtk.Orientation.VERTICAL}>
-            <For each={notifications}>
-              {(n) => <Notification notification={n} onHoverLost={() => {}} />}
-            </For>
+            <centerbox
+              class="NotificationHeader"
+              orientation={Gtk.Orientation.HORIZONTAL}
+              widthRequest={450}
+            >
+              <box $type="center">
+                <label label={"Notifications"} class="Title" />
+              </box>
+              <box $type="end">
+                <button
+                  iconName={dnd}
+                  halign={Gtk.Align.START}
+                  onClicked={() =>
+                    notifd.set_dont_disturb(!notifd.get_dont_disturb())
+                  }
+                />
+                <button
+                  iconName={"user-trash-symbolic"}
+                  onClicked={() =>
+                    notifd.get_notifications().forEach((n) => n.dismiss())
+                  }
+                  halign={Gtk.Align.END}
+                />
+              </box>
+            </centerbox>
+            <scrolledwindow
+              vexpand={true}
+              hscrollbarPolicy={Gtk.PolicyType.NEVER}
+            >
+              <box
+                halign={Gtk.Align.CENTER}
+                orientation={Gtk.Orientation.VERTICAL}
+                vexpand
+              >
+                <With value={notifications}>
+                  {(notifications) =>
+                    notifications.length === 0 && (
+                      <label label={"No notifications"} />
+                    )
+                  }
+                </With>
+                <For each={notifications}>
+                  {(n) => <Notification notification={n} />}
+                </For>
+              </box>
+            </scrolledwindow>
           </box>
         </box>
       </box>

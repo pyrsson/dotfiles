@@ -17,7 +17,7 @@ export const [Requests, setRequests] = createState(
 app.start({
   css: style,
   requestHandler(req, res) {
-    const handler = Requests.get().get(req);
+    const handler = Requests.get().get(req[0]);
     if (handler) {
       handler(res);
     }

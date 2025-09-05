@@ -29,8 +29,8 @@ window.OSD levelbar block {
 calendar {
   border: none;
   border-radius: 12px;
-  padding: 2px;
   margin: 0.5rem;
+  padding: 4px;
 }
 
 window.Bar {
