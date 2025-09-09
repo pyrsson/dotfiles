@@ -4,8 +4,7 @@ import Popover from "../Popover";
 import { Gtk } from "ags/gtk4";
 import AstalNotifd from "gi://AstalNotifd";
 import Notification from "../notifications/Notification";
-import { createBinding, createState, For, onCleanup, With } from "ags";
-import Adw from "gi://Adw";
+import { createState, For, onCleanup, With } from "ags";
 
 export default function Dashboard() {
   const format = "%A %e %b - %H:%M";
