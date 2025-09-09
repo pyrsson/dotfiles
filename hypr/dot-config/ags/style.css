@@ -2,6 +2,26 @@
   font: 16px "CodeNewRoman Nerd Font Propo";
 }
 
+window#picker {
+  background: transparent;
+  color: #c8d3f5;
+}
+window#picker button {
+  background: #222436;
+  border-radius: 12px;
+  margin: 1px;
+}
+window#picker image {
+  margin-right: 6px;
+}
+window#picker box#picker-content {
+  background: #191b29;
+  min-width: 600px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  padding: 6px;
+}
+
 window.OSD {
   all: unset;
 }
@@ -27,6 +47,7 @@ window.OSD levelbar block {
 }
 
 calendar {
+  background-color: transparent;
   border: none;
   border-radius: 12px;
   margin: 0.5rem;
