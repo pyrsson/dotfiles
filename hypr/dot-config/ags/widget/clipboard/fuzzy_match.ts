@@ -54,3 +54,15 @@ export const calculateMatchScore = (query: string, item: string): number => {
 
   return score;
 };
+
+/**
+ * Represents a single fuzzy match result.
+ */
+export interface FuzzyMatchResult {
+  result: any;
+  /**
+   * A custom score indicating the quality of the match. A higher score is better.
+   * This score considers recency, matching characters in order, and proximity of matches.
+   */
+  score: number;
+}

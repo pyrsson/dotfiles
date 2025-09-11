@@ -11,7 +11,10 @@ export default function Applauncher() {
   let searchentry: Gtk.Entry;
   let win: Astal.Window;
 
-  const apps = new AstalApps.Apps();
+  const apps = new AstalApps.Apps({
+    entryMultiplier: 0,
+    nameMultiplier: 3,
+  });
   const [list, setList] = createState(new Array<AstalApps.Application>());
 
   Requests.get().set("applauncher", (res) => {
