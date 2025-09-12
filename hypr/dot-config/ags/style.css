@@ -2,23 +2,23 @@
   font: 16px "CodeNewRoman Nerd Font Propo";
 }
 
-window#picker {
+window.Picker {
   background: transparent;
   color: #c8d3f5;
 }
-window#picker button {
+window.Picker button {
   background: #222436;
   border-radius: 12px;
   margin: 1px;
 }
-window#picker image {
+window.Picker image {
   margin-right: 6px;
+  margin-left: 6px;
 }
-window#picker box#picker-content {
+window.Picker box#picker-content {
   background: #191b29;
   min-width: 600px;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
+  border-radius: 12px;
   padding: 6px;
 }
 
@@ -52,6 +52,84 @@ calendar {
   border-radius: 12px;
   margin: 0.5rem;
   padding: 4px;
+}
+
+window.Popup .Selected {
+  background-color: #2f334d;
+}
+window.Popup .content {
+  box-shadow: none;
+  background: rgba(25, 27, 41, 0.9);
+  border: none;
+  padding: 8px;
+}
+window.Popup viewport {
+  all: unset;
+  border: none;
+}
+window.Popup scrollbar * {
+  all: unset;
+}
+window.Popup .submenu {
+  background-color: #191b29;
+}
+window.Popup box {
+  border-radius: 10px;
+}
+window.Popup label {
+  padding: 2px;
+}
+window.Popup image {
+  padding: 2px;
+  margin: 2px;
+  transition: 200ms;
+}
+window.Popup image.opened {
+  -gtk-icon-transform: rotate(90deg);
+}
+window.Popup button {
+  all: unset;
+  background: #1e2030;
+  border-radius: 12px;
+  margin: 4px;
+  padding: 4px;
+  transition: 300ms;
+}
+window.Popup button:hover {
+  background-color: #2f334d;
+}
+window.Popup button:active {
+  background-color: #2f334d;
+}
+window.Popup button:focus {
+  background-color: #2f334d;
+}
+window.Popup .AudioSlider scale {
+  all: unset;
+}
+window.Popup .AudioSlider trough {
+  all: unset;
+  background-color: #1e2030;
+  border-radius: 12px;
+}
+window.Popup .AudioSlider trough highlight {
+  all: unset;
+  background-color: #82aaff;
+  border-radius: 12px;
+  padding: 5px;
+}
+window.Popup .AudioSlider trough slider {
+  all: unset;
+  margin: 0px;
+  padding: 6px;
+  background-color: transparent;
+}
+window.Popup .Media .Cover {
+  min-height: 1.2em;
+  min-width: 1.2em;
+  border-radius: 12px;
+  background-position: center;
+  background-size: contain;
 }
 
 window.Bar {
@@ -182,39 +260,12 @@ window.Bar .FocusedClient {
   border-radius: 12px;
   color: #c8d3f5;
 }
-window.Bar .Media .Cover {
-  min-height: 1.2em;
-  min-width: 1.2em;
-  border-radius: 12px;
-  background-position: center;
-  background-size: contain;
-}
 window.Bar .Battery label {
   padding-left: 0;
   margin-left: 0;
 }
 window.Bar .PrivacyIndicator {
   color: #ff757f;
-}
-window.Bar .AudioSlider scale {
-  all: unset;
-}
-window.Bar .AudioSlider trough {
-  all: unset;
-  background-color: #1e2030;
-  border-radius: 12px;
-}
-window.Bar .AudioSlider trough highlight {
-  all: unset;
-  background-color: #82aaff;
-  border-radius: 12px;
-  padding: 5px;
-}
-window.Bar .AudioSlider trough slider {
-  all: unset;
-  margin: 0px;
-  padding: 6px;
-  background-color: transparent;
 }
 
 window.NotificationPopups {

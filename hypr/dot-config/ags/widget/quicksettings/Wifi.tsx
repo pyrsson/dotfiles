@@ -35,7 +35,8 @@ export const Wifi = () => {
       <Gtk.ScrolledWindow
         hscrollbarPolicy={Gtk.PolicyType.NEVER}
         propagateNaturalHeight
-        maxContentHeight={200}
+        maxContentHeight={400}
+        vexpand
       >
         <box orientation={Gtk.Orientation.VERTICAL} name={"wifilist"}>
           <For each={aps}>

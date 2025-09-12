@@ -1,19 +1,27 @@
 import GLib from "gi://GLib?version=2.0";
 import { createPoll } from "ags/time";
-import Popover from "../Popover";
 import { Gtk } from "ags/gtk4";
 import AstalNotifd from "gi://AstalNotifd";
 import Notification from "../notifications/Notification";
 import { createState, For, onCleanup, With } from "ags";
+import Popup from "../Popup";
+import { setVisibleWindow } from "../../app";
 
-export default function Dashboard() {
+export function DashboardButton() {
   const format = "%A %e %b - %H:%M";
   const time = createPoll(
     "",
     1000,
     () => GLib.DateTime.new_now_local().format(format)!,
   );
+  return (
+    <button onClicked={() => setVisibleWindow("dashboard")}>
+      <label label={time} />
+    </button>
+  );
+}
 
+export default function Dashboard() {
   const notifd = AstalNotifd.get_default();
 
   const [dnd, setDnd] = createState(
@@ -54,7 +62,7 @@ export default function Dashboard() {
   });
 
   return (
-    <Popover label={time} name="dashboard">
+    <Popup name="dashboard">
       <box orientation={Gtk.Orientation.VERTICAL}>
         <label label={"Dashboard"} class="Title" />
         <box orientation={Gtk.Orientation.HORIZONTAL}>
@@ -116,6 +124,6 @@ export default function Dashboard() {
           </box>
         </box>
       </box>
-    </Popover>
+    </Popup>
   );
 }

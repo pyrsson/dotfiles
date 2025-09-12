@@ -1,7 +1,7 @@
 import { For, createState } from "ags";
 import { Astal, Gtk, Gdk } from "ags/gtk4";
 import Graphene from "gi://Graphene";
-import { Requests } from "../../app";
+import { requests, setVisibleWindow, visibleWindow } from "../../app";
 import Clipboard, { Entry } from "./cliphist";
 
 const { TOP, BOTTOM, LEFT, RIGHT } = Astal.WindowAnchor;
@@ -14,8 +14,11 @@ export default function Cliphist() {
   const cliphist = Clipboard.get_default();
   const [list, setList] = createState(new Array<Entry>());
 
-  Requests.get().set("cliphist", (res) => {
-    win.visible = !win.visible;
+  requests.get().set("cliphist", (res) => {
+    const win = visibleWindow.get();
+
+    if (win === "cliphist") setVisibleWindow("");
+    else setVisibleWindow("cliphist");
     res("ok");
   });
 
@@ -26,7 +29,7 @@ export default function Cliphist() {
 
   function select(entry?: Entry) {
     if (entry) {
-      win.hide();
+      setVisibleWindow("");
       entry.copy();
     }
   }
@@ -40,7 +43,7 @@ export default function Cliphist() {
     mod: number,
   ) {
     if (keyval === Gdk.KEY_Escape) {
-      win.visible = false;
+      setVisibleWindow("");
       return;
     }
 
@@ -59,7 +62,7 @@ export default function Cliphist() {
     const position = new Graphene.Point({ x, y });
 
     if (!rect.contains_point(position)) {
-      win.visible = false;
+      setVisibleWindow("");
       return true;
     }
   }
@@ -67,15 +70,18 @@ export default function Cliphist() {
   return (
     <window
       $={(ref) => (win = ref)}
-      name="picker"
+      name="cliphist"
+      class="Picker"
       anchor={TOP}
       exclusivity={Astal.Exclusivity.NORMAL}
       keymode={Astal.Keymode.EXCLUSIVE}
+      visible={visibleWindow.as((win) => win === "cliphist")}
       onNotifyVisible={({ visible }) => {
         if (visible)
           searchentry.grab_focus() && setList(cliphist.list.slice(0, 8));
         else searchentry.set_text("");
       }}
+      marginTop={10}
     >
       <Gtk.EventControllerKey onKeyPressed={onKey} />
       <Gtk.GestureClick onPressed={onClick} />

@@ -2,6 +2,7 @@ import { Accessor, createState } from "ags";
 import Gtk from "gi://Gtk?version=4.0";
 import icons from "../../icons";
 import Pango from "gi://Pango?version=1.0";
+import GObject from "gi://GObject?version=2.0";
 
 export const [opened, setOpened] = createState("");
 
@@ -13,8 +14,6 @@ type DropdownProps = {
 };
 
 export const Dropdown = ({ label, icon, name, activate }: DropdownProps) => {
-  let iconOpened = false;
-
   return (
     <button
       onClicked={() => {
@@ -37,12 +36,10 @@ export const Dropdown = ({ label, icon, name, activate }: DropdownProps) => {
           halign={Gtk.Align.END}
           $={(self) =>
             opened.subscribe(() => {
-              if (opened.get() === name && !iconOpened) {
-                iconOpened = !iconOpened;
+              if (opened.get() === name) {
                 self.add_css_class("opened");
               }
-              if (opened.get() !== name && iconOpened) {
-                iconOpened = !iconOpened;
+              if (opened.get() !== name) {
                 self.remove_css_class("opened");
               }
             })
@@ -56,7 +53,7 @@ export const Dropdown = ({ label, icon, name, activate }: DropdownProps) => {
 type MenuProps = {
   name: Accessor<string> | string;
   class?: Accessor<string> | string;
-  children?: JSX.Element | Array<JSX.Element>;
+  children?: Array<GObject.Object> | GObject.Object;
 };
 
 export const Menu = ({ name, children, ...props }: MenuProps) => {
