@@ -1,5 +1,5 @@
 import { setOpened } from "./quicksettings/Submenu";
-import { Requests } from "../app";
+import { requests } from "../app";
 import { Gtk } from "ags/gtk4";
 import GObject from "gi://GObject?version=2.0";
 import { Accessor } from "ags";
@@ -47,7 +47,7 @@ export default function Popover({
       <popover
         $={(self) => {
           if (name) {
-            Requests.get().set(name, (res) => {
+            requests.get().set(name, (res) => {
               if (self.visible) {
                 self.popdown();
                 res("closed " + name);

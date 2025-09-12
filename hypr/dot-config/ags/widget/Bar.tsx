@@ -3,8 +3,10 @@ import Hyprland from "gi://AstalHyprland";
 import Mpris from "gi://AstalMpris";
 import Battery from "gi://AstalBattery";
 import AstalTray from "gi://AstalTray";
-import Dashboard from "./dashboard/Dashboard";
-import QuickSettings from "./quicksettings/QuickSettings";
+import Dashboard, { DashboardButton } from "./dashboard/Dashboard";
+import QuickSettings, {
+  QuickSettingsButton,
+} from "./quicksettings/QuickSettings";
 import Pango from "gi://Pango";
 import { PrivacyModule } from "./quicksettings/Sound";
 import { createBinding, For, With } from "ags";
@@ -162,13 +164,13 @@ export default function Bar() {
                 <FocusedClient maxSize={maxSize} />
               </box>
               <box $type="center">
-                <Dashboard />
+                <DashboardButton />
               </box>
               <box $type="end" hexpand halign={Gtk.Align.END}>
                 <PrivacyModule />
                 <SysTray />
                 <BatteryLevel />
-                <QuickSettings />
+                <QuickSettingsButton />
               </box>
             </centerbox>
           </window>

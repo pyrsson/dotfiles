@@ -1,8 +1,8 @@
-import { For, createState } from "ags";
+import { For, createBinding, createConnection, createState } from "ags";
 import { Astal, Gtk, Gdk } from "ags/gtk4";
 import AstalApps from "gi://AstalApps";
 import Graphene from "gi://Graphene";
-import { Requests } from "../../app";
+import { requests, setVisibleWindow, visibleWindow } from "../../app";
 
 const { TOP, BOTTOM, LEFT, RIGHT } = Astal.WindowAnchor;
 
@@ -17,8 +17,12 @@ export default function Applauncher() {
   });
   const [list, setList] = createState(new Array<AstalApps.Application>());
 
-  Requests.get().set("applauncher", (res) => {
-    win.visible = !win.visible;
+  requests.get().set("applauncher", (res) => {
+    const win = visibleWindow.get();
+
+    if (win === "applauncher") setVisibleWindow("");
+    else setVisibleWindow("applauncher");
+
     res("ok");
   });
 
@@ -29,7 +33,7 @@ export default function Applauncher() {
 
   function launch(app?: AstalApps.Application) {
     if (app) {
-      win.hide();
+      setVisibleWindow("");
       app.launch();
     }
   }
@@ -43,7 +47,7 @@ export default function Applauncher() {
     mod: number,
   ) {
     if (keyval === Gdk.KEY_Escape) {
-      win.visible = false;
+      setVisibleWindow("");
       return;
     }
 
@@ -62,7 +66,7 @@ export default function Applauncher() {
     const position = new Graphene.Point({ x, y });
 
     if (!rect.contains_point(position)) {
-      win.visible = false;
+      setVisibleWindow("");
       return true;
     }
   }
@@ -70,14 +74,17 @@ export default function Applauncher() {
   return (
     <window
       $={(ref) => (win = ref)}
-      name="picker"
+      name="applauncher"
+      class="Picker"
       anchor={TOP}
+      visible={visibleWindow.as((win) => win === "applauncher")}
       exclusivity={Astal.Exclusivity.NORMAL}
       keymode={Astal.Keymode.EXCLUSIVE}
       onNotifyVisible={({ visible }) => {
         if (visible) searchentry.grab_focus();
         else searchentry.set_text("");
       }}
+      marginTop={10}
     >
       <Gtk.EventControllerKey onKeyPressed={onKey} />
       <Gtk.GestureClick onPressed={onClick} />

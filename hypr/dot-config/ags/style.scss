@@ -46,7 +46,7 @@ $radius: 12px;
   font: 16px "CodeNewRoman Nerd Font Propo";
 }
 
-window#picker {
+window.Picker {
   background: transparent;
   color: $fg;
 
@@ -58,13 +58,15 @@ window#picker {
 
   image {
     margin-right: 6px;
+    margin-left: 6px;
   }
 
   box#picker-content {
     background: $bg_dark1;
     min-width: 600px;
-    border-bottom-left-radius: $radius;
-    border-bottom-right-radius: $radius;
+    border-radius: $radius;
+    // border-bottom-left-radius: $radius;
+    // border-bottom-right-radius: $radius;
     padding: 6px;
   }
 }
@@ -105,6 +107,95 @@ calendar {
   border-radius: $radius;
   margin: 0.5rem;
   padding: 4px;
+}
+
+window.Popup {
+  .Selected {
+    background-color: $bg_highlight;
+  }
+  .content {
+    box-shadow: none;
+    background: color.adjust($bg_dark1, $alpha: -0.1);
+    border: none;
+    padding: 8px;
+    // border-top-right-radius: 0;
+    // border-top-left-radius: 0;
+  }
+  viewport {
+    all: unset;
+    border: none;
+  }
+  scrollbar {
+    * {
+      all: unset;
+    }
+  }
+  .submenu {
+    background-color: $bg_dark1;
+  }
+  box {
+    border-radius: 10px;
+  }
+  label {
+    padding: 2px;
+    // margin: 2px;
+  }
+  image {
+    padding: 2px;
+    margin: 2px;
+    transition: 200ms;
+    &.opened {
+      -gtk-icon-transform: rotate(90deg);
+    }
+  }
+  button {
+    all: unset;
+    background: $bg_dark;
+    border-radius: $radius;
+    margin: 4px;
+    padding: 4px;
+    transition: 300ms;
+    &:hover {
+      background-color: $bg_highlight;
+    }
+    &:active {
+      background-color: $bg_highlight;
+    }
+    &:focus {
+      background-color: $bg_highlight;
+    }
+  }
+
+  .AudioSlider {
+    scale {
+      all: unset;
+    }
+    trough {
+      all: unset;
+      background-color: $bg_dark;
+      border-radius: $radius;
+      highlight {
+        all: unset;
+        background-color: $accent;
+        border-radius: $radius;
+        padding: 5px;
+      }
+      slider {
+        all: unset;
+        margin: 0px;
+        padding: 6px;
+        background-color: transparent;
+      }
+    }
+  }
+
+  .Media .Cover {
+    min-height: 1.2em;
+    min-width: 1.2em;
+    border-radius: $radius;
+    background-position: center;
+    background-size: contain;
+  }
 }
 
 window.Bar {
@@ -254,14 +345,6 @@ window.Bar {
     color: $fg;
   }
 
-  .Media .Cover {
-    min-height: 1.2em;
-    min-width: 1.2em;
-    border-radius: $radius;
-    background-position: center;
-    background-size: contain;
-  }
-
   .Battery label {
     padding-left: 0;
     margin-left: 0;
@@ -269,28 +352,6 @@ window.Bar {
 
   .PrivacyIndicator {
     color: $red;
-  }
-  .AudioSlider {
-    scale {
-      all: unset;
-    }
-    trough {
-      all: unset;
-      background-color: $bg_dark;
-      border-radius: $radius;
-      highlight {
-        all: unset;
-        background-color: $accent;
-        border-radius: $radius;
-        padding: 5px;
-      }
-      slider {
-        all: unset;
-        margin: 0px;
-        padding: 6px;
-        background-color: transparent;
-      }
-    }
   }
 }
 
