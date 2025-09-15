@@ -26,10 +26,11 @@ export const BtList = () => {
   const bt = createBinding(bluetooth, "devices");
   return (
     <Menu name={"btdevices"}>
-      <Gtk.ScrolledWindow
+      <scrolledwindow
         hscrollbarPolicy={Gtk.PolicyType.NEVER}
         propagateNaturalHeight
-        maxContentHeight={200}
+        maxContentHeight={300}
+        minContentHeight={40}
       >
         <box orientation={Gtk.Orientation.VERTICAL} name={"btlist"}>
           <For each={bt}>
@@ -66,7 +67,7 @@ export const BtList = () => {
             }
           </For>
         </box>
-      </Gtk.ScrolledWindow>
+      </scrolledwindow>
     </Menu>
   );
 };

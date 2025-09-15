@@ -57,7 +57,7 @@ calendar {
 window.Popup .Selected {
   background-color: #2f334d;
 }
-window.Popup .content {
+window.Popup .popup-content {
   box-shadow: none;
   background: rgba(25, 27, 41, 0.9);
   border: none;
@@ -140,8 +140,6 @@ window.Bar {
   font: 16px "CodeNewRoman Nerd Font Propo";
   background: rgba(25, 27, 41, 0.9);
   padding: 5px;
-  border-radius: 20px;
-  margin: 8px;
   margin-bottom: 0;
 }
 window.Bar popover .Selected {

@@ -1,7 +1,6 @@
 import AstalMpris from "gi://AstalMpris";
 import { createBinding, For } from "ags";
 import { Gtk } from "ags/gtk4";
-import Pango from "gi://Pango?version=1.0";
 
 export function Media() {
   const mpris = AstalMpris.get_default();

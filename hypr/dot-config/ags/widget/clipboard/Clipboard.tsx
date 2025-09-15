@@ -3,6 +3,8 @@ import { Astal, Gtk, Gdk } from "ags/gtk4";
 import Graphene from "gi://Graphene";
 import { requests, setVisibleWindow, visibleWindow } from "../../app";
 import Clipboard, { Entry } from "./cliphist";
+import Adw from "gi://Adw?version=1";
+import Pango from "gi://Pango?version=1.0";
 
 const { TOP, BOTTOM, LEFT, RIGHT } = Astal.WindowAnchor;
 
@@ -72,6 +74,7 @@ export default function Cliphist() {
       $={(ref) => (win = ref)}
       name="cliphist"
       class="Picker"
+      namespace={"ags-cliphist"}
       anchor={TOP}
       exclusivity={Astal.Exclusivity.NORMAL}
       keymode={Astal.Keymode.EXCLUSIVE}
@@ -81,41 +84,48 @@ export default function Cliphist() {
           searchentry.grab_focus() && setList(cliphist.list.slice(0, 8));
         else searchentry.set_text("");
       }}
-      marginTop={10}
+      marginTop={8}
     >
-      <Gtk.EventControllerKey onKeyPressed={onKey} />
-      <Gtk.GestureClick onPressed={onClick} />
-      <box
-        $={(ref) => (contentbox = ref)}
-        name="picker-content"
-        valign={Gtk.Align.START}
-        halign={Gtk.Align.CENTER}
-        orientation={Gtk.Orientation.VERTICAL}
-      >
-        <entry
-          $={(ref) => (searchentry = ref)}
-          onNotifyText={({ text }) => search(text)}
-          onActivate={() => select(list.get()[0])}
-          placeholderText="Start typing to search"
-        />
-        <Gtk.Separator visible={list((l) => l.length > 0)} />
-        <box orientation={Gtk.Orientation.VERTICAL}>
-          <For each={list}>
-            {(cliphist, index) => (
-              <button onClicked={() => select(cliphist)}>
-                <box>
-                  <label label={cliphist.text} maxWidthChars={40} wrap />
-                  <label
-                    hexpand
-                    halign={Gtk.Align.END}
-                    label={index((i) => `alt+${i + 1}`)}
-                  />
-                </box>
-              </button>
-            )}
-          </For>
+      <Adw.Clamp maximumSize={400}>
+        <Gtk.EventControllerKey onKeyPressed={onKey} />
+        <Gtk.GestureClick onPressed={onClick} />
+        <box
+          $={(ref) => (contentbox = ref)}
+          name="picker-content"
+          valign={Gtk.Align.START}
+          halign={Gtk.Align.CENTER}
+          orientation={Gtk.Orientation.VERTICAL}
+          widthRequest={400}
+        >
+          <entry
+            $={(ref) => (searchentry = ref)}
+            onNotifyText={({ text }) => search(text)}
+            onActivate={() => select(list.get()[0])}
+            placeholderText="Start typing to search"
+          />
+          <Gtk.Separator visible={list((l) => l.length > 0)} />
+          <box orientation={Gtk.Orientation.VERTICAL}>
+            <For each={list}>
+              {(cliphist, index) => (
+                <button onClicked={() => select(cliphist)}>
+                  <box>
+                    <label
+                      label={cliphist.text}
+                      wrap
+                      wrapMode={Pango.WrapMode.WORD_CHAR}
+                    />
+                    <label
+                      hexpand
+                      halign={Gtk.Align.END}
+                      label={index((i) => `alt+${i + 1}`)}
+                    />
+                  </box>
+                </button>
+              )}
+            </For>
+          </box>
         </box>
-      </box>
+      </Adw.Clamp>
     </window>
   );
 }
