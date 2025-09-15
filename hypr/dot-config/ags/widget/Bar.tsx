@@ -3,10 +3,8 @@ import Hyprland from "gi://AstalHyprland";
 import Mpris from "gi://AstalMpris";
 import Battery from "gi://AstalBattery";
 import AstalTray from "gi://AstalTray";
-import Dashboard, { DashboardButton } from "./dashboard/Dashboard";
-import QuickSettings, {
-  QuickSettingsButton,
-} from "./quicksettings/QuickSettings";
+import { DashboardButton } from "./dashboard/Dashboard";
+import { QuickSettingsButton } from "./quicksettings/QuickSettings";
 import Pango from "gi://Pango";
 import { PrivacyModule } from "./quicksettings/Sound";
 import { createBinding, For, With } from "ags";
@@ -76,7 +74,7 @@ function SysTray() {
   const init = (btn: Gtk.MenuButton, item: AstalTray.TrayItem) => {
     const menu = Gtk.PopoverMenu.new_from_model(item.menuModel);
     menu.set_flags(Gtk.PopoverMenuFlags.NESTED);
-    menu.set_has_arrow(false);
+    // menu.set_has_arrow(false);
     btn.set_popover(menu);
     btn.insert_action_group("dbusmenu", item.actionGroup);
     item.connect("notify::action-group", () => {
@@ -112,32 +110,6 @@ function BatteryLevel() {
   );
 }
 
-function Media() {
-  const mpris = Mpris.get_default();
-  const players = createBinding(mpris, "players");
-
-  return (
-    <box class="Media">
-      <With value={players}>
-        {(ps) =>
-          ps[0] ? (
-            <box>
-              <box class="Cover" valign={Gtk.Align.CENTER} />
-              <label
-                label={createBinding(ps[0], "metadata").as(
-                  () => `${ps[0].title} - ${ps[0].artist}`,
-                )}
-              />
-            </box>
-          ) : (
-            <label label="Nothing Playing" />
-          )
-        }
-      </With>
-    </box>
-  );
-}
-
 export default function Bar() {
   const { TOP, LEFT, RIGHT } = Astal.WindowAnchor;
   const monitors = createBinding(app, "monitors");
@@ -154,6 +126,7 @@ export default function Bar() {
             namespace={"ags-bar"}
             keymode={Astal.Keymode.ON_DEMAND}
             exclusivity={Astal.Exclusivity.EXCLUSIVE}
+            layer={Astal.Layer.TOP}
             anchor={TOP | LEFT | RIGHT}
             $={(self) => app.add_window(self)}
             visible={true}
