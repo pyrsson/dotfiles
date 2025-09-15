@@ -3,6 +3,7 @@ import { Astal, Gtk, Gdk } from "ags/gtk4";
 import AstalApps from "gi://AstalApps";
 import Graphene from "gi://Graphene";
 import { requests, setVisibleWindow, visibleWindow } from "../../app";
+import Adw from "gi://Adw";
 
 const { TOP, BOTTOM, LEFT, RIGHT } = Astal.WindowAnchor;
 
@@ -76,6 +77,7 @@ export default function Applauncher() {
       $={(ref) => (win = ref)}
       name="applauncher"
       class="Picker"
+      namespace={"ags-applauncher"}
       anchor={TOP}
       visible={visibleWindow.as((win) => win === "applauncher")}
       exclusivity={Astal.Exclusivity.NORMAL}
@@ -84,42 +86,45 @@ export default function Applauncher() {
         if (visible) searchentry.grab_focus();
         else searchentry.set_text("");
       }}
-      marginTop={10}
+      marginTop={8}
     >
-      <Gtk.EventControllerKey onKeyPressed={onKey} />
-      <Gtk.GestureClick onPressed={onClick} />
-      <box
-        $={(ref) => (contentbox = ref)}
-        name="picker-content"
-        valign={Gtk.Align.START}
-        halign={Gtk.Align.CENTER}
-        orientation={Gtk.Orientation.VERTICAL}
-      >
-        <entry
-          $={(ref) => (searchentry = ref)}
-          onNotifyText={({ text }) => search(text)}
-          onActivate={() => launch(list.get()[0])}
-          placeholderText="Start typing to search"
-        />
-        <Gtk.Separator visible={list((l) => l.length > 0)} />
-        <box orientation={Gtk.Orientation.VERTICAL}>
-          <For each={list}>
-            {(app, index) => (
-              <button onClicked={() => launch(app)}>
-                <box>
-                  <image iconName={app.iconName} />
-                  <label label={app.name} maxWidthChars={40} wrap />
-                  <label
-                    hexpand
-                    halign={Gtk.Align.END}
-                    label={index((i) => `alt+${i + 1}`)}
-                  />
-                </box>
-              </button>
-            )}
-          </For>
+      <Adw.Clamp maximumSize={400}>
+        <Gtk.EventControllerKey onKeyPressed={onKey} />
+        <Gtk.GestureClick onPressed={onClick} />
+        <box
+          $={(ref) => (contentbox = ref)}
+          name="picker-content"
+          valign={Gtk.Align.START}
+          halign={Gtk.Align.CENTER}
+          orientation={Gtk.Orientation.VERTICAL}
+          widthRequest={400}
+        >
+          <entry
+            $={(ref) => (searchentry = ref)}
+            onNotifyText={({ text }) => search(text)}
+            onActivate={() => launch(list.get()[0])}
+            placeholderText="Start typing to search"
+          />
+          <Gtk.Separator visible={list((l) => l.length > 0)} />
+          <box orientation={Gtk.Orientation.VERTICAL}>
+            <For each={list}>
+              {(app, index) => (
+                <button onClicked={() => launch(app)}>
+                  <box>
+                    <image iconName={app.iconName} />
+                    <label label={app.name} maxWidthChars={40} wrap />
+                    <label
+                      hexpand
+                      halign={Gtk.Align.END}
+                      label={index((i) => `alt+${i + 1}`)}
+                    />
+                  </box>
+                </button>
+              )}
+            </For>
+          </box>
         </box>
-      </box>
+      </Adw.Clamp>
     </window>
   );
 }

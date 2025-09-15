@@ -37,11 +37,8 @@ app.start({
     NotificationPopups();
     Bar();
     OSD();
-    const applauncher = Applauncher() as Gtk.Window;
-    app.add_window(applauncher);
-    const cliphist = Cliphist() as Gtk.Window;
-    app.add_window(cliphist);
-
+    app.add_window(Applauncher() as Gtk.Window);
+    app.add_window(Cliphist() as Gtk.Window);
     app.add_window(Dashboard() as Gtk.Window);
     app.add_window(QuickSettings() as Gtk.Window);
 

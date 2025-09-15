@@ -151,6 +151,7 @@ export default function Bar() {
             name="bar"
             class="Bar"
             gdkmonitor={monitor}
+            namespace={"ags-bar"}
             keymode={Astal.Keymode.ON_DEMAND}
             exclusivity={Astal.Exclusivity.EXCLUSIVE}
             anchor={TOP | LEFT | RIGHT}

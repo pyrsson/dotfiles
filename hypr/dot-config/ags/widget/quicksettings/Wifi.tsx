@@ -32,11 +32,12 @@ export const Wifi = () => {
   });
   return (
     <Menu name={"wifi"}>
-      <Gtk.ScrolledWindow
+      <scrolledwindow
         hscrollbarPolicy={Gtk.PolicyType.NEVER}
         propagateNaturalHeight
-        maxContentHeight={400}
-        vexpand
+        maxContentHeight={300}
+        heightRequest={20}
+        minContentHeight={40}
       >
         <box orientation={Gtk.Orientation.VERTICAL} name={"wifilist"}>
           <For each={aps}>
@@ -54,7 +55,7 @@ export const Wifi = () => {
             }
           </For>
         </box>
-      </Gtk.ScrolledWindow>
+      </scrolledwindow>
     </Menu>
   );
 };

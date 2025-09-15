@@ -23,7 +23,7 @@ export const SelectableItem = ({
   return (
     <button
       name={name}
-      cssClasses={selected.as((selected) => (selected ? ["Selected"] : [""]))}
+      class={selected.as((selected) => (selected ? "Selected" : ""))}
       visible
       onClicked={onClicked}
       onDestroy={onDestroy}

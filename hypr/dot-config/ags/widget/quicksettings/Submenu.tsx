@@ -65,6 +65,7 @@ export const Menu = ({ name, children, ...props }: MenuProps) => {
       revealChild={revealChild}
       transitionDuration={200}
       transitionType={Gtk.RevealerTransitionType.SLIDE_DOWN}
+      vexpand
     >
       <box {...props} orientation={Gtk.Orientation.VERTICAL}>
         {children}

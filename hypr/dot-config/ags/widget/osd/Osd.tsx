@@ -64,6 +64,7 @@ export default function OSD() {
           name="osd"
           class="OSD"
           application={app}
+          namespace={"ags-osd"}
           gdkmonitor={monitor}
           layer={Astal.Layer.OVERLAY}
           keymode={Astal.Keymode.NONE}

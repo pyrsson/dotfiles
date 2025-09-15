@@ -23,13 +23,14 @@ export const VpnDropdown = () => {
 export const Vpn = () => {
   return (
     <Menu name={"vpn"}>
-      <Gtk.ScrolledWindow
+      <scrolledwindow
         hscrollbarPolicy={Gtk.PolicyType.NEVER}
         propagateNaturalHeight
         maxContentHeight={300}
+        minContentHeight={40}
       >
         {VpnList()}
-      </Gtk.ScrolledWindow>
+      </scrolledwindow>
     </Menu>
   );
 };
@@ -52,7 +53,9 @@ export const VpnList = () => {
               execAsync(`nmcli connection down "${vpn.get_id()}"`);
             } else {
               execAsync(`nmcli connection up "${vpn.get_id()}" --ask`);
-              (self.get_ancestor(Gtk.Popover.$gtype) as Gtk.Popover)?.popdown();
+              (self.get_ancestor(Gtk.Window.$gtype) as Gtk.Window)?.set_visible(
+                false,
+              );
             }
           },
           selected: createBinding(client, "activeConnections").as((active) => {

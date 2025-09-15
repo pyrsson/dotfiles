@@ -113,7 +113,7 @@ window.Popup {
   .Selected {
     background-color: $bg_highlight;
   }
-  .content {
+  .popup-content {
     box-shadow: none;
     background: color.adjust($bg_dark1, $alpha: -0.1);
     border: none;

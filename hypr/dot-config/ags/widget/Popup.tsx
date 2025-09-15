@@ -74,6 +74,7 @@ export default function Popup({
       $={(ref) => (win = ref)}
       name={name}
       class="Popup"
+      namespace={"ags-popup"}
       anchor={anchor}
       visible={visibleWindow.as((win) => win === name)}
       exclusivity={Astal.Exclusivity.NORMAL}
@@ -82,12 +83,13 @@ export default function Popup({
         if (!visible) setOpened("");
       }}
       margin={8}
+      layer={Astal.Layer.TOP}
     >
       <Gtk.EventControllerKey onKeyPressed={onKey} />
       <Gtk.GestureClick onPressed={onClick} />
       <box
         $={(ref) => (contentbox = ref)}
-        class="content"
+        class="popup-content"
         valign={Gtk.Align.START}
         halign={Gtk.Align.CENTER}
         orientation={Gtk.Orientation.VERTICAL}
