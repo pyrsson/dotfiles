@@ -142,57 +142,11 @@ window.Bar {
   padding: 5px;
   margin-bottom: 0;
 }
-window.Bar popover .Selected {
-  background-color: #2f334d;
-}
 window.Bar popover contents {
   box-shadow: none;
   background: rgba(25, 27, 41, 0.9);
   border: none;
   padding: 8px;
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
-}
-window.Bar popover viewport {
-  all: unset;
-  border: none;
-}
-window.Bar popover scrollbar * {
-  all: unset;
-}
-window.Bar popover .submenu {
-  background-color: #191b29;
-}
-window.Bar popover box {
-  border-radius: 10px;
-}
-window.Bar popover label {
-  padding: 2px;
-}
-window.Bar popover image {
-  padding: 2px;
-  margin: 2px;
-  transition: 200ms;
-}
-window.Bar popover image.opened {
-  -gtk-icon-transform: rotate(90deg);
-}
-window.Bar popover button {
-  all: unset;
-  background: #1e2030;
-  border-radius: 12px;
-  margin: 4px;
-  padding: 4px;
-  transition: 300ms;
-}
-window.Bar popover button:hover {
-  background-color: #2f334d;
-}
-window.Bar popover button:active {
-  background-color: #2f334d;
-}
-window.Bar popover button:focus {
-  background-color: #2f334d;
 }
 window.Bar label,
 window.Bar image {

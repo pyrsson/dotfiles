@@ -2,7 +2,7 @@ import { MicrophoneToggle, Sinks, Sources, SpeakerToggle } from "./Sound";
 import { Wifi, WifiDropdown } from "./Wifi";
 import { PowerProfilesMenu, PowerProfilesToggle } from "./Power";
 import { Vpn, VpnDropdown } from "./Vpn";
-import { Homogeneous, Row } from "../Popover";
+import { Homogeneous, Row } from "../Popup";
 import icons from "../../icons";
 import Gtk from "gi://Gtk?version=4.0";
 import { BtDropdown, BtList } from "./Bluetooth";

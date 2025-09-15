@@ -1,11 +1,27 @@
-import { For } from "ags";
 import { Astal, Gtk, Gdk } from "ags/gtk4";
 import Graphene from "gi://Graphene";
 import { requests, setVisibleWindow, visibleWindow } from "../app";
 import GObject from "gi://GObject?version=2.0";
 import Adw from "gi://Adw";
 import { setOpened } from "./quicksettings/Submenu";
+import { Accessor } from "ags";
 
+export const Row = ({
+  toggles,
+  menus,
+}: {
+  toggles: JSX.Element[];
+  menus: JSX.Element[];
+}) => (
+  <box orientation={Gtk.Orientation.VERTICAL}>
+    <box class="row horizontal" children={toggles} />
+    {menus}
+  </box>
+);
+
+export const Homogeneous = (toggles: GObject.Object[]) => (
+  <box homogeneous={true} children={toggles} />
+);
 const { TOP, BOTTOM, LEFT, RIGHT } = Astal.WindowAnchor;
 
 export interface PopProps {

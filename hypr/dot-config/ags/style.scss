@@ -118,8 +118,6 @@ window.Popup {
     background: color.adjust($bg_dark1, $alpha: -0.1);
     border: none;
     padding: 8px;
-    // border-top-right-radius: 0;
-    // border-top-left-radius: 0;
   }
   viewport {
     all: unset;
@@ -206,65 +204,16 @@ window.Bar {
   font: 16px "CodeNewRoman Nerd Font Propo";
   background: color.adjust($bg_dark1, $alpha: -0.1);
   padding: 5px;
-  border-radius: 20px;
-  margin: 8px;
+  // border-radius: 20px;
+  // margin: 8px;
   margin-bottom: 0;
 
   popover {
-    .Selected {
-      background-color: $bg_highlight;
-    }
     contents {
       box-shadow: none;
       background: color.adjust($bg_dark1, $alpha: -0.1);
       border: none;
       padding: 8px;
-      border-top-right-radius: 0;
-      border-top-left-radius: 0;
-    }
-    viewport {
-      all: unset;
-      border: none;
-    }
-    scrollbar {
-      * {
-        all: unset;
-      }
-    }
-    .submenu {
-      background-color: $bg_dark1;
-    }
-    box {
-      border-radius: 10px;
-    }
-    label {
-      padding: 2px;
-      // margin: 2px;
-    }
-    image {
-      padding: 2px;
-      margin: 2px;
-      transition: 200ms;
-      &.opened {
-        -gtk-icon-transform: rotate(90deg);
-      }
-    }
-    button {
-      all: unset;
-      background: $bg_dark;
-      border-radius: $radius;
-      margin: 4px;
-      padding: 4px;
-      transition: 300ms;
-      &:hover {
-        background-color: $bg_highlight;
-      }
-      &:active {
-        background-color: $bg_highlight;
-      }
-      &:focus {
-        background-color: $bg_highlight;
-      }
     }
   }
 
