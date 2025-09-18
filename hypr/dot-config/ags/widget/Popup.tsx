@@ -31,6 +31,12 @@ export interface PopProps {
   valign?: Gtk.Align;
   anchor?: Astal.WindowAnchor;
   maxSize?: number;
+  onKey?: (
+    e: Gtk.EventControllerKey,
+    keyval: number,
+    arg1: number,
+    mod: number,
+  ) => void;
 }
 
 export default function Popup({
@@ -38,6 +44,7 @@ export default function Popup({
   children,
   anchor = TOP,
   maxSize = 400,
+  onKey,
   ...props
 }: PopProps) {
   let contentbox: Gtk.Box;
@@ -54,7 +61,7 @@ export default function Popup({
 
   // close on ESC
   // handle alt + number key
-  function onKey(
+  function onKeyPressed(
     _e: Gtk.EventControllerKey,
     keyval: number,
     _: number,
@@ -64,14 +71,7 @@ export default function Popup({
       setVisibleWindow("");
       return;
     }
-
-    // if (mod === Gdk.ModifierType.ALT_MASK) {
-    //   for (const i of [1, 2, 3, 4, 5, 6, 7, 8, 9] as const) {
-    //     if (keyval === Gdk[`KEY_${i}`]) {
-    //       return launch(list.get()[i - 1]);
-    //     }
-    //   }
-    // }
+    if (onKey) onKey(_e, keyval, _, _mod);
   }
 
   // close on clickaway
@@ -101,7 +101,7 @@ export default function Popup({
       margin={8}
       layer={Astal.Layer.TOP}
     >
-      <Gtk.EventControllerKey onKeyPressed={onKey} />
+      <Gtk.EventControllerKey onKeyPressed={onKeyPressed} />
       <Gtk.GestureClick onPressed={onClick} />
       <box
         $={(ref) => (contentbox = ref)}
