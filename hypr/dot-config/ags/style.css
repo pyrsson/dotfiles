@@ -110,18 +110,18 @@ window.Popup .AudioSlider scale {
 window.Popup .AudioSlider trough {
   all: unset;
   background-color: #1e2030;
-  border-radius: 12px;
+  border-radius: 10px;
 }
 window.Popup .AudioSlider trough highlight {
   all: unset;
   background-color: #82aaff;
-  border-radius: 12px;
+  border-radius: 10px;
   padding: 5px;
 }
 window.Popup .AudioSlider trough slider {
   all: unset;
   margin: 0px;
-  padding: 6px;
+  padding: 15px;
   background-color: transparent;
 }
 window.Popup .Media .Cover {

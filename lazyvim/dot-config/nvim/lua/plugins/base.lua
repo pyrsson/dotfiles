@@ -56,7 +56,7 @@ return {
     },
   },
   {
-    "echasnovski/mini.icons",
+    "nvim-mini/mini.icons",
     opts = {
       filetype = {
         yaml = { glyph = "󰰳" },

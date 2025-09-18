@@ -42,7 +42,7 @@ function FocusedClient({ maxSize }: { maxSize: number }) {
 function Workspaces() {
   const hypr = Hyprland.get_default();
   const workspaces = createBinding(hypr, "workspaces").as((wss) =>
-    wss.sort((a, b) => a.id - b.id),
+    wss.filter((w) => w.id > 0).sort((a, b) => a.id - b.id),
   );
 
   return (
