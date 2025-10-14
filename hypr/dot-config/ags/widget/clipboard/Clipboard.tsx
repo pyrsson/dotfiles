@@ -12,6 +12,7 @@ export default function Cliphist() {
   let contentbox: Gtk.Box;
   let searchentry: Gtk.Entry;
   let win: Astal.Window;
+  let listbox: Gtk.ListBox;
 
   const cliphist = Clipboard.get_default();
   const [list, setList] = createState(new Array<Entry>());
@@ -124,6 +125,11 @@ export default function Cliphist() {
               )}
             </For>
           </box>
+          <Gtk.ListBox
+            $={(ref) => (listbox = ref)}
+            selectionMode={Gtk.SelectionMode.NONE}
+            widthRequest={400}
+          />
         </box>
       </Adw.Clamp>
     </window>

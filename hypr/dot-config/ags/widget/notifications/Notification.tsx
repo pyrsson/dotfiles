@@ -37,9 +37,9 @@ export default function Notification({
   notification: AstalNotifd.Notification;
 }) {
   return (
-    <Adw.Clamp maximumSize={400}>
+    <Adw.Clamp maximumSize={450}>
       <box
-        widthRequest={400}
+        widthRequest={450}
         class={`Notification ${urgency(n)}`}
         orientation={Gtk.Orientation.VERTICAL}
       >
@@ -55,7 +55,11 @@ export default function Notification({
             class="app-name"
             halign={Gtk.Align.START}
             ellipsize={Pango.EllipsizeMode.END}
-            label={n.appName || n.get_str_hint("desktop-entry") || "Unknown"}
+            label={
+              n.appName ||
+              n.get_hint("desktop-entry")?.get_string()[0] ||
+              "Unknown"
+            }
           />
           <label
             class="time"
@@ -93,24 +97,24 @@ export default function Notification({
               <label
                 class="body"
                 wrap
-                useMarkup
+                // useMarkup
                 halign={Gtk.Align.START}
                 xalign={0}
-                justify={Gtk.Justification.FILL}
                 label={n.body}
               />
             )}
           </box>
         </box>
-        {n.actions.length > 0 && (
-          <box class="actions">
-            {n.actions.map(({ label, id }) => (
-              <button hexpand onClicked={() => n.invoke(id)}>
-                <label label={label} halign={Gtk.Align.CENTER} hexpand />
-              </button>
-            ))}
-          </box>
-        )}
+        {n.actions.length > 0 &&
+          n.actions.find((a) => a.label !== undefined) && (
+            <box class="actions">
+              {n.actions.map(({ label, id }) => (
+                <button hexpand onClicked={() => n.invoke(id)}>
+                  <label label={label} halign={Gtk.Align.CENTER} hexpand />
+                </button>
+              ))}
+            </box>
+          )}
       </box>
     </Adw.Clamp>
   );

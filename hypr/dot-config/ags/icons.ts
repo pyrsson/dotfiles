@@ -80,6 +80,10 @@ export default {
     prev: "󰒮",
     next: "󰒭",
   },
+  network: {
+    wwan: "network-cellular-signal-excellent-symbolic",
+    vpn: "network-vpn-symbolic",
+  },
   ui: {
     colorpicker: "color-select-symbolic",
     close: "window-close-symbolic",

@@ -10,6 +10,7 @@ import { Media } from "./Media";
 import Popup from "../Popup";
 import { setVisibleWindow } from "../../app";
 import { Astal } from "ags/gtk4";
+import { Modem, ModemDropdown, modems } from "./Modem";
 
 export const QuickSettingsButton = () => (
   <button onClicked={() => setVisibleWindow("quicksettings")}>
@@ -43,6 +44,9 @@ export default function QuickSettings() {
           toggles={[Homogeneous([PowerProfilesToggle(), VpnDropdown()])]}
           menus={[PowerProfilesMenu(), Vpn()]}
         />
+        {modems.length > 0 && (
+          <Row toggles={[Homogeneous([ModemDropdown()])]} menus={[Modem()]} />
+        )}
 
         <Gtk.Separator orientation={Gtk.Orientation.HORIZONTAL} />
         <Media />

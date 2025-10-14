@@ -5,6 +5,7 @@ import Gtk from "gi://Gtk?version=4.0";
 import { SelectableItem } from "./SelectableItem";
 import icons from "../../icons";
 import { execAsync } from "ags/process";
+import { setVisibleWindow } from "../../app";
 
 const network = Network.get_default();
 
@@ -15,7 +16,7 @@ export const VpnDropdown = () => {
     <Dropdown
       label={activeVpn.as((a) => a || "VPN")}
       name={"vpn"}
-      icon={icons.lock}
+      icon={icons.network.vpn}
     />
   );
 };
@@ -27,6 +28,7 @@ export const Vpn = () => {
         hscrollbarPolicy={Gtk.PolicyType.NEVER}
         propagateNaturalHeight
         maxContentHeight={300}
+        heightRequest={20}
         minContentHeight={40}
       >
         {VpnList()}
@@ -53,9 +55,7 @@ export const VpnList = () => {
               execAsync(`nmcli connection down "${vpn.get_id()}"`);
             } else {
               execAsync(`nmcli connection up "${vpn.get_id()}" --ask`);
-              (self.get_ancestor(Gtk.Window.$gtype) as Gtk.Window)?.set_visible(
-                false,
-              );
+              setVisibleWindow("");
             }
           },
           selected: createBinding(client, "activeConnections").as((active) => {

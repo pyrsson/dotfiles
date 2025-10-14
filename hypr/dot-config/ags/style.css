@@ -116,12 +116,12 @@ window.Popup .AudioSlider trough highlight {
   all: unset;
   background-color: #82aaff;
   border-radius: 10px;
-  padding: 5px;
+  padding: 0.5em;
 }
 window.Popup .AudioSlider trough slider {
   all: unset;
   margin: 0px;
-  padding: 15px;
+  padding: 0.5em;
   background-color: transparent;
 }
 window.Popup .Media .Cover {
