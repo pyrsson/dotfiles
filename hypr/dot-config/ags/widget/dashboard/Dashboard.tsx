@@ -6,6 +6,7 @@ import Notification from "../notifications/Notification";
 import { createState, For, onCleanup, With } from "ags";
 import Popup from "../Popup";
 import { setVisibleWindow } from "../../app";
+import Adw from "gi://Adw";
 
 export function DashboardButton() {
   const format = "%A %e %b - %H:%M";
@@ -66,62 +67,77 @@ export default function Dashboard() {
       <box orientation={Gtk.Orientation.VERTICAL}>
         <label label={"Dashboard"} class="Title" />
         <box orientation={Gtk.Orientation.HORIZONTAL}>
-          <box halign={Gtk.Align.START} vexpand={false}>
-            <Gtk.Calendar
-              showWeekNumbers={true}
-              heightRequest={300}
-              widthRequest={450}
-            />
-          </box>
+          <Adw.Clamp
+            orientation={Gtk.Orientation.VERTICAL}
+            maximumSize={300}
+            valign={Gtk.Align.START}
+          >
+            <box halign={Gtk.Align.START} vexpand={false}>
+              <Gtk.Calendar
+                showWeekNumbers={true}
+                heightRequest={300}
+                widthRequest={450}
+              />
+            </box>
+          </Adw.Clamp>
           <Gtk.Separator orientation={Gtk.Orientation.VERTICAL} />
-          <box orientation={Gtk.Orientation.VERTICAL}>
-            <centerbox
-              class="NotificationHeader"
-              orientation={Gtk.Orientation.HORIZONTAL}
-              widthRequest={450}
+
+          <Adw.Clamp
+            orientation={Gtk.Orientation.VERTICAL}
+            maximumSize={400}
+            valign={Gtk.Align.START}
+          >
+            <box
+              orientation={Gtk.Orientation.VERTICAL}
+              valign={Gtk.Align.START}
             >
-              <box $type="center">
-                <label label={"Notifications"} class="Title" />
-              </box>
-              <box $type="end">
-                <button
-                  iconName={dnd}
-                  halign={Gtk.Align.START}
-                  onClicked={() =>
-                    notifd.set_dont_disturb(!notifd.get_dont_disturb())
-                  }
-                />
-                <button
-                  iconName={"user-trash-symbolic"}
-                  onClicked={() =>
-                    notifd.get_notifications().forEach((n) => n.dismiss())
-                  }
-                  halign={Gtk.Align.END}
-                />
-              </box>
-            </centerbox>
-            <scrolledwindow
-              vexpand={true}
-              hscrollbarPolicy={Gtk.PolicyType.NEVER}
-            >
-              <box
-                halign={Gtk.Align.CENTER}
-                orientation={Gtk.Orientation.VERTICAL}
-                vexpand
+              <centerbox
+                class="NotificationHeader"
+                orientation={Gtk.Orientation.HORIZONTAL}
+                widthRequest={450}
               >
-                <With value={notifications}>
-                  {(notifications) =>
-                    notifications.length === 0 && (
-                      <label label={"No notifications"} />
-                    )
-                  }
-                </With>
-                <For each={notifications}>
-                  {(n) => <Notification notification={n} />}
-                </For>
-              </box>
-            </scrolledwindow>
-          </box>
+                <box $type="center">
+                  <label label={"Notifications"} class="Title" />
+                </box>
+                <box $type="end">
+                  <button
+                    iconName={dnd}
+                    halign={Gtk.Align.START}
+                    onClicked={() =>
+                      notifd.set_dont_disturb(!notifd.get_dont_disturb())
+                    }
+                  />
+                  <button
+                    iconName={"user-trash-symbolic"}
+                    onClicked={() =>
+                      notifd.get_notifications().forEach((n) => n.dismiss())
+                    }
+                    halign={Gtk.Align.END}
+                  />
+                </box>
+              </centerbox>
+              <scrolledwindow
+                hscrollbarPolicy={Gtk.PolicyType.NEVER}
+                propagateNaturalHeight
+              >
+                <box
+                  halign={Gtk.Align.CENTER}
+                  orientation={Gtk.Orientation.VERTICAL}
+                >
+                  <With value={notifications}>
+                    {(notifications) =>
+                      notifications.length === 0 && (
+                        <label label={"No notifications"} />
+                      )
+                    }
+                  </With>
+                  <For each={notifications}>
+                    {(n) => <Notification notification={n} />}
+                  </For>
+                </box>
+              </scrolledwindow>
+            </box>
+          </Adw.Clamp>
         </box>
       </box>
     </Popup>

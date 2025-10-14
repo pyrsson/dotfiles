@@ -1,6 +1,7 @@
 import AstalMpris from "gi://AstalMpris";
 import { createBinding, For } from "ags";
 import { Gtk } from "ags/gtk4";
+import Pango from "gi://Pango";
 
 export function Media() {
   const mpris = AstalMpris.get_default();
@@ -18,8 +19,16 @@ export function Media() {
               valign={Gtk.Align.CENTER}
               orientation={Gtk.Orientation.VERTICAL}
             >
-              <label xalign={0} label={createBinding(player, "title")} />
-              <label xalign={0} label={createBinding(player, "artist")} />
+              <label
+                xalign={0}
+                label={createBinding(player, "title")}
+                ellipsize={Pango.EllipsizeMode.END}
+              />
+              <label
+                xalign={0}
+                label={createBinding(player, "artist")}
+                ellipsize={Pango.EllipsizeMode.END}
+              />
             </box>
             <box hexpand halign={Gtk.Align.END}>
               <button

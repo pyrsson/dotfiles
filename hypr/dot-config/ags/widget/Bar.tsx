@@ -1,6 +1,5 @@
 import Gtk from "gi://Gtk?version=4.0";
 import Hyprland from "gi://AstalHyprland";
-import Mpris from "gi://AstalMpris";
 import Battery from "gi://AstalBattery";
 import AstalTray from "gi://AstalTray";
 import { DashboardButton } from "./dashboard/Dashboard";

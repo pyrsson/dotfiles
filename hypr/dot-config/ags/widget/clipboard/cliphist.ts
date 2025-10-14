@@ -21,6 +21,10 @@ export class Entry {
   get text() {
     return this.#text;
   }
+
+  get id() {
+    return this.#id;
+  }
 }
 
 @register({ GTypeName: "Clipboard" })
