@@ -6,9 +6,10 @@ gui:
     selectedLineBgColor:
       - white
       - bold
+  sidePanelWidth: 0.2
 git:
   paging:
-    pager: diff-so-fancy
+    externalDiffCommand: difft --color=always --width $(tput cols) --display=side-by-side-show-both
 keybinding:
   universal:
     nextTab: ä
