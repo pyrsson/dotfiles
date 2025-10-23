@@ -4,8 +4,10 @@ layout {
       plugin location="zjstatus" {
         format_left "{mode}"
         format_center "#[fg=$blue,bg=$gray,bold] {session} "
-        format_right "#[fg=$black,bg=$blue] {swap_layout} "
+        format_right "{swap_layout}"
         format_space  "#[bg=$bg]"
+        swap_layout_format          "#[fg=$black,bg=$blue] {name} "
+        swap_layout_hide_if_empty   "true"
 
         mode_normal        "#[bold,fg=$black,bg=$blue] NORMAL "
         mode_locked        "#[bold,fg=$black,bg=$red] LOCKED "
