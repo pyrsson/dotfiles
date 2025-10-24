@@ -44,6 +44,7 @@ export default function Dashboard() {
 
   const notifiedHandler = notifd.connect("notified", (_, id, replaced) => {
     const notification = notifd.get_notification(id);
+    if (!notification) return;
 
     if (replaced && notifications.get().some((n) => n.id === id)) {
       setNotifications((ns) => ns.map((n) => (n.id === id ? notification : n)));
