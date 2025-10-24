@@ -8,16 +8,16 @@ return {
       require("schema-companion").setup({})
     end,
   },
-  {
-    {
-      "neovim/nvim-lspconfig",
-      opts = {
-        servers = {
-          yamlls = {
-            before_init = function() end,
-          },
-        },
-      },
-    },
-  },
+  -- {
+  --   {
+  --     "neovim/nvim-lspconfig",
+  --     opts = {
+  --       servers = {
+  --         yamlls = {
+  --           before_init = function() end,
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
 }
