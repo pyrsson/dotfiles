@@ -1,0 +1,8 @@
+theme = TokyoNight Storm
+font-family = Hack Nerd Font Mono
+font-size = 12
+background-opacity = 0.92
+mouse-scroll-multiplier = precision:1,discrete:1
+keybind = shift+alt+l=unbind
+window-padding-balance = true
+title = Ghostty
