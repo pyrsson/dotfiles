@@ -5,3 +5,4 @@ background-opacity = 0.92
 mouse-scroll-multiplier = precision:0.15,discrete:1
 window-padding-balance = true
 title = Ghostty
+keybind = ctrl+enter=unbind

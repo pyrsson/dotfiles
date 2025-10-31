@@ -9,4 +9,19 @@ return {
       },
     },
   },
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   opts = {
+  --     servers = {
+  --       copilot = {
+  --         opts = {
+  --           filetypes = {
+  --             yaml = true,
+  --             markdown = true,
+  --           },
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
 }
