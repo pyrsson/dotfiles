@@ -1,6 +1,5 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.ai.copilot-native",
     "lazyvim.plugins.extras.lang.clangd",
     "lazyvim.plugins.extras.lang.zig",
     "lazyvim.plugins.extras.util.rest"
@@ -11,3 +10,4 @@
   },
   "version": 8
 }
+
