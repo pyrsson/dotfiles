@@ -1,3 +1,4 @@
+theme = "compact"
 [keybinds]
 next = ["Down", "ctrl j"]
 previous = ["Up", "ctrl k"]
