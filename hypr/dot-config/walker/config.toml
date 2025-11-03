@@ -1,0 +1,4 @@
+[keybinds]
+next = ["Down", "ctrl j"]
+previous = ["Up", "ctrl k"]
+quick_activate = ["alt 1", "alt 2", "alt 3", "alt 4", "alt 5"]
