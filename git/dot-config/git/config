@@ -3,7 +3,7 @@
 	name = pyrsson
 	signingkey = B4E4AA02DBE62BF5
 [core]
-	pager = less
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [include]
 	path = ~/.config/git/user
 [init]
@@ -34,5 +34,3 @@
 	whitespace = red reverse
 [push]
 	autoSetupRemote = true
-[diff]
-	external = difft --color=always

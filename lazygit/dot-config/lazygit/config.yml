@@ -9,7 +9,7 @@ gui:
   sidePanelWidth: 0.2
 git:
   paging:
-    externalDiffCommand: difft --color=always --width $(tput cols) --display=side-by-side-show-both
+    pager: diff-so-fancy
 keybinding:
   universal:
     nextTab: ä
