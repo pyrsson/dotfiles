@@ -1,0 +1,12 @@
+[Unit]
+Description=AGS
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=ags run
+ExecStop=ags quit
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
