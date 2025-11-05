@@ -1,0 +1,11 @@
+[Unit]
+Description=Walker gapplication service
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=walker --gapplication-service
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
