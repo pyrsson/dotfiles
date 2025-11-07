@@ -138,13 +138,6 @@
       "enabled": true
     },
     {
-      "id": "gpuTemp",
-      "enabled": true,
-      "minimumWidth": true,
-      "selectedGpuIndex": 0,
-      "pciId": "1002:747e"
-    },
-    {
       "id": "cpuUsage",
       "enabled": true,
       "minimumWidth": true
