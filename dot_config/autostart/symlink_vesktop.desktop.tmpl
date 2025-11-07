@@ -1,0 +1,3 @@
+{{- if and (stat "/usr/share/applications/vesktop.desktop") (eq .chezmoi.hostname "sidearm") }}
+/usr/share/applications/vesktop.desktop
+{{- end }}
