@@ -1,19 +1,12 @@
 # dotfiles
 
-My collection of dotfiles, scripts and configurations.
+My collection of dotfiles, scripts and configurations. Keep in mind that these files are tailored to my personal preferences and setup and your mileage may vary.
 
-Setup for installing via `stow`, expects to be cloned to `~/github/dotfiles`.
+## Installation
 
-```bash
-stow */
-```
-
-## package notes
-
-### bat
-
-Requires building bat cache after running `stow`
+To set up the dotfiles on a new system, you can use the following commands:
 
 ```bash
-bat cache --build
+paru -Sy chezmoi
+chezmoi init --apply $GITHUB_USERNAME
 ```
