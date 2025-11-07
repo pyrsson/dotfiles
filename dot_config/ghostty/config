@@ -7,3 +7,6 @@ window-padding-balance = true
 title = Ghostty
 #keybind = ctrl+shift+v=unbind
 keybind = ctrl+enter=unbind
+gtk-wide-tabs = false
+gtk-custom-css = ?style.css
+gtk-toolbar-style = flat
