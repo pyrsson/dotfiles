@@ -1,11 +1,10 @@
 [Unit]
-Description=AGS
+Description=Noctalia Shell Service
 PartOf=graphical-session.target
 After=graphical-session.target
 
 [Service]
-ExecStart=ags run
-ExecStop=ags quit
+ExecStart=qs -c noctalia-shell
 Restart=on-failure
 RestartSec=1
 
