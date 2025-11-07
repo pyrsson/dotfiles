@@ -1,0 +1,29 @@
+tabbar {
+  margin-top: -8px;
+}
+
+tabbar tabbox {
+  margin: -8px;
+  padding: 0;
+  font-family: monospace;
+  transform: translateY(4px);
+}
+
+tabbar tabbox tab {
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+}
+
+tabbar tabbox tab:selected {
+  border-radius: 0;
+}
+
+tabbar tabbox tab label {
+  font-size: 13px;
+}
+
+tabbar tabbox button {
+  min-height: 20px;
+  min-width: 20px;
+}
