@@ -151,27 +151,33 @@ animations {
 
 // https://yalter.github.io/niri/Configuration:-Window-Rules
 window-rule {
-    // This app-id regular expression will work for both:
-    // - host Firefox (app-id is "firefox")
-    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id="zen" title="^Picture-in-Picture$"
+    default-floating-position x=8 y=8 relative-to="bottom-right"
+    default-column-width { fixed 1280; }
+    default-window-height { fixed 720; }
     open-floating true
 }
 
 window-rule {
-    // This app-id regular expression will work for both:
-    // - host Firefox (app-id is "firefox")
-    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id="zen" is-active=true
     open-floating true
 }
 
 window-rule {
-    // This app-id regular expression will work for both:
-    // - host Firefox (app-id is "firefox")
-    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"Bitwarden"#
     open-floating true
+}
+
+window-rule {
+    match app-id=r#"Spotify"#
+    open-on-output "DP-2"
+}
+
+window-rule {
+    match app-id=r#"steam_app.*"#
+    match app-id=r#".*\.exe$"#
+    variable-refresh-rate true
+    open-fullscreen true
 }
 
 // Example: block out two password managers from screen capture.
@@ -259,8 +265,8 @@ binds {
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
     // Using spawn-sh allows to pass multiple arguments together with the command.
-    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
     XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
