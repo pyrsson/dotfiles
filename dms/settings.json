@@ -220,9 +220,9 @@
   "acLockTimeout": 600,
   "acSuspendTimeout": 0,
   "acSuspendBehavior": 0,
-  "batteryMonitorTimeout": 0,
-  "batteryLockTimeout": 0,
-  "batterySuspendTimeout": 0,
+  "batteryMonitorTimeout": 900,
+  "batteryLockTimeout": 600,
+  "batterySuspendTimeout": 1800,
   "batterySuspendBehavior": 0,
   "lockBeforeSuspend": true,
   "loginctlLockIntegration": true,
@@ -281,3 +281,4 @@
   "showOnLastDisplay": {},
   "configVersion": 1
 }
+
