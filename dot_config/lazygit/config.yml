@@ -8,8 +8,8 @@ gui:
       - bold
   sidePanelWidth: 0.2
 git:
-  paging:
-    pager: diff-so-fancy
+  pagers:
+    - pager: diff-so-fancy
 keybinding:
   universal:
     nextTab: ä
