@@ -10,7 +10,7 @@ quick_activate = ["alt 1", "alt 2", "alt 3", "alt 4", "alt 5"]
   { action = "copy_username", label = "copy username", bind = "ctrl u", after = "Close" },
   { action = "copy_totp", label = "copy totp", bind = "ctrl t", after = "Close" },
   { action = "copy_url", label = "copy url", bind = "ctrl l", after = "Close" },
-  { action = "unlock", label = "unlock", bind = "Return", after = "AsyncReload" },
+  { action = "unlock", label = "unlock", bind = "Return", after = "Close" },
 ]
 
 fallback = [
