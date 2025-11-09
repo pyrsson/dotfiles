@@ -1,0 +1,3 @@
+{{- if and (stat "/usr/share/applications/steam-native.desktop") (eq .chezmoi.hostname "sidearm") }}
+/usr/share/applications/steam-native.desktop
+{{- end }}

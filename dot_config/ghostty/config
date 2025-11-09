@@ -4,9 +4,10 @@ font-size = 12
 background-opacity = 0.92
 mouse-scroll-multiplier = precision:0.15,discrete:1
 window-padding-balance = true
-title = Ghostty
-#keybind = ctrl+shift+v=unbind
-keybind = ctrl+enter=unbind
+#title = Ghostty
 gtk-wide-tabs = false
 gtk-custom-css = ?style.css
 gtk-toolbar-style = flat
+
+## Keybinds
+keybind = ctrl+enter=unbind

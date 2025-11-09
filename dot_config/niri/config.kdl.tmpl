@@ -67,7 +67,7 @@ input {
 
 // https://yalter.github.io/niri/Configuration:-Layout
 layout {
-    gaps 12
+    gaps 10
 
     // - "never", default behavior, focusing an off-screen column will keep at the left
     //   or right edge of the screen.
@@ -131,8 +131,7 @@ layout {
 }
 
 hotkey-overlay {
-    // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
-    // skip-at-startup
+    skip-at-startup
 }
 
 prefer-no-csd
@@ -142,11 +141,35 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 // https://yalter.github.io/niri/Configuration:-Animations
 animations {
-    // Uncomment to turn off all animations.
-    // off
-
     // Slow down all animations by this factor. Values below 1 speed them up instead.
     // slowdown 3.0
+}
+
+workspace "default" {
+    {{- if eq .chezmoi.hostname "thinkpad-x1" }}
+    open-on-output "eDP-1"
+    {{- else if eq .chezmoi.hostname "sidearm" }}
+    open-on-output "DP-1"
+    {{- end }}
+}
+
+{{- if eq .chezmoi.hostname "sidearm" }}
+workspace "gaming" {
+    open-on-output "DP-1"
+}
+
+window-rule {
+    match app-id="steam"
+    open-on-workspace "gaming"
+}
+{{- end }}
+
+workspace "chat" {
+    {{- if eq .chezmoi.hostname "sidearm" }}
+    open-on-output "DP-2"
+    {{- else if eq .chezmoi.hostname "thinkpad-x1" }}
+    open-on-output "eDP-1"
+    {{- end }}
 }
 
 // https://yalter.github.io/niri/Configuration:-Window-Rules
@@ -159,24 +182,30 @@ window-rule {
 }
 
 window-rule {
-    match app-id="zen" is-active=true
+    match app-id=r#"Bitwarden"#
+    match app-id="steam" title="Friends List"
     open-floating true
 }
 
 window-rule {
-    match app-id=r#"Bitwarden"#
-    open-floating true
+    match app-id="zen" at-startup=true
+    match app-id="com.mitchellh.ghostty" at-startup=true
+    open-on-workspace "default"
 }
 
 window-rule {
     match app-id=r#"Spotify"#
-    open-on-output "DP-2"
+    match app-id="vesktop"
+    match app-id="discord"
+    open-on-workspace "chat"
 }
 
 window-rule {
     match app-id=r#"steam_app.*"#
     match app-id=r#".*\.exe$"#
+    exclude title=r#"^Battle.net"#
     variable-refresh-rate true
+    open-on-workspace "gaming"
     open-fullscreen true
 }
 
@@ -226,6 +255,7 @@ window-rule {
 
 window-rule {
     geometry-corner-radius 8
+    draw-border-with-background false
     clip-to-geometry true
 }
 
@@ -257,7 +287,7 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Space hotkey-overlay-title="Run an Application: walker" { spawn "walker"; }
     Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen" { spawn-sh "loginctl lock-session"; }
+    Mod+Escape hotkey-overlay-title="Lock the Screen" { spawn-sh "loginctl lock-session"; }
 
     Mod+V { spawn-sh "walker -m clipboard"; }
     Mod+B { spawn-sh "walker -m menus:bitwarden"; }
@@ -498,7 +528,7 @@ binds {
     //
     // The allow-inhibiting=false property can be applied to other binds as well,
     // which ensures niri always processes them, even when an inhibitor is active.
-    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+    Mod+Shift+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Mod+Shift+E { quit; }
