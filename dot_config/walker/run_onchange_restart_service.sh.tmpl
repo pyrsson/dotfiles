@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# config hash {{ include "dot_config/walker/config.toml" | sha256sum  }}
+
+systemctl --user restart walker.service

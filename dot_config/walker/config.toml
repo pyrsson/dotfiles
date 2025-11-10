@@ -4,6 +4,9 @@ next = ["Down", "ctrl j"]
 previous = ["Up", "ctrl k"]
 quick_activate = ["alt 1", "alt 2", "alt 3", "alt 4", "alt 5"]
 
+[providers]
+default = ["desktopapplications", "calc", "websearch"]
+
 [providers.actions] # This will be MERGED/OVEWRITTEN with what the user specifies
 "menus:bitwarden" = [
   { action = "copy_password", default = true, label = "copy password", bind = "Return", after = "Close" },
