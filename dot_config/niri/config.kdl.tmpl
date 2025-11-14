@@ -11,7 +11,7 @@ input {
 
             // For example:
             layout "se"
-            // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
+            options "caps:escape"
             variant "nodeadkeys"
 
             // If this section is empty, niri will fetch xkb settings
@@ -63,18 +63,20 @@ input {
 
     warp-mouse-to-focus
 
-    focus-follows-mouse max-scroll-amount="35%"
+    focus-follows-mouse max-scroll-amount="50%"
+}
+
+cursor {
+    xcursor-theme "Bibata-Modern-Ice"
+    xcursor-size 24
 }
 
 // https://yalter.github.io/niri/Configuration:-Layout
 layout {
     gaps 10
 
-    // - "never", default behavior, focusing an off-screen column will keep at the left
-    //   or right edge of the screen.
-    // - "always", the focused column will always be centered.
-    // - "on-overflow", focusing a column will center it if it doesn't fit
-    //   together with the previously focused column.
+    background-color "transparent"
+
     center-focused-column "never"
 
     preset-column-widths {
@@ -92,11 +94,11 @@ layout {
 
         width 3
 
-        active-color "#7fc8ff"
+        // active-color "#7aa2f7"
 
-        inactive-color "#505050"
+        inactive-color "#1d202f"
 
-        // active-gradient from="#80c8ff" to="#c7ff7f" angle=45
+        active-gradient from="#7aa2f7" to="#bb9af7" angle=45 relative-to="workspace-view"
 
         // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
     }
@@ -124,8 +126,8 @@ layout {
     // Top and bottom struts will simply add outer gaps in addition to the area occupied by
     // layer-shell panels and regular gaps.
     struts {
-        left 32
-        right 32
+        // left 32
+        // right 32
         // top 64
         // bottom 64
     }
@@ -138,13 +140,6 @@ hotkey-overlay {
 prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-// screenshot-path null
-
-// https://yalter.github.io/niri/Configuration:-Animations
-animations {
-    // Slow down all animations by this factor. Values below 1 speed them up instead.
-    // slowdown 3.0
-}
 
 workspace "default" {
     {{- if eq .chezmoi.hostname "thinkpad-x1" }}
@@ -179,6 +174,11 @@ window-rule {
     default-floating-position x=8 y=8 relative-to="bottom-right"
     default-column-width { fixed 1280; }
     default-window-height { fixed 720; }
+    open-floating true
+}
+
+window-rule {
+    match app-id="ghostty-floating"
     open-floating true
 }
 
@@ -277,10 +277,13 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Space hotkey-overlay-title="Run an Application: walker" { spawn "walker"; }
     Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-    Mod+Escape hotkey-overlay-title="Lock the Screen" { spawn-sh "loginctl lock-session"; }
+    Mod+Escape hotkey-overlay-title="Lock the Screen" { spawn "loginctl" "lock-session"; }
 
-    Mod+V { spawn-sh "walker -m clipboard"; }
-    Mod+B { spawn-sh "walker -m menus:bitwarden"; }
+    Mod+V { spawn "walker" "-m" "clipboard"; }
+    Mod+B { spawn "walker" "-m" "menus:bitwarden"; }
+    Mod+N { spawn "walker" "-m" "menus:niri"; }
+
+    Mod+T { spawn-sh "ghostty --class=ghostty-floating -e fzf"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
@@ -431,6 +434,8 @@ binds {
     Mod+Shift+8 { move-column-to-workspace 8; }
     Mod+Shift+9 { move-column-to-workspace 9; }
 
+    Mod+P { focus-workspace-previous; }
+    Mod+S  { focus-workspace "chat"; }
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
 
@@ -440,13 +445,13 @@ binds {
     // The following binds move the focused window in and out of a column.
     // If the window is alone, they will consume it into the nearby column to the side.
     // If the window is already in a column, they will expel it out.
-    Mod+BracketLeft  { consume-or-expel-window-left; }
-    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+Comma  { consume-or-expel-window-left; }
+    Mod+Period { consume-or-expel-window-right; }
 
     // Consume one window from the right to the bottom of the focused column.
-    Mod+Comma  { consume-window-into-column; }
+    // Mod+Comma  { consume-window-into-column; }
     // Expel the bottom window from the focused column to the right.
-    Mod+Period { expel-window-from-column; }
+    // Mod+Period { expel-window-from-column; }
 
     Mod+R { switch-preset-column-width; }
     // Cycling through the presets in reverse order is also possible.
@@ -553,12 +558,12 @@ output "eDP-1" {
     position x=0 y=0
 }
 
-output "Philips Consumer Electronics Company PHL 346P1C" {
+output "DP-3" {
     mode "3440x1440@99.982"
 
     scale 1
 
-    transform "270"
+    transform "normal"
 
     position x=1920 y=-600
 }
