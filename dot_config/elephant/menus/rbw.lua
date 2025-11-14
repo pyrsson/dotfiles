@@ -19,7 +19,6 @@ function GetEntries()
 			for line in list:lines() do
 				local id, name, user = line:match("^(.-)\t(.-)\t(.-)$")
 				table.insert(entries, {
-					Identifier = id,
 					Subtext = user,
 					Text = name,
 					Value = id,

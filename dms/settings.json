@@ -1,6 +1,6 @@
 {
-  "currentThemeName": "blue",
-  "customThemeFile": "",
+  "currentThemeName": "custom",
+  "customThemeFile": "/home/simon/.config/DankMaterialShell/tokyonight-storm.json",
   "matugenScheme": "scheme-tonal-spot",
   "runUserMatugenTemplates": true,
   "matugenTargetMonitor": "",
@@ -9,7 +9,6 @@
   "popupTransparency": 0.95,
   "dockTransparency": 1,
   "widgetBackgroundColor": "sch",
-  "surfaceBase": "s",
   "cornerRadius": 12,
   "use24HourClock": true,
   "showSeconds": false,
@@ -18,7 +17,7 @@
   "animationSpeed": 1,
   "customAnimationDuration": 500,
   "wallpaperFillMode": "Fill",
-  "blurredWallpaperLayer": true,
+  "blurredWallpaperLayer": false,
   "blurWallpaperOnOverview": false,
   "showLauncherButton": true,
   "showWorkspaceSwitcher": true,
@@ -72,21 +71,9 @@
       "width": 50
     },
     {
-      "id": "nightMode",
-      "enabled": true,
-      "width": 50
-    },
-    {
       "id": "idleInhibitor",
       "enabled": true,
       "width": 50
-    },
-    {
-      "id": "diskUsage",
-      "enabled": true,
-      "width": 50,
-      "instanceId": "mhoup1nci3ti7m0cgv56lb7xfxn0wl",
-      "mountPath": "/"
     },
     {
       "id": "colorPicker",
@@ -97,7 +84,7 @@
   "showWorkspaceIndex": false,
   "showWorkspacePadding": false,
   "workspaceScrolling": false,
-  "showWorkspaceApps": true,
+  "showWorkspaceApps": false,
   "maxWorkspaceIcons": 3,
   "workspacesPerMonitor": true,
   "dwlShowAllTags": false,
@@ -118,20 +105,11 @@
   ],
   "dankBarCenterWidgets": [
     {
-      "id": "spacer",
-      "enabled": true,
-      "size": 20
-    },
-    {
-      "id": "music",
+      "id": "weather",
       "enabled": true
     },
     {
       "id": "clock",
-      "enabled": true
-    },
-    {
-      "id": "weather",
       "enabled": true
     },
     {
@@ -143,17 +121,6 @@
     {
       "id": "systemTray",
       "enabled": true
-    },
-    {
-      "id": "clipboard",
-      "enabled": true
-    },
-    {
-      "id": "gpuTemp",
-      "enabled": true,
-      "minimumWidth": true,
-      "selectedGpuIndex": 0,
-      "pciId": "1002:747e"
     },
     {
       "id": "cpuUsage",
@@ -215,7 +182,7 @@
   "soundNewNotification": true,
   "soundVolumeChanged": true,
   "soundPluggedIn": true,
-  "acMonitorTimeout": 1200,
+  "acMonitorTimeout": 0,
   "acLockTimeout": 600,
   "acSuspendTimeout": 0,
   "acSuspendBehavior": 0,
@@ -262,7 +229,7 @@
   "maxFprintTries": 3,
   "hideBrightnessSlider": false,
   "notificationTimeoutLow": 5000,
-  "notificationTimeoutNormal": 5000,
+  "notificationTimeoutNormal": 15000,
   "notificationTimeoutCritical": 0,
   "notificationPopupPosition": 0,
   "osdAlwaysShowValue": false,

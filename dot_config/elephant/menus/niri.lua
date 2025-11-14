@@ -1,32 +1,35 @@
 Name = "niri"
-NamePretty = "Niri Windows"
-Icon = "niri"
+NamePretty = "Niri Workspaces"
+Icon = "view-grid"
+Action = "%VALUE%"
 Cache = false
-Action = "niri msg action focus-window --id %VALUE%"
 HideFromProviderlist = false
-Description = "Niri Windows"
+Description = "Niri Workspaces"
 SearchName = true
 History = false
 
 function GetEntries()
 	local entries = {}
-	local handle =
-		io.popen([[niri msg --json windows | jq -r '.[] | "\(.id)\t\(.title)\t\(.app_id)\t\(.workspace_id)"']])
+	local handle = io.popen("niri msg --json workspaces")
 
 	if handle then
-		for line in handle:lines() do
-			local id, title, app_id, workspace_id = line:match("^([^\t]+)\t([^\t]*)\t([^\t]*)\t([^\t]*)$")
-			if id then
+		local jsonout = handle:read("*a")
+		handle:close()
+		local data = jsonDecode(jsonout)
+		for _, workspace in ipairs(data) do
+			if workspace.name ~= nil then
 				table.insert(entries, {
-					Text = title ~= "" and title or "Untitled",
-					Subtext = workspace_id ~= "" and workspace_id or "Unknown",
-					Value = id,
-					Icon = app_id ~= "" and app_id or "window",
+					Text = workspace.name,
+					Value = "niri msg action focus-workspace " .. workspace.name,
 				})
 			end
 		end
-		handle:close()
 	end
+
+	table.insert(entries, {
+		Text = "Create New Workspace",
+		SubMenu = "newsession",
+	})
 
 	return entries
 end
