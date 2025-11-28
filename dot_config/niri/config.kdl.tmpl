@@ -80,7 +80,6 @@ layout {
     center-focused-column "never"
 
     preset-column-widths {
-        proportion 0.33333
         proportion 0.5
         proportion 0.66667
     }
@@ -199,6 +198,7 @@ window-rule {
     match app-id=r#"Spotify"#
     match app-id="vesktop"
     match app-id="discord"
+    match app-id=r#"Slack"#
     open-on-workspace "chat"
 }
 
@@ -282,8 +282,6 @@ binds {
     Mod+V { spawn "walker" "-m" "clipboard"; }
     Mod+B { spawn "walker" "-m" "menus:bitwarden"; }
     Mod+N { spawn "walker" "-m" "menus:niri"; }
-
-    Mod+T { spawn-sh "ghostty --class=ghostty-floating -e fzf"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
