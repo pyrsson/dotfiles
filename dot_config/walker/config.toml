@@ -16,6 +16,12 @@ default = ["desktopapplications", "calc", "websearch"]
   { action = "unlock", label = "unlock", bind = "Return", after = "Close" },
 ]
 
+"menus:niri" = [
+  { action = "close", label = "close", bind = "ctrl w", after = "AsyncClearReload" },
+  { action = "select", default = true, bind = "Return" },
+]
+
+
 fallback = [
   { action = "menus:open", label = "open", after = "Nothing" },
   { action = "menus:default", label = "run", after = "Close" },
@@ -96,7 +102,6 @@ unicode = [
 ]
 
 nirisessions = [
-  { action = "start", label = "start", default = true, bind = "Return" },
   { action = "start_new", label = "start blank", bind = "ctrl Return" },
 ]
 
