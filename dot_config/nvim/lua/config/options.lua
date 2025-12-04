@@ -14,6 +14,7 @@ vim.opt.autoread = true
 vim.opt.cursorline = true
 vim.opt.linebreak = true
 vim.opt.wrap = true
+vim.opt.mousescroll = "ver:1,hor:1"
 
 vim.opt.scrolloff = 8
 

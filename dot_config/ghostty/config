@@ -1,8 +1,8 @@
 theme = TokyoNight Storm
 font-family = Hack Nerd Font Mono
 font-size = 12
-background-opacity = 0.92
-mouse-scroll-multiplier = precision:0.15,discrete:1
+#background-opacity = 0.92
+mouse-scroll-multiplier = precision:0.3,discrete:3
 window-padding-balance = true
 #title = Ghostty
 gtk-wide-tabs = false
