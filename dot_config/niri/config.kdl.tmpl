@@ -132,6 +132,37 @@ layout {
     }
 }
 
+recent-windows {
+    // off
+    debounce-ms 750
+
+    open-delay-ms 150
+
+    highlight {
+        active-color "#7aa2f799"
+        urgent-color "#f7768e99"
+        padding 30
+        corner-radius 8
+    }
+
+    previews {
+        max-height 480
+        max-scale 0.5
+    }
+
+    binds {
+        Alt+Tab         { next-window; }
+        Alt+Shift+Tab   { previous-window; }
+        Alt+grave       { next-window     filter="app-id"; }
+        Alt+Shift+grave { previous-window filter="app-id"; }
+
+        Mod+Tab         { next-window; }
+        Mod+Shift+Tab   { previous-window; }
+        Mod+grave       { next-window     filter="app-id"; }
+        Mod+Shift+grave { previous-window filter="app-id"; }
+    }
+}
+
 hotkey-overlay {
     skip-at-startup
 }
@@ -282,6 +313,7 @@ binds {
     Mod+V { spawn "walker" "-m" "clipboard"; }
     Mod+B { spawn "walker" "-m" "menus:bitwarden"; }
     Mod+N { spawn "walker" "-m" "menus:niri"; }
+    Mod+E { spawn "nautilus"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
@@ -352,7 +384,10 @@ binds {
     // ...
 
     // And you can also move a whole workspace to another monitor:
-    // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
+    Mod+Shift+Alt+h { move-workspace-to-monitor-left; }
+    Mod+Shift+Alt+j { move-workspace-to-monitor-down; }
+    Mod+Shift+Alt+k { move-workspace-to-monitor-up; }
+    Mod+Shift+Alt+l { move-workspace-to-monitor-right; }
     // ...
 
     Mod+Page_Down      { focus-workspace-down; }
@@ -457,6 +492,7 @@ binds {
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
     Mod+F { maximize-column; }
+    Mod+M { maximize-window-to-edges; }
     Mod+Shift+F { fullscreen-window; }
 
     // Expand the focused column to space not taken up by other fully visible columns.
@@ -523,46 +559,4 @@ binds {
     Mod+Shift+P { power-off-monitors; }
 }
 
-{{- if eq .chezmoi.hostname "sidearm" }}
-output "DP-1" {
-    mode "3440x1440@99.982"
-
-    scale 1
-
-    transform "normal"
-
-    position x=0 y=0
-}
-
-output "DP-2" {
-    mode "2560x1440@119.998"
-
-    scale 1
-
-    transform "270"
-
-    position x=3440 y=-840
-}
-{{- end }}
-
-{{- if eq .chezmoi.hostname "thinkpad-x1" }}
-output "eDP-1" {
-    mode "1920x1200@60.026"
-
-    scale 1
-
-    transform "normal"
-
-    position x=0 y=0
-}
-
-output "DP-3" {
-    mode "3440x1440@99.982"
-
-    scale 1
-
-    transform "normal"
-
-    position x=1920 y=-600
-}
-{{- end }}
+include "outputs.kdl"
