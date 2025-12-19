@@ -1,0 +1,15 @@
+[Unit]
+Description=Vibepanel
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/vibepanel
+Restart=always
+RestartSec=2
+TimeoutStopSec=10
+
+[Install]
+WantedBy=graphical-session.target
