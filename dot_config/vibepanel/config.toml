@@ -1,0 +1,85 @@
+[bar]
+# Base height of the bar in pixels - all other sizes scale from this
+size = 32
+
+# Spacing between widgets within each section (in pixels)
+widget_spacing = 8
+
+# Distance from the screen edge to the bar window (in pixels)
+outer_margin = 5
+
+# Distance from the bar edge to the first/last section (in pixels)
+section_edge_margin = 3
+
+# Notch mode: reserves space in the center for displays with a notch/camera.
+notch_enabled = false
+
+# Border radius for the bar (percentage of bar height, 50% = fully rounded)
+border_radius = 0
+
+# Optional list of outputs whose workspaces should be reflected in
+# the bar. If omitted or empty, all outputs are accepted. This is
+# primarily useful for MangoWC; Hyprland and Niri handle multi-monitor
+# workspaces differently.
+#outputs = ["eDP-1"]
+popover_offset = 7
+
+
+[widgets]
+# Modules listed here will appear in the corresponding section
+left = [
+  { name = "workspace", label_type = "none" },
+  { name = "window_title", format = "{display}", show_icon = true },
+]
+
+center = [{ name = "clock", format = "%a %d %H:%M" }]
+
+right = [
+  { name = "system_tray" },
+  { name = "quick_settings" },
+  { name = "battery" },
+  { name = "notifications" },
+]
+
+border_radius = 50
+
+[icons]
+# Icon backend: "material" (bundled Material Symbols) or "gtk" (system GTK theme)
+theme = "material"
+
+
+[workspace]
+# Compositor backend for workspace and window-title IPC.
+# Both services share a single backend connection to the compositor.
+# Supported: "auto" (default), "mango", "hyprland", "niri"
+# When "auto", the backend is detected from environment variables:
+#   - HYPRLAND_INSTANCE_SIGNATURE -> hyprland
+#   - NIRI_SOCKET -> niri
+#   - Otherwise -> mango (MangoWC/DWL)
+backend = "auto"
+
+
+[theme]
+# Theme mode controls how overlays, text, and borders adapt to background luminance.
+# Supported: "auto" (default), "dark", "light", "gtk"
+# - "auto": detects from widget background luminance
+# - "dark": forces dark mode (light text on dark backgrounds)
+# - "light": forces light mode (dark text on light backgrounds)
+# - "gtk": derive colors from GTK theme where possible
+mode = "gtk"
+
+# Accent color configuration: "gtk", "none", or a hex color like "#3584e4"
+# - "gtk": use the GTK theme's accent color (don't override @accent_color)
+# - "none": monochrome mode (no colored accents)
+# - "#rrggbb": use this specific color as the accent
+accent = "#7aa2f7"
+
+[theme.states]
+# Semantic state colors consumed by widgets
+success = "#c3e88d" # e.g. active workspace
+warning = "#ffc777"
+urgent = "#ff757f"  # e.g. urgent workspace, low battery
+
+
+[theme.typography]
+font_family = "Hack NF Propo, monospace"

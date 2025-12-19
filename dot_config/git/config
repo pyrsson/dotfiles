@@ -1,7 +1,7 @@
 [user]
 	email = 55557230+pyrsson@users.noreply.github.com
 	name = pyrsson
-	signingkey = /home/simon/.ssh/id_rsa.pub
+	signingkey = ~/.ssh/id_rsa.pub
 
 [gpg]
 	format = ssh
