@@ -36,8 +36,11 @@ center = [{ name = "clock", format = "%a %d %H:%M" }]
 
 right = [
   { name = "system_tray" },
+  { group = [{ name = "cpu" }, { name = "memory" }] },
   { name = "quick_settings" },
+  {{- if eq .chezmoi.hostname "thinkpad-x1" }}
   { name = "battery" },
+  {{- end }}
   { name = "notifications" },
 ]
 
