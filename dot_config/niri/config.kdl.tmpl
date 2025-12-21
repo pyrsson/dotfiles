@@ -230,7 +230,9 @@ window-rule {
     match app-id="vesktop"
     match app-id="discord"
     match app-id=r#"Slack"#
+
     open-on-workspace "chat"
+    // open-on-output {{ if eq .chezmoi.hostname "sidearm" }}"DP-2"{{ else if eq .chezmoi.hostname "thinkpad-x1" }}"eDP-1"{{ end }}
 }
 
 window-rule {

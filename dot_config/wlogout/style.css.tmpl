@@ -44,61 +44,44 @@ window {
 button {
   font-family: "Hack NF Propo";
   background-color: alpha(@bg, 0.9);
+	text-decoration-color: @fg;
+  color: @fg;
   border-radius: 5px;
   background-repeat: no-repeat;
   background-position: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 #lock {
   background-image: image(url("{{ .chezmoi.homeDir }}/.config/wlogout/lock.png"));
   margin: 5px 5px 5px 300px;
   padding: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 #shutdown {
   background-image: image(url("{{ .chezmoi.homeDir }}/.config/wlogout/power.png"));
   margin: 5px 300px 5px 5px;
   padding: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 #logout {
   background-image: image(url("{{ .chezmoi.homeDir }}/.config/wlogout/logout.png"));
   margin: 5px 300px 5px 5px;
   padding: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 #reboot {
   background-image: image(url("{{ .chezmoi.homeDir }}/.config/wlogout/restart.png"));
   margin: 5px 5px 5px 300px;
   padding: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-#lock:focus {
-  background-image: image(url("{{ .chezmoi.homeDir }}/.config/wlogout/lock.png"));
-  margin: 5px 5px 5px 300px;
-  padding: 5px;
-}
 #shutdown:focus {
-  background-image: image(url("{{ .chezmoi.homeDir }}/.config/wlogout/power.png"));
-  margin: 5px 300px 5px 5px;
-  padding: 5px;
   background-color: alpha(@red, 0.9);
 }
 #logout:focus {
-  background-image: image(url("{{ .chezmoi.homeDir }}/.config/wlogout/logout.png"));
-  margin: 5px 300px 5px 5px;
-  padding: 5px;
   background-color: alpha(@magenta, 0.9);
 }
 #reboot:focus {
-  background-image: image(url("{{ .chezmoi.homeDir }}/.config/wlogout/restart.png"));
-  margin: 5px 5px 5px 300px;
-  padding: 5px;
   background-color: alpha(@yellow, 0.9);
 }
 button:focus {
   background-color: alpha(@blue, 0.9);
-  color: #000000;
-
   background-position: center;
 }
