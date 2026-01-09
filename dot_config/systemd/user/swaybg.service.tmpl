@@ -1,0 +1,11 @@
+[Unit]
+Description=Sway Wallpaper Service
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=swaybg -i {{ .chezmoi.homeDir }}/Pictures/wallpaper.jpg -m fill
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
