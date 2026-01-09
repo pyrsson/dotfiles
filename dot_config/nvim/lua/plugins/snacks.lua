@@ -17,6 +17,13 @@ return {
             },
           },
         },
+        sources = {
+          explorer = {
+            layout = {
+              auto_hide = { "input" },
+            },
+          },
+        },
       },
     },
   },
