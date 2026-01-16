@@ -18,7 +18,7 @@ input {
             // from org.freedesktop.locale1. You can control these using
             // localectl set-x11-keymap.
         }
-        repeat-delay 250
+        repeat-delay 350
         repeat-rate 30
         // Enable numlock on startup, omitting this setting disables it.
         numlock
@@ -77,7 +77,7 @@ debug {
 
 // https://yalter.github.io/niri/Configuration:-Layout
 layout {
-    gaps 10
+    gaps 8
 
     background-color "transparent"
 
@@ -95,7 +95,7 @@ layout {
     focus-ring {
         // off
 
-        width 3
+        width 2
 
         // active-color "#7aa2f7"
 
@@ -234,6 +234,7 @@ window-rule {
     match app-id="vesktop"
     match app-id="discord"
     match app-id=r#"Slack"#
+    match app-id=r#"teams-for-linux"#
 
     open-on-workspace "chat"
     // open-on-output {{ if eq .chezmoi.hostname "sidearm" }}"DP-2"{{ else if eq .chezmoi.hostname "thinkpad-x1" }}"eDP-1"{{ end }}
