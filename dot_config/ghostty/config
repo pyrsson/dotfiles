@@ -11,3 +11,5 @@ gtk-toolbar-style = flat
 
 ## Keybinds
 keybind = ctrl+enter=unbind
+keybind = alt+t=new_tab
+keybind = alt+n=new_window
