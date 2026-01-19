@@ -6,7 +6,7 @@ Requisite=graphical-session.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/vibepanel
+ExecStart=vibepanel
 Restart=always
 RestartSec=2
 TimeoutStopSec=10
