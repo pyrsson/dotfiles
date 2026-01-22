@@ -18,19 +18,14 @@ popover_offset = 7
 
 [widgets]
 center = ["clock"]
-right = ["tray", "quick_settings", "battery", "notifications"]
-border_radius = 40
+right = ["media", "tray", "quick_settings", "battery", "notifications"]
+border_radius = 30
 
 [widgets.updates]
 disabled = true
 
 [widgets.cpu]
 disabled = true
-
-{{- if eq .chezmoi.hostname "sidearm" }}
-[widgets.battery]
-disabled = true
-{{- end }}
 
 [theme]
 mode = "gtk"

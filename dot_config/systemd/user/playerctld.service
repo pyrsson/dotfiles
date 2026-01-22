@@ -1,0 +1,10 @@
+[Unit]
+Description=Playerctl daemon service
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=playerctld
+
+[Install]
+WantedBy=graphical-session.target
