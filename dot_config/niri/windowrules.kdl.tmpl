@@ -1,0 +1,84 @@
+// https://yalter.github.io/niri/Configuration:-Window-Rules
+window-rule {
+    match app-id="zen" title="^Picture-in-Picture$"
+    default-floating-position x=8 y=8 relative-to="bottom-right"
+    default-column-width { fixed 1280; }
+    default-window-height { fixed 720; }
+    open-floating true
+}
+
+window-rule {
+    match app-id="ghostty-floating"
+    open-floating true
+}
+
+window-rule {
+    match app-id=r#"Bitwarden"#
+    match app-id="steam" title="Friends List"
+    match app-id="nm-openconnect-auth-dialog"
+    open-floating true
+}
+
+window-rule {
+    match app-id="zen" at-startup=true
+    match app-id="com.mitchellh.ghostty" at-startup=true
+    open-on-workspace "default"
+}
+
+window-rule {
+    match app-id=r#"Spotify"#
+    match app-id="vesktop"
+    match app-id="discord"
+    match app-id=r#"Slack"#
+    match app-id=r#"teams-for-linux"#
+
+    open-on-workspace "chat"
+    // open-on-output {{ if eq .chezmoi.hostname "sidearm" }}"DP-2"{{ else if eq .chezmoi.hostname "thinkpad-x1" }}"eDP-1"{{ end }}
+}
+
+window-rule {
+    match app-id=r#"steam_app.*"#
+    match app-id=r#".*\.exe$"#
+    exclude title=r#"^Battle.net"#
+    // variable-refresh-rate true
+    open-on-workspace "gaming"
+    open-fullscreen true
+}
+
+window-rule {
+    match is-window-cast-target=true
+
+    focus-ring {
+        active-color "#f38ba8"
+        inactive-color "#7d0d2d"
+    }
+
+    border {
+        inactive-color "#7d0d2d"
+    }
+
+    shadow {
+        color "#7d0d2d70"
+    }
+
+    tab-indicator {
+        active-color "#f38ba8"
+        inactive-color "#7d0d2d"
+    }
+}
+
+window-rule {
+    match app-id=r#"^org\.gnome\."#
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    match app-id="Alacritty"
+    match app-id="zen"
+    match app-id="com.mitchellh.ghostty"
+    match app-id="kitty"
+    draw-border-with-background false
+}
+
+window-rule {
+    geometry-corner-radius 8
+    draw-border-with-background false
+    clip-to-geometry true
+}

@@ -4,6 +4,12 @@ return {
     "folke/snacks.nvim",
     ---@type snacks.Config
     opts = {
+      lazygit = {
+        win = {
+          width = 0,
+          height = 0,
+        },
+      },
       picker = {
         layouts = {
           sidebar = {
