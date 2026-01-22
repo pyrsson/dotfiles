@@ -4,7 +4,7 @@ function fish_mode_prompt
             set_color --bold blue
             echo N
         case insert
-            set_color --bold green
+            set_color --bold $fish_color_command
             echo I
         case replace_one
             set_color --bold green
