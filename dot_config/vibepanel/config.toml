@@ -15,11 +15,14 @@ inset = 2
 border_radius = 0
 
 popover_offset = 7
+# background_color = "#323449"
+# background_opacity = 1.0
 
 [widgets]
 center = ["clock"]
 right = ["media", "tray", "quick_settings", "battery", "notifications"]
 border_radius = 30
+background_color = "#323449"
 
 [widgets.updates]
 disabled = true
@@ -28,9 +31,8 @@ disabled = true
 disabled = true
 
 [theme]
-mode = "gtk"
-accent = "#7aa2f7"
-# bar_opacity = 1.0
+mode = "auto"
+accent = "#37f499"
 
 [theme.states]
 success = "#c3e88d"
