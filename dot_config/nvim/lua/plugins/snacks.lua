@@ -22,6 +22,7 @@ return {
         },
         sources = {
           explorer = {
+            include = { "hidden" },
             layout = {
               auto_hide = { "input" },
             },

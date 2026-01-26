@@ -1,12 +1,7 @@
-[".config/bat/themes/Eldritch.tmTheme"]
-type = "file"
-url = "https://raw.githubusercontent.com/eldritch-theme/bat/refs/heads/master/Eldritch.tmTheme"
+[".cache/chezmoi/Tokyonight-GTK-Theme"]
+type = "archive"
+url = "https://github.com/Fausto-Korpsvart/Tokyonight-GTK-Theme/archive/refs/heads/master.zip"
 exact = true
 stripComponents = 1
-refreshPeriod = "168h"
-[".config/ghostty/themes/Eldritch"]
-type = "file"
-url = "https://raw.githubusercontent.com/eldritch-theme/ghostty/refs/heads/master/Eldritch"
-exact = true
-stripComponents = 1
-refreshPeriod = "168h"
+refreshPeriod = "744h"
+include = ["*/themes/**"]
