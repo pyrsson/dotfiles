@@ -39,6 +39,7 @@ window-rule {
 window-rule {
     match app-id=r#"steam_app.*"#
     match app-id=r#".*\.exe$"#
+    match app-id=r#"^Minecraft.*"#
     exclude title=r#"^Battle.net"#
     // variable-refresh-rate true
     open-on-workspace "gaming"
