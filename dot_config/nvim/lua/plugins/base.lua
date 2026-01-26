@@ -4,24 +4,18 @@ return {
     lazy = false,
     opts = {
       transparent = true,
-      style = "storm",
+      style = "night",
       styles = {
         sidebars = "transparent",
         floats = "transparent",
       },
     },
   },
-  {
-    "eldritch-theme/eldritch.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  },
   -- Configure LazyVim to load tokyonight
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "eldritch",
+      colorscheme = "tokyonight",
     },
   },
   -- add more treesitter parsers
