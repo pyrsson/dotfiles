@@ -2,13 +2,10 @@ return {
   {
     "folke/tokyonight.nvim",
     lazy = false,
+    priority = 1000,
     opts = {
-      transparent = true,
+      day_brightness = 0.2,
       style = "night",
-      styles = {
-        sidebars = "transparent",
-        floats = "transparent",
-      },
     },
   },
   -- Configure LazyVim to load tokyonight
@@ -59,7 +56,7 @@ return {
     "nvim-mini/mini.icons",
     opts = {
       filetype = {
-        yaml = { glyph = "󰰳" },
+        yaml = { glyph = "" },
       },
     },
     lazy = true,
