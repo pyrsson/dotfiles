@@ -13,3 +13,18 @@ gtk-toolbar-style = flat
 keybind = ctrl+enter=unbind
 keybind = alt+t=new_tab
 keybind = alt+n=new_window
+keybind = alt+w=close_tab
+keybind = alt+o=toggle_tab_overview
+keybind = performable:alt+l=goto_split:right
+keybind = performable:alt+h=goto_split:left
+keybind = performable:alt+j=goto_split:down
+keybind = performable:alt+k=goto_split:up
+keybind = performable:alt+shift+l=resize_split:right,40
+keybind = performable:alt+shift+h=resize_split:left,40
+keybind = performable:alt+shift+j=resize_split:down,40
+keybind = performable:alt+shift+k=resize_split:up,40
+
+keybind = performable:alt+z=toggle_split_zoom
+
+keybind = alt+.=new_split:right
+keybind = alt+-=new_split:down

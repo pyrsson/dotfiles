@@ -27,8 +27,6 @@ map("n", "äw", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 map("n", "öw", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
 -- buffers
-map("n", "<M-.>", ":bnext!<cr>", opts)
-map("n", "<M-,>", ":bprevious!<cr>", opts)
 map("n", "<leader>p", "<Cmd>b#<CR>", opts)
 -- map('n', '<M-c>', bufdel, opts)
 
@@ -63,3 +61,7 @@ map({ "n", "v" }, "<leader>P", '"+P', opts)
 map({ "n", "v" }, ",", ";", opts)
 map({ "n", "v" }, ";", ",", opts)
 map("v", "<leader>r", '"hy:%s/<C-r>h//g<left><left>', { noremap = true, silent = false })
+
+map({ "n", "t" }, "<c-ö>", function()
+  require("snacks").terminal(nil, { cwd = require("lazyvim.util").root() })
+end, { noremap = true, desc = "Terminal (Root Dir)" })
