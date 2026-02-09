@@ -1,14 +1,13 @@
 binds {
     Mod+Shift+Plus { show-hotkey-overlay; }
 
-    // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+Space repeat=false hotkey-overlay-title="Run an Application" { spawn "vicinae" "vicinae://open?popToRoot=true"; }
+    Mod+Space repeat=false hotkey-overlay-title="Run an Application" { spawn "walker"; }
     Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty" "+new-window"; }
     Mod+Escape hotkey-overlay-title="Lock the Screen" { spawn "loginctl" "lock-session"; }
 
-    Mod+V repeat=false { spawn "vicinae" "vicinae://extensions/vicinae/clipboard/history"; }
-    Mod+B repeat=false { spawn "vicinae" "vicinae://extensions/jomifepe/bitwarden/search"; }
-    // Mod+N repeat=false { spawn "walker" "-m" "menus:niri"; }
+    Mod+V repeat=false { spawn "walker" "-m" "clipboard"; }
+    Mod+B repeat=false { spawn "walker" "-m" "bitwarden"; }
+    Mod+N repeat=false { spawn "walker" "-m" "menus:niri"; }
     Mod+E repeat=false { spawn "nautilus"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.03+"; }

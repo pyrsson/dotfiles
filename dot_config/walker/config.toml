@@ -8,14 +8,6 @@ quick_activate = ["alt 1", "alt 2", "alt 3", "alt 4", "alt 5"]
 default = ["desktopapplications", "calc", "websearch"]
 
 [providers.actions] # This will be MERGED/OVEWRITTEN with what the user specifies
-"menus:bitwarden" = [
-  { action = "copy_password", default = true, label = "copy password", bind = "Return", after = "Close" },
-  { action = "copy_username", label = "copy username", bind = "ctrl u", after = "Close" },
-  { action = "copy_totp", label = "copy totp", bind = "ctrl t", after = "Close" },
-  { action = "copy_url", label = "copy url", bind = "ctrl l", after = "Close" },
-  { action = "unlock", label = "unlock", bind = "Return", after = "Close" },
-]
-
 "menus:niri" = [
   { action = "close", label = "close", bind = "ctrl w", after = "AsyncClearReload" },
   { action = "select", default = true, bind = "Return" },
