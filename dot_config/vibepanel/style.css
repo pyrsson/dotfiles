@@ -1,7 +1,5 @@
 .workspace-indicator {
-  font-size: 9px;
-  padding-left: 4px;
-  padding-right: 4px;
+  min-height: 14px;
 }
 
 .vp-surface-popover {

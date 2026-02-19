@@ -1,6 +1,6 @@
 function setup-extras -d 'setup extras'
     # standard style command completion
-    for e in kustomize talosctl cue kcl hcp vcluster argocd kcp kubebuilder tilt omnictl dms
+    for e in kustomize talosctl cue kcl hcp vcluster argocd kcp kubebuilder omnictl mise
         type -q $e && eval $e completion fish >$HOME/.config/fish/completions/$e.fish
     end
 
