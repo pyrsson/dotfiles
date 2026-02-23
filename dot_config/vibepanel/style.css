@@ -1,5 +1,10 @@
 .workspace-indicator {
   min-height: 14px;
+  min-width: 20px;
+}
+
+.workspace-indicator.active {
+  min-width: 27px;
 }
 
 .vp-surface-popover {

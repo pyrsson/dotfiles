@@ -3,7 +3,7 @@ binds {
 
     Mod+Space repeat=false hotkey-overlay-title="Run an Application" { spawn "walker"; }
     Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty" "+new-window"; }
-    Mod+Escape hotkey-overlay-title="Lock the Screen" { spawn "loginctl" "lock-session"; }
+    Mod+Escape allow-inhibiting=false hotkey-overlay-title="Lock the Screen" { spawn "loginctl" "lock-session"; }
 
     Mod+V repeat=false { spawn "walker" "-m" "clipboard"; }
     Mod+B repeat=false { spawn "walker" "-m" "bitwarden"; }
@@ -231,7 +231,7 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    Mod+Shift+S { screenshot; }
+    Mod+Shift+S { screenshot show-pointer=false; }
     Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
 
