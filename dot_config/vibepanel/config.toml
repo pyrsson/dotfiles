@@ -21,6 +21,8 @@ center = ["clock"]
 right = ["media", "tray", "quick_settings", "battery", "notifications"]
 border_radius = 40
 background_color = "#1a1b26"
+[widgets.workspaces]
+label_type = "numbers"
 
 [theme]
 mode = "gtk"
