@@ -81,7 +81,8 @@ layout {
 
     background-color "transparent"
 
-    center-focused-column "never"
+    center-focused-column "on-overflow"
+    always-center-single-column
 
     preset-column-widths {
         proportion 0.5
@@ -178,7 +179,7 @@ prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
-workspace "default" {
+workspace "web" {
     {{- if eq .chezmoi.hostname "thinkpad-x1" }}
     open-on-output "eDP-1"
     {{- else if eq .chezmoi.hostname "sidearm" }}
