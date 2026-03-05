@@ -8,7 +8,6 @@ set -gx FZF_DEFAULT_OPTS "--layout=reverse --tmux 80%,50% \
   --info=inline-right \
   --ansi \
   --layout=reverse \
-  --border=none \
   --color=bg+:#283457 \
   --color=bg:#16161e \
   --color=border:#27a1b9 \
