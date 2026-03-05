@@ -8,6 +8,7 @@ gui:
       - bold
   sidePanelWidth: 0.2
 git:
+  overrideGpg: true
   pagers:
     - pager: diff-so-fancy
 keybinding:

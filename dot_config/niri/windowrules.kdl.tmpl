@@ -22,18 +22,17 @@ window-rule {
 window-rule {
     match app-id="zen" at-startup=true
     match app-id="com.mitchellh.ghostty" at-startup=true
-    open-on-workspace "default"
+    open-on-workspace "web"
 }
 
 window-rule {
-    match app-id=r#"Spotify"#
+    match app-id=r#"[Ss]potify"#
     match app-id="vesktop"
     match app-id="discord"
     match app-id=r#"Slack"#
     match app-id=r#"teams-for-linux"#
 
     open-on-workspace "chat"
-    // open-on-output {{ if eq .chezmoi.hostname "sidearm" }}"DP-2"{{ else if eq .chezmoi.hostname "thinkpad-x1" }}"eDP-1"{{ end }}
 }
 
 window-rule {
