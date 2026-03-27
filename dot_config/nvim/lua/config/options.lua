@@ -33,7 +33,7 @@ vim.opt.fillchars = {
 
 vim.opt.timeoutlen = 700
 vim.g.root_spec = { "cwd" }
--- vim.g.lazyvim_picker = "snacks"
+vim.g.lazyvim_picker = "snacks"
 vim.g.ai_cmp = false
 vim.g.snacks_animate = false
 

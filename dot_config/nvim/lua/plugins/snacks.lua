@@ -22,9 +22,19 @@ return {
         },
         sources = {
           explorer = {
-            include = { "hidden" },
+            hidden = true,
             layout = {
               auto_hide = { "input" },
+            },
+          },
+          files = {
+            hidden = true,
+          },
+        },
+        win = {
+          input = {
+            keys = {
+              ["<Esc>"] = { "close", mode = { "n", "i" } },
             },
           },
         },
