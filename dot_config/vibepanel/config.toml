@@ -17,12 +17,36 @@ border_radius = 0
 popover_offset = 6
 
 [widgets]
-center = ["clock"]
-right = ["media", "tray", "quick_settings", "battery", "notifications"]
+center = []
+right = [
+  "custom-ddcutil",
+  "media",
+  "tray",
+  { group = [
+    "cpu",
+    "gpu",
+  ] },
+  "battery",
+  "quick_settings",
+  { group = [
+    "clock",
+    "notifications",
+  ] },
+]
 border_radius = 40
 background_color = "#1a1b26"
+
 [widgets.workspaces]
 label_type = "numbers"
+
+# Script output that updates every 10 minutes
+[widgets.custom-ddcutil]
+label = "Switch input"
+icon = "output"
+show_if = "niri msg -j outputs |grep UK02338064882"
+on_click = "ddcutil -n UK02338064882 setvcp 60 1"
+tooltip = "Switch input source"
+max_chars = 20
 
 [theme]
 mode = "gtk"
