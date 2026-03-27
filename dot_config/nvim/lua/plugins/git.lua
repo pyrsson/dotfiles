@@ -26,6 +26,8 @@ return {
     opts = {
       integrations = {
         telescope = false,
+        fzf_lua = false,
+        mini_pick = false,
       },
     },
     keys = {
