@@ -45,10 +45,10 @@ if [[ -z "$dir" ]]; then
       exit 0
     else
       tmux new-session -d -s "$session_name" -c "$path_name"
+      tmux switch-client -t "$session_name"
       tmux send-keys -t "$session_name" "nvim" Enter
       tmux split-window -t "$session_name" -d -c "$path_name"
       tmux select-layout -t "$session_name" main-horizontal
-      tmux switch-client -t "$session_name"
     fi
     exit 0
   fi
