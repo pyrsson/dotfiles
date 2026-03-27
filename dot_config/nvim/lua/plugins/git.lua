@@ -8,17 +8,33 @@ return {
       {
         "sindrets/diffview.nvim", -- optional
         opts = {
+          hooks = {
+            view_leave = function(view)
+              view:close()
+            end,
+          },
           file_panel = {
             listing_style = "list",
           },
           keymaps = {
             view = {
-              { "n", "q", ":DiffviewClose<CR>", desc = "Close Diffview" },
+              { "n", "q", ":DiffviewClose<CR>", { desc = "Close Diffview" } },
             },
             file_panel = {
-              { "n", "q", ":DiffviewClose<CR>", desc = "Close Diffview" },
+              { "n", "q", ":DiffviewClose<CR>", { desc = "Close Diffview" } },
+              {
+                "n",
+                "e",
+                function()
+                  require("diffview.config").actions.goto_file_edit()
+                end,
+                { desc = "Open the file in the previous tabpage" },
+              },
             },
           },
+        },
+        keys = {
+          { "<leader>gc", "<cmd>DiffviewOpen<cr>", desc = "Show Diffview UI" },
         },
       },
     },
@@ -32,7 +48,6 @@ return {
     },
     keys = {
       { "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" },
-      { "<leader>gc", "<cmd>DiffviewOpen<cr>", desc = "Show Diffview UI" },
     },
   },
 }
