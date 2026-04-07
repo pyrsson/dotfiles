@@ -9,7 +9,7 @@ spacing = 6
 # screen_margin = 4
 
 # Distance from the bar edge to the first/last section (in pixels)
-inset = 4
+inset = 6
 
 # Border radius for the bar (percentage of bar height, 50% = fully rounded)
 border_radius = 0
