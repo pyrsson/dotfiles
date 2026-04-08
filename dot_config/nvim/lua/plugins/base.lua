@@ -70,10 +70,4 @@ return {
       end
     end,
   },
-  {
-    "mbbill/undotree",
-    keys = {
-      { "<leader>U", "<cmd>UndotreeToggle<CR>", desc = "Undo tree" },
-    },
-  },
 }
