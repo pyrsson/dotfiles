@@ -6,35 +6,50 @@ size = 32
 spacing = 6
 
 # Distance from the screen edge to the bar window (in pixels)
-# screen_margin = 4
+screen_margin = 0
 
 # Distance from the bar edge to the first/last section (in pixels)
-inset = 6
+# inset = 0
 
 # Border radius for the bar (percentage of bar height, 50% = fully rounded)
 border_radius = 0
 
 popover_offset = 6
 
+background_color = "#13141c"
+background_opacity = 0
+padding = 6
+
 [widgets]
+border_radius = 30
+background_color = "#1e2030"
+background_opacity = 0.9
+popover_background_opacity = 1
+
+left = ["taskbar", "window_title"]
 center = []
 right = [
   "custom-ddcutil",
   "media",
   "tray",
-  { group = [
-    "cpu",
-    "gpu",
-  ] },
+  { group = ["cpu", "gpu"] },
   "battery",
   "quick_settings",
-  { group = [
-    "clock",
-    "notifications",
-  ] },
+  "clock",
+  "notifications",
+  # { group = [
+  #   "clock",
+  #   "spacer:8",
+  #   "notifications",
+  # ] },
 ]
-border_radius = 40
-background_color = "#1a1b26"
+
+[widgets.taskbar]
+show_title = false
+show_icon = true
+show_active = true
+icon_size = 20
+filter_by_output = true
 
 [widgets.workspaces]
 label_type = "numbers"
@@ -51,6 +66,9 @@ max_chars = 20
 [theme]
 mode = "gtk"
 accent = "#27a1b9"
+
+[theme.icons]
+weight = 600
 
 [theme.states]
 success = "#9ece6a"

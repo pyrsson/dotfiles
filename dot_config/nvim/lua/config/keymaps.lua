@@ -26,6 +26,11 @@ map("n", "öe", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 map("n", "äw", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 map("n", "öw", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
+map("n", "<leader>uu", function()
+  vim.cmd("packadd nvim.undotree")
+  require("undotree").open({ command = "50vnew" })
+end, { desc = "Toggle Undotree" })
+
 -- buffers
 map("n", "<leader>p", "<Cmd>b#<CR>", opts)
 -- map('n', '<M-c>', bufdel, opts)

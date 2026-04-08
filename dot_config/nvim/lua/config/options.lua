@@ -22,14 +22,8 @@ vim.opt.scrolloff = 8
 vim.opt.termguicolors = true
 
 vim.opt.fillchars = {
-  -- horiz     = '━',
-  -- horizup   = '┻',
-  -- horizdown = '┳',
-  -- vert      = '┃',
-  -- vertleft  = '┫',
-  -- vertright = '┣',
-  -- verthoriz = '╋',
   eob = " ",
+  diff = "╱",
 }
 
 vim.opt.timeoutlen = 700
