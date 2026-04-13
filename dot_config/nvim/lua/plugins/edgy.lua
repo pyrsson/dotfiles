@@ -1,109 +1,38 @@
 return {
   "folke/edgy.nvim",
-  event = "VeryLazy",
-  keys = {
-    {
-      "<leader>ue",
-      function()
-        require("edgy").toggle()
-      end,
-      desc = "Edgy Toggle",
-    },
-      -- stylua: ignore
-      { "<leader>uE", function() require("edgy").select() end, desc = "Edgy Select Window" },
-  },
-  opts = function()
-    local opts = {
-      bottom = {
-        {
-          ft = "noice",
-          size = { height = 0.4 },
-          filter = function(buf, win)
-            return vim.api.nvim_win_get_config(win).relative == ""
-          end,
-        },
-        {
-          ft = "snacks_terminal",
-          size = { height = 0.3 },
-          title = "%{b:snacks_terminal.id}: %{b:term_title}",
-          filter = function(_buf, win)
-            return vim.w[win].snacks_win
-              and vim.w[win].snacks_win.position == "bottom"
-              and vim.w[win].snacks_win.relative == "editor"
-              and not vim.w[win].trouble_preview
-          end,
-        },
-        "Trouble",
-        {
-          ft = "trouble",
-          filter = function(buf, win)
-            return vim.api.nvim_win_get_config(win).relative == ""
-          end,
-        },
-        { ft = "qf", title = "QuickFix" },
-        {
-          ft = "help",
-          size = { height = 20 },
-          -- don't open help files in edgy that we're editing
-          filter = function(buf)
-            return vim.bo[buf].buftype == "help"
-          end,
-        },
-      },
-      -- NOTE: disable all. enable only neo-tree is so sluggish. use native neo-tree spawn window instead.
-      left = {
-        -- {
-        --   title = "Neo-Tree",
-        --   ft = "neo-tree",
-        --   filter = function(buf)
-        --     return vim.b[buf].neo_tree_source == "filesystem"
-        --   end,
-        --   pinned = true,
-        --   open = function()
-        --     vim.api.nvim_input("<esc><space>e")
-        --   end,
-        --   size = { height = 0.5 },
-        -- },
-        -- { title = "Neotest Summary", ft = "neotest-summary" },
-        -- {
-        --   title = "Neo-Tree Git",
-        --   ft = "neo-tree",
-        --   filter = function(buf)
-        --     return vim.b[buf].neo_tree_source == "git_status"
-        --   end,
-        --   pinned = true,
-        --   open = "Neotree position=right git_status",
-        -- },
-        -- {
-        --   title = "Neo-Tree Buffers",
-        --   ft = "neo-tree",
-        --   filter = function(buf)
-        --     return vim.b[buf].neo_tree_source == "buffers"
-        --   end,
-        --   pinned = true,
-        --   open = "Neotree position=top buffers",
-        -- },
-        -- "neo-tree",
-      },
-      keys = {
-        -- increase width
-        ["<c-Right>"] = function(win)
-          win:resize("width", 2)
-        end,
-        -- decrease width
-        ["<c-Left>"] = function(win)
-          win:resize("width", -2)
-        end,
-        -- increase height
-        ["<c-Up>"] = function(win)
-          win:resize("height", 2)
-        end,
-        -- decrease height
-        ["<c-Down>"] = function(win)
-          win:resize("height", -2)
-        end,
-      },
+  opts = function(_, opts)
+    opts.animate = {
+      enabled = false,
     }
-    return opts
+
+    -- remove help from bottom and put it on the right
+    help_idx = nil
+    for i, win in ipairs(opts.bottom) do
+      if win.ft == "help" then
+        help_idx = i
+        break
+      end
+    end
+    if help_idx then
+      table.remove(opts.bottom, help_idx)
+    end
+    table.insert(opts.right, {
+      ft = "help",
+      size = { width = 0.4 },
+      -- don't open help files in edgy that we're editing
+      filter = function(buf)
+        return vim.bo[buf].buftype == "help"
+      end,
+    })
+
+    -- snacks terminal
+    for _, pos in ipairs({ "top", "bottom", "left", "right" }) do
+      opts[pos] = opts[pos] or {}
+      for _, win in ipairs(opts[pos]) do
+        if win.ft == "snacks_terminal" then
+          win.size = { height = 0.3 }
+        end
+      end
+    end
   end,
 }
