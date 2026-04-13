@@ -21,11 +21,6 @@ vim.opt.scrolloff = 8
 
 vim.opt.termguicolors = true
 
-vim.opt.fillchars = {
-  eob = " ",
-  diff = "╱",
-}
-
 vim.opt.timeoutlen = 700
 vim.g.root_spec = { "cwd" }
 vim.g.lazyvim_picker = "snacks"
