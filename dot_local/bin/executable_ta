@@ -25,12 +25,12 @@ if [[ -z "$dir" ]]; then
     tmux list-sessions -F#S | fzf --prompt="Select session > " \
       --preview 'tpreview {}' \
       --preview-window right,60%,border-left \
-      --bind "alt-d:execute-silent(tmux kill-session -t {})+reload(tmux list-sessions -F#S)" \
-      --header "m-d: kill, m-p: projects, m-g: github projects" \
+      --bind "ctrl-d:execute-silent(tmux kill-session -t {})+reload(tmux list-sessions -F#S)" \
+      --header "c-d: kill, c-p: projects, c-g: github projects" \
       --delimiter "/" \
-      --bind "alt-p:reload(fd --base-directory ~/projects --exact-depth 2 --type d --absolute-path | sed 's/\/$//')+change-preview(eza -l --color=always {})+$project_prompt+$project_header+change-nth(-2..)" \
-      --bind "alt-g:reload(fd --base-directory ~/github --absolute-path --exact-depth 1 --type d --absolute-path | sed 's/\/$//')+change-preview(eza -l --color=always {})+$project_prompt+$git_header+change-nth(-1)" \
-      --bind "alt-s:reload(tmux list-sessions -F#S)+change-preview(tpreview {})+$session_prompt+$session_header+change-nth(0)"
+      --bind "ctrl-p:reload(fd --base-directory ~/projects --exact-depth 2 --type d --absolute-path | sed 's/\/$//')+change-preview(eza -l --color=always {})+$project_prompt+$project_header+change-nth(-2..)" \
+      --bind "ctrl-g:reload(fd --base-directory ~/github --absolute-path --exact-depth 1 --type d --absolute-path | sed 's/\/$//')+change-preview(eza -l --color=always {})+$project_prompt+$git_header+change-nth(-1)" \
+      --bind "ctrl-s:reload(tmux list-sessions -F#S)+change-preview(tpreview {})+$session_prompt+$session_header+change-nth(0)"
   )
   if [[ -z $_session_name ]]; then
     exit 1
