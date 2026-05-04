@@ -1,0 +1,17 @@
+BROWSER=zen-browser
+TERMINAL=ghostty
+ELECTRON_OZONE_PLATFORM_HINT=auto
+GDK_BACKEND=wayland
+HYPRCURSOR_SIZE=24
+HYPRCURSOR_THEME=Bibata-Modern-Ice
+QT_QPA_PLATFORM=wayland
+QT_QPA_PLATFORMTHEME="qt6ct"
+QT_STYLE_OVERRIDE=kvantum
+QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
+XCURSOR_SIZE=24
+XCURSOR_THEME=Bibata-Modern-Ice
+
+{{- if eq .chezmoi.hostname "sidearm" }}
+MESA_SHADER_CACHE_MAX_SIZE=12G
+{{- end }}
