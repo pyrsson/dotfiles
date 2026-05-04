@@ -20,13 +20,14 @@ background_color = "#13141c"
 background_opacity = 0
 padding = 6
 
+
 [widgets]
 border_radius = 30
 background_color = "#1e2030"
-background_opacity = 0.9
-popover_background_opacity = 1
+background_opacity = 0.8
+popover_background_opacity = 0.8
 
-left = ["taskbar", "window_title"]
+left = ["workspaces", "window_title"]
 center = []
 right = [
   "custom-ddcutil",
@@ -54,7 +55,6 @@ filter_by_output = true
 [widgets.workspaces]
 label_type = "numbers"
 
-# Script output that updates every 10 minutes
 [widgets.custom-ddcutil]
 label = "Switch input"
 icon = "output"
@@ -64,8 +64,10 @@ tooltip = "Switch input source"
 max_chars = 20
 
 [theme]
-mode = "gtk"
+mode = "auto"
 accent = "#27a1b9"
+blur = true
+animations = false
 
 [theme.icons]
 weight = 600
