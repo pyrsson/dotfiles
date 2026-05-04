@@ -26,6 +26,7 @@ border_radius = 30
 background_color = "#1e2030"
 background_opacity = 0.8
 popover_background_opacity = 0.8
+outline = false
 
 left = ["workspaces", "window_title"]
 center = []
@@ -65,12 +66,11 @@ max_chars = 20
 
 [theme]
 mode = "auto"
-accent = "#27a1b9"
+# accent = "#27a1b9"
 blur = true
+outline = true
+outline_width = 2
 animations = false
-
-[theme.icons]
-weight = 600
 
 [theme.states]
 success = "#9ece6a"
