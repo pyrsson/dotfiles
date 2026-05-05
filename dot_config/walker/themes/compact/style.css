@@ -32,7 +32,7 @@ scrollbar {
 .preview-box,
 .elephant-hint,
 .placeholder {
-  color: @theme_fg_color;
+  color: alpha(@theme_fg_color, 0.8);
 }
 
 .box {
@@ -111,7 +111,7 @@ child:selected .item-box {
   padding: 10px;
   border-radius: 10px;
   color: @theme_fg_color;
-  background: @accent_bg_color;
+  background: alpha(@accent_bg_color, 0.8);
 }
 
 .calc .item-text {
