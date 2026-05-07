@@ -11,7 +11,7 @@ function __sync_fzf_colors --on-variable fish_terminal_color_theme
 --ansi \
 --layout=reverse \
 --color=bg+:#283457 \
---color=bg:#16161e \
+--color=bg:strip \
 --color=border:#27a1b9 \
 --color=fg:#c0caf5 \
 --color=gutter:#16161e \
@@ -38,7 +38,7 @@ function __sync_fzf_colors --on-variable fish_terminal_color_theme
 --info=inline-right \
 --layout=reverse \
 --color=bg+:#b7c1e3 \
---color=bg:#d0d5e3 \
+--color=bg:strip \
 --color=border:#4094a3 \
 --color=fg:#3760bf \
 --color=gutter:#d0d5e3 \
@@ -57,5 +57,5 @@ function __sync_fzf_colors --on-variable fish_terminal_color_theme
     end
 end
 
-set -gx FZF_CTRL_R_OPTS "--layout=reverse --preview 'echo {}' --preview-window down:3:wrap:hidden:border-horizontal --bind '?:toggle-preview'"
-set -gx FZF_CTRL_T_OPTS "--preview 'test -d {} && eza -la --color=always {} || bat --style=numbers --color=always --line-range=:500 {} 2> /dev/null | head -200'"
+set -gx FZF_CTRL_R_OPTS "--layout=reverse --preview 'echo {}' --preview-window down:5:wrap:hidden:border-top --bind '?:toggle-preview'"
+set -gx FZF_CTRL_T_OPTS "--preview 'test -d {} && eza -la --color=always {} || bat --style=numbers --color=always --line-range=:500 {} 2> /dev/null | head -200' --bind '?:toggle-preview'"
