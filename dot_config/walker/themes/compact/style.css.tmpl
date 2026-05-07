@@ -1,3 +1,4 @@
+{{- if eq .theme "dark" }}
 @define-color window_bg_color #1a1b26;
 @define-color accent_bg_color #16161e;
 @define-color accent_fg_color #27a1b9;
@@ -5,6 +6,15 @@
 @define-color error_bg_color #c53b53;
 @define-color error_fg_color #828bb8;
 @define-color blue_fg_color #82aaff;
+{{- else }}
+@define-color window_bg_color #e1e2e7;
+@define-color accent_bg_color #b7c1e3;
+@define-color accent_fg_color #3760bf;
+@define-color theme_fg_color #3760bf;
+@define-color error_bg_color #ffcccc;
+@define-color error_fg_color #cc0000;
+@define-color blue_fg_color #2e7de9;
+{{- end }}
 
 * {
   all: unset;
@@ -39,6 +49,7 @@ scrollbar {
 }
 
 .search-container {
+  opacity: 0.8;
   border-radius: 8px;
 }
 
@@ -48,7 +59,7 @@ scrollbar {
 
 .input {
   caret-color: @theme_fg_color;
-  background: lighter(@window_bg_color);
+  background: alpha(lighter(@window_bg_color), 0.8);
   padding: 10px;
   color: @theme_fg_color;
 }
@@ -87,7 +98,7 @@ child {
 child:hover .item-box,
 child:selected .item-box {
   color: @blue_fg_color;
-  background: alpha(lighter(@theme_bg_color), 0.8);
+  background: alpha(lighter(@window_bg_color), 0.8);
 }
 
 .item-text-box {
@@ -156,10 +167,11 @@ child:selected .item-box {
 }
 
 .keybind {
+  color: lighter(@theme_fg_color);
 }
 
 .keybind-bind {
-  /* color: lighter(@window_bg_color); */
+  color: lighter(@theme_fg_color);
   font-weight: bold;
   text-transform: lowercase;
 }

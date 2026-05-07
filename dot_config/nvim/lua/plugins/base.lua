@@ -4,16 +4,20 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      day_brightness = 0.2,
+      day_brightness = 0.3,
       style = "night",
     },
   },
   -- Configure LazyVim to load tokyonight
   {
     "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "tokyonight",
-    },
+    opts = function(_, opts)
+      if vim.o.background == "light" then
+        opts.colorscheme = "tokyonight-day"
+      else
+        opts.colorscheme = "tokyonight-night"
+      end
+    end,
   },
   -- add more treesitter parsers
   {

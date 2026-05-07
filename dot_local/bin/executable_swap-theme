@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+current=$(yq '.data.theme' ~/.config/chezmoi/chezmoi.yaml)
+
+if [[ "$1" == "check" ]]; then
+  echo "$current"
+  exit 0
+fi
+
+if [[ "$current" == "dark" ]]; then
+  yq -i '.data.theme = "light"' ~/.config/chezmoi/chezmoi.yaml
+else
+  yq -i '.data.theme = "dark"' ~/.config/chezmoi/chezmoi.yaml
+fi
+
+chezmoi apply
