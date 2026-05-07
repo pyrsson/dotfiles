@@ -9,22 +9,23 @@ spacing = 6
 screen_margin = 0
 
 # Distance from the bar edge to the first/last section (in pixels)
-# inset = 0
+inset = 0
 
 # Border radius for the bar (percentage of bar height, 50% = fully rounded)
 border_radius = 0
 
 popover_offset = 6
 
-background_color = "#13141c"
-background_opacity = 0
-padding = 6
+# background_color = "#13141c"
+background_opacity = 0.8
+padding = 0
+outline = false
 
 
 [widgets]
 border_radius = 30
-background_color = "#1e2030"
-background_opacity = 0.8
+# background_color = "#1e2030"
+background_opacity = 0
 popover_background_opacity = 0.8
 outline = false
 
@@ -32,6 +33,7 @@ left = ["workspaces", "window_title"]
 center = []
 right = [
   "custom-ddcutil",
+  "custom-theme",
   "media",
   "tray",
   { group = ["cpu", "gpu"] },
@@ -64,13 +66,19 @@ on_click = "ddcutil -n UK02338064882 setvcp 60 1"
 tooltip = "Switch input source"
 max_chars = 20
 
+[widgets.custom-theme]
+icon = "dark_mode"
+on_click = "swap-theme"
+tooltip = "Switch theme"
+
 [theme]
 mode = "auto"
+scheme = "{{ .theme }}"
 # accent = "#27a1b9"
 blur = true
 outline = true
 outline_width = 2
-animations = false
+# animations = false
 
 [theme.states]
 success = "#9ece6a"
@@ -79,3 +87,9 @@ urgent = "#f7768e"
 
 [theme.typography]
 font_family = "Hack NF Propo, monospace"
+
+[osd]
+position = "right"
+
+# [audio]
+# allow_overdrive = true

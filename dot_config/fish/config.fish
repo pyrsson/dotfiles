@@ -1,6 +1,7 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
     set -gx CDPATH . ~ ~/work ~/github ~/projects
+    fish_config theme choose tokyonight
     abbr vim nvim
     abbr n nvim
     abbr k kubectl
@@ -17,6 +18,3 @@ fish_add_path "$HOME/.local/bin"; or true
 fish_add_path "$HOME/.krew/bin"; or true
 fish_add_path "$HOME/go/bin"; or true
 fish_add_path "$HOME/.cargo/bin"; or true
-
-set hydro_color_pwd $fish_color_command
-set hydro_color_git $fish_color_param

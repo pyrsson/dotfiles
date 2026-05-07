@@ -161,7 +161,7 @@ set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
 set -g @plugin 'Morantron/tmux-fingers'
 
-source-file ~/.local/share/nvim/lazy/tokyonight.nvim/extras/tmux/tokyonight_moon.tmux
+source-file ~/.local/share/nvim/lazy/tokyonight.nvim/extras/tmux/tokyonight_{{ if eq .theme "dark" }}night{{ else }}day{{ end }}.tmux
 
 set -g @prefix_highlight_show_copy_mode 'on'
 set -g @prefix_highlight_show_sync_mode 'on'
@@ -169,6 +169,6 @@ set -g @prefix_highlight_prefix_prompt ' WAIT '
 set -g @prefix_highlight_copy_prompt ' #{scroll_position}/#{history_size} '
 set -g @prefix_highlight_sync_prompt ' SYNC '
 
-set -g status-right '#{prefix_highlight} #[fg=#1b1d2b,bg=#82aaff,bold] #h '
+set -g status-right '#{prefix_highlight} #[fg={{ if eq .theme "dark" }}black{{ else }}gray{{ end }},bg=blue,bold] #h '
 
 run '~/.tmux/plugins/tpm/tpm'
