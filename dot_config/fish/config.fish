@@ -5,6 +5,7 @@ if status is-interactive
     abbr vim nvim
     abbr n nvim
     abbr k kubectl
+    autoreload
 end
 
 set fish_greeting

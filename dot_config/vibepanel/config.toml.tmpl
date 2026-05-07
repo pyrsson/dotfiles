@@ -2,6 +2,8 @@
 # Base height of the bar in pixels - all other sizes scale from this
 size = 32
 
+position = "top"
+
 # Spacing between widgets within each section (in pixels)
 spacing = 6
 
@@ -44,7 +46,7 @@ right = [
   "battery",
   "quick_settings",
   "clock",
-  "notifications",
+  # "notifications",
   # { group = [
   #   "clock",
   #   "spacer:8",
@@ -60,7 +62,7 @@ icon_size = 20
 filter_by_output = true
 
 [widgets.workspaces]
-label_type = "numbers"
+# label_type = "index"
 
 [widgets.custom-ddcutil]
 label = "Switch input"
@@ -90,10 +92,10 @@ warning = "#e0af68"
 urgent = "#f7768e"
 
 [theme.typography]
-font_family = "Hack NF Propo, monospace"
+font_family = "Hack NF, monospace"
 
 [osd]
-position = "right"
+position = "left"
 
 # [audio]
 # allow_overdrive = true

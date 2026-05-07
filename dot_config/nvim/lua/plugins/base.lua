@@ -6,6 +6,11 @@ return {
     opts = {
       day_brightness = 0.3,
       style = "night",
+      transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
     },
   },
   -- Configure LazyVim to load tokyonight
