@@ -3,6 +3,7 @@ return {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
+    ---@class tokyonight.Config
     opts = {
       day_brightness = 0.3,
       style = "night",
@@ -13,15 +14,10 @@ return {
       },
     },
   },
-  -- Configure LazyVim to load tokyonight
   {
     "LazyVim/LazyVim",
     opts = function(_, opts)
-      if vim.o.background == "light" then
-        opts.colorscheme = "tokyonight-day"
-      else
-        opts.colorscheme = "tokyonight-night"
-      end
+      opts.colorscheme = "tokyonight"
     end,
   },
   -- add more treesitter parsers

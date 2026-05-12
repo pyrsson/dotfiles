@@ -1,11 +1,10 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
-    set -gx CDPATH . ~ ~/work ~/github ~/projects
+    set -gx CDPATH . ~ ~/Projects/*
     fish_config theme choose tokyonight
     abbr vim nvim
     abbr n nvim
     abbr k kubectl
-    autoreload
 end
 
 set fish_greeting
@@ -19,3 +18,4 @@ fish_add_path "$HOME/.local/bin"; or true
 fish_add_path "$HOME/.krew/bin"; or true
 fish_add_path "$HOME/go/bin"; or true
 fish_add_path "$HOME/.cargo/bin"; or true
+fish_add_path "$HOME/.npm/packages/bin"; or true
