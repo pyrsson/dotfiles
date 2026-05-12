@@ -33,7 +33,7 @@ function GetEntries()
 						select = "lua:SelectEntry",
 					},
 				}
-				if workspace.name ~= "default" and workspace.name ~= "chat" then
+				if workspace.name ~= "web" and workspace.name ~= "chat" then
 					entry.Actions.close = "lua:CloseWorkspace"
 				end
 				table.insert(entries, entry)
@@ -45,12 +45,10 @@ function GetEntries()
 end
 
 function SelectEntry(value, args)
-	if value == "default" or value == "chat" then
-		os.execute("niri msg action focus-workspace " .. value)
-		return
+	if value ~= "web" and value ~= "chat" then
+		os.execute("niri msg action move-workspace-to-index --reference " .. value .. " 2")
+		os.execute("niri msg action move-workspace-to-index --reference chat 3")
 	end
-	os.execute("niri msg action move-workspace-to-index --reference " .. value .. " 2")
-	os.execute("niri msg action move-workspace-to-index --reference chat 3")
 	os.execute("niri msg action focus-workspace " .. value)
 end
 
