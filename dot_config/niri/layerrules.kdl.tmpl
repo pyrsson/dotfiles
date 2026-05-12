@@ -1,8 +1,14 @@
 layer-rule {
     match namespace="^hyprpaper$"
     match namespace="^wallpaper$"
+    match namespace="^awww-daemonbg$"
     place-within-backdrop true
+    background-effect {
+        xray false
+        blur true
+    }
 }
+
 layer-rule {
     match namespace="^vibepanel.*$"
     exclude namespace="^vibepanel$"
@@ -15,6 +21,7 @@ layer-rule {
         }
     }
 }
+
 layer-rule {
     match namespace="walker"
     background-effect {

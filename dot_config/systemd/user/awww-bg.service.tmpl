@@ -1,0 +1,11 @@
+[Unit]
+Description=AWWW Wallpaper Service
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=awww-daemon -n bg
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
