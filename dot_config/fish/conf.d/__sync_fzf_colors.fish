@@ -55,6 +55,9 @@ function __sync_fzf_colors --on-variable fish_terminal_color_theme
 --color=spinner:#d20065 \
 "
     end
+    if test -n "$TMUX"
+        tmux set-environment -g FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS"
+    end
 end
 
 set -gx FZF_CTRL_R_OPTS "--layout=reverse --preview 'echo {}' --preview-window down:5:wrap:hidden:border-top --bind '?:toggle-preview'"
