@@ -1,6 +1,6 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
-    set -gx CDPATH . ~ ~/Projects/*
+    set -gx CDPATH . ~ ~/Projects ~/Projects/*
     fish_config theme choose tokyonight
     abbr vim nvim
     abbr n nvim
