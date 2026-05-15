@@ -32,12 +32,12 @@ end
 
 function CreateWorkspace(value, args)
 	-- local name = value:match("([^/]+)$")
-	local name = name:gsub("/", "-")
+	local name, _ = value:gsub("[/]", "-")
 
 	os.execute("niri msg action focus-workspace 99")
 	os.execute("niri msg action move-workspace-to-index 2")
 	os.execute("niri msg action move-workspace-to-index --reference chat 3")
 	os.execute("niri msg action set-workspace-name " .. name)
-	os.execute("ghostty --working-directory=" .. value)
+	os.execute("ghostty +new-window --working-directory=" .. value)
 	os.execute("niri msg action maximize-column")
 end

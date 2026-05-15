@@ -10,6 +10,7 @@ gtk-custom-css = ?style.css
 
 ## Keybinds
 keybind = ctrl+enter=unbind
+keybind = ctrl+shift+w=unbind
 keybind = alt+t=new_tab
 keybind = alt+n=new_window
 keybind = alt+w=close_tab
