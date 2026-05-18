@@ -31,7 +31,11 @@ return {
   {
     "LazyVim/LazyVim",
     opts = function(_, opts)
-      opts.colorscheme = "nightfox"
+      if vim.o.background == "light" then
+        opts.colorscheme = "dayfox"
+      else
+        opts.colorscheme = "nightfox"
+      end
     end,
   },
   -- add more treesitter parsers

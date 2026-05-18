@@ -1,8 +1,9 @@
 [bar]
-# Base height of the bar in pixels - all other sizes scale from this
-size = 32
-
+{{ if eq .chezmoi.hostname "thinkpad-x1" }}
+position = "left"
+{{ else }}
 position = "top"
+{{ end }}
 
 # Spacing between widgets within each section (in pixels)
 spacing = 6
@@ -27,7 +28,7 @@ outline = false
 [widgets]
 border_radius = 50
 # background_color = "#1e2030"
-background_opacity = 0.25
+background_opacity = 0.8
 popover_background_opacity = 0.8
 outline = false
 
@@ -92,7 +93,7 @@ warning = "#e0af68"
 urgent = "#f7768e"
 
 [theme.typography]
-font_family = "Hack NF, monospace"
+font_family = "Hack Nerd Font Mono"
 
 [osd]
 position = "left"
