@@ -6,14 +6,13 @@ tabbar tabbox {
   margin: 0;
   padding: 0;
   font-family: "Hack Nerd Font";
-  min-height: 20px;
+  min-height: 22px;
 }
 
 tabbar tabbox tab,
 tabbar tabbox tab:selected {
   margin: 0;
   padding: 0 6px;
-  min-height: 20px;
   border-radius: 0;
   background-image: none;
   box-shadow: none;
@@ -26,7 +25,6 @@ tabbar tabbox tab label {
 
 tabbar tabbox button {
   min-height: 20px;
-  min-width: 20px;
   padding: 0;
   border-radius: 0;
   background: transparent;

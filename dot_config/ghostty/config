@@ -1,4 +1,4 @@
-theme = dark:tokyonight_night,light:Catppuccin Latte
+theme = dark:Nightfox,light:Dayfox
 font-family = Hack Nerd Font Mono
 font-size = 13
 background-opacity = 0.92

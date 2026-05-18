@@ -15,9 +15,23 @@ return {
     },
   },
   {
+    "EdenEast/nightfox.nvim",
+    priority = 1000,
+    opts = {
+      options = {
+        transparent = true,
+      },
+      groups = {
+        all = {
+          NormalFloat = { bg = "NONE" },
+        },
+      },
+    },
+  },
+  {
     "LazyVim/LazyVim",
     opts = function(_, opts)
-      opts.colorscheme = "tokyonight"
+      opts.colorscheme = "nightfox"
     end,
   },
   -- add more treesitter parsers
