@@ -1,7 +1,7 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
     set -gx CDPATH . ~ ~/Projects ~/Projects/*
-    fish_config theme choose tokyonight
+    fish_config theme choose nightfox
     abbr vim nvim
     abbr n nvim
     abbr k kubectl

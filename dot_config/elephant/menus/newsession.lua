@@ -31,8 +31,8 @@ function GetEntries()
 end
 
 function CreateWorkspace(value, args)
-	-- local name = value:match("([^/]+)$")
-	local name, _ = value:gsub("[/]", "-")
+	local project = value:match("([^/]+/[^/]+)$")
+	local name, _ = project:gsub("[/]", "-")
 
 	os.execute("niri msg action focus-workspace 99")
 	os.execute("niri msg action move-workspace-to-index 2")
