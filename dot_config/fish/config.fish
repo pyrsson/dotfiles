@@ -5,6 +5,7 @@ if status is-interactive
     abbr vim nvim
     abbr n nvim
     abbr k kubectl
+    abbr oco opencode
 end
 
 set fish_greeting
