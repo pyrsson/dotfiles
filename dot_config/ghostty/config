@@ -1,3 +1,4 @@
+# Local dayfox override to fix contrast
 theme = dark:Nightfox,light:Dayfox
 font-family = Hack Nerd Font Mono
 font-size = 13

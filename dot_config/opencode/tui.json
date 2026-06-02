@@ -1,0 +1,12 @@
+{
+  "$schema": "https://opencode.ai/tui.json",
+  "leader_timeout": 2000,
+  "keybinds": {
+    "model_list": "<leader>ctrl+m,ctrl+l",
+    "session_list": "<leader>ctrl+l,ctrl+q",
+    "dialog.select.prev": "up,ctrl+p,ctrl+k",
+    "dialog.select.next": "down,ctrl+n,ctrl+j"
+  },
+  "plugin": ["opencode-subagent-statusline"],
+  "scroll_speed": 1
+}

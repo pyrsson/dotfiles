@@ -1,0 +1,20 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "enabled_providers": [
+    "openai"
+  ],
+  {{- if isExecutable (joinPath .chezmoi.homeDir "go/bin/engram") }}
+  "mcp": {
+    "engram": {
+      "command": [
+        {{ joinPath .chezmoi.homeDir "go/bin/engram" |quote }},
+        "mcp",
+        "--tools=agent"
+      ],
+      "enabled": true,
+      "type": "local"
+    }
+  },
+  {{- end }}
+  "small_model": "github-copilot/gpt-5-mini"
+}

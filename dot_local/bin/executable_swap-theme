@@ -3,7 +3,7 @@
 current=$(yq '.data.theme' ~/.config/chezmoi/chezmoi.yaml)
 
 if [[ "$1" == "check" ]]; then
-  echo "$current"
+  jq -ncj --arg theme "$current" '{"tooltip": "Current mode: "+$theme, "alt": $theme}'
   exit 0
 fi
 

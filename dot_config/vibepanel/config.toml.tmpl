@@ -61,6 +61,7 @@ show_icon = true
 show_active = true
 icon_size = 20
 filter_by_output = true
+workspace_separator_label = "number"
 
 [widgets.workspaces]
 # label_type = "index"
@@ -74,13 +75,18 @@ tooltip = "Switch input source"
 max_chars = 20
 
 [widgets.custom-theme]
-icon = "dark_mode"
 on_click = "swap-theme"
+exec = "swap-theme check"
 tooltip = "Switch theme"
+icon = "light_mode"
+
+[widgets.custom-theme.icons]
+dark = "light_mode"
+light = "dark_mode"
 
 [theme]
 mode = "auto"
-scheme = "{{ .theme }}"
+# scheme = "dark"
 # accent = "#27a1b9"
 blur = true
 outline = true
