@@ -25,6 +25,11 @@ if [[ -z "$desired_kubeconfig" ]]; then
   fi
 fi
 
+if [[ ! -f ~/.kube/config.d/"$desired_kubeconfig" ]]; then
+  echo "Kubeconfig $desired_kubeconfig does not exist" >&2
+  exit 1
+fi
+
 if [[ "$desired_kubeconfig" != "$current" ]]; then
   echo "$current" >~/.kube/kc
   rm -f ~/.kube/config
