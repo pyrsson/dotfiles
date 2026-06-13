@@ -3,6 +3,7 @@
   "enabled_providers": [
     "openai"
   ],
+  "lsp": true,
   {{- if isExecutable (joinPath .chezmoi.homeDir "go/bin/engram") }}
   "mcp": {
     "engram": {

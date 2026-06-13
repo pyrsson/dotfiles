@@ -1,3 +1,6 @@
 .widget {
   font-weight: bold;
 }
+.qs-toggle-subtitle {
+  font-weight: normal;
+}
