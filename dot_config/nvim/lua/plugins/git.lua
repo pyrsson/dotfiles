@@ -6,6 +6,9 @@ return {
       "nvim-lua/plenary.nvim", -- required
 
       {
+        "barrettruth/diffs.nvim",
+      },
+      {
         "sindrets/diffview.nvim", -- optional
         opts = {
           hooks = {

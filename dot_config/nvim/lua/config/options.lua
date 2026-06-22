@@ -32,3 +32,9 @@ vim.filetype.add({
     dtsi = "dts",
   },
 })
+
+vim.g.diffs = {
+  integrations = {
+    neogit = true,
+  },
+}
