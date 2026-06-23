@@ -6,8 +6,6 @@
 vim.api.nvim_command([[autocmd FileType kcl set nofoldenable]])
 vim.api.nvim_command([[autocmd FileType kcl set foldmethod=syntax]])
 
-vim.api.nvim_command([[autocmd BufRead Tiltfile setf=tiltfile]])
-
 vim.api.nvim_create_autocmd("OptionSet", {
   pattern = "background",
   callback = function()
