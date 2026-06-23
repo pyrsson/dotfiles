@@ -1,19 +1,19 @@
 return {
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    ---@class tokyonight.Config
-    opts = {
-      day_brightness = 0.3,
-      style = "night",
-      transparent = true,
-      styles = {
-        sidebars = "transparent",
-        floats = "transparent",
-      },
-    },
-  },
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   ---@class tokyonight.Config
+  --   opts = {
+  --     day_brightness = 0.3,
+  --     style = "night",
+  --     transparent = true,
+  --     styles = {
+  --       sidebars = "transparent",
+  --       floats = "transparent",
+  --     },
+  --   },
+  -- },
   {
     "EdenEast/nightfox.nvim",
     priority = 1000,
@@ -24,6 +24,13 @@ return {
       groups = {
         all = {
           NormalFloat = { bg = "NONE" },
+          NeogitSectionHeader = { fg = "palette.blue" },
+          NeogitChangeModified = { fg = "palette.yellow", style = "bold,italic" },
+          NeogitPopupActionKey = { fg = "palette.yellow" },
+          NeogitPopupConfigKey = { link = "NeogitPopupActionKey" },
+          NeogitPopupOptionKey = { link = "NeogitPopupActionKey" },
+          NeogitPopupSwitchKey = { link = "NeogitPopupActionKey" },
+          NeogitHunkHeaderCursor = { fg = "palette.bg1", bg = "palette.cyan" },
         },
       },
     },

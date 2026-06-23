@@ -28,9 +28,6 @@ scrollbar {
   color: color-mix(in srgb, var(--window-fg-color) 80%, transparent);
 }
 
-.box {
-}
-
 .search-container {
   background: color-mix(in srgb, var(--view-bg-color) 75%, transparent);
   border-radius: 8px;
@@ -48,24 +45,8 @@ scrollbar {
   border-radius: 8px;
 }
 
-.input:focus,
-.input:active {
-}
-
-.content-container {
-}
-
-.placeholder {
-}
-
-.scroll {
-}
-
 .list {
   color: var(--view-fg-color);
-}
-
-child {
 }
 
 .item-box {
@@ -82,15 +63,12 @@ child {
 
 child:hover .item-box,
 child:selected .item-box {
-  color: var(--accent-fg-color);
+  color: var(--fg-color);
   background: color-mix(
     in srgb,
-    var(--accent-bg-color) 20%,
+    var(--accent-bg-color) 5%,
     var(--view-bg-color)
   );
-}
-
-.item-text-box {
 }
 
 .item-subtext {
@@ -117,9 +95,6 @@ child:selected .item-box {
 
 .calc .item-text {
   font-size: 24px;
-}
-
-.calc .item-subtext {
 }
 
 .symbols .item-image {
@@ -154,20 +129,14 @@ child:selected .item-box {
   color: var(--window-fg-color);
 }
 
-.keybinds {
-}
-
 .keybind {
-  color: color-mix(in srgb, var(--window-fg-color) 75%, white 25%);
+  color: var(--window-fg-color);
 }
 
 .keybind-bind {
-  color: var(--accent-fg-color);
+  color: var(--window-fg-color);
   font-weight: bold;
   text-transform: lowercase;
-}
-
-.keybind-label {
 }
 
 .error {
