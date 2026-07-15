@@ -9,4 +9,9 @@ local function run_from_cwd()
   })
 end
 
-vim.keymap.set("n", "<leader>r", run_from_cwd, { noremap = true, silent = true, buffer = true })
+vim.keymap.set(
+  "n",
+  "<leader>cR",
+  run_from_cwd,
+  { noremap = true, silent = true, buffer = true, desc = "Run root package" }
+)
