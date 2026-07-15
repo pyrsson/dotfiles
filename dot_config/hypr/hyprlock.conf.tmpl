@@ -6,6 +6,29 @@ $font_family = Hack NFP
 $font_family_clock = Hack NFP
 $font_material_symbols = Material Symbols Rounded
 
+{{- if eq .chezmoi.hostname "thinkpad-x1" }}
+auth {
+  fingerprint {
+    enabled = true
+    ready_message = 🫆
+  }
+}
+
+label { # lock icon
+    monitor =
+    text = $FPRINTPROMPT
+    shadow_passes = 1
+    shadow_boost = 0.5
+    color = $text_color
+    font_size = 12
+    font_family = $font_family
+
+    position = 0, -40
+    halign = center
+    valign = center
+}
+{{- end }}
+
 background {
   path = screenshot
   path = ~/Pictures/wallpaper.png

@@ -4,6 +4,9 @@ return {
     opts = {
       servers = {
         templ = {},
+        html = {
+          filetypes = { "html", "templ" },
+        },
       },
     },
   },
@@ -12,6 +15,7 @@ return {
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
         "templ",
+        "html-lsp",
       })
     end,
   },
@@ -22,5 +26,16 @@ return {
         "templ",
       })
     end,
+  },
+  {
+    "stevearc/conform.nvim",
+    --@class ConfomOpts
+    opts = {
+      formatters_by_ft = {
+        templ = {
+          "templ",
+        },
+      },
+    },
   },
 }
