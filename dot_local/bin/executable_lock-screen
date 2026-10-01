@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+set -u
+
+wait_for_lock=false
+case "${1:-}" in
+  "") ;;
+  --wait) wait_for_lock=true ;;
+  *)
+    echo "usage: lock-screen [--wait]" >&2
+    exit 2
+    ;;
+esac
+
+state_dir="${XDG_RUNTIME_DIR:?XDG_RUNTIME_DIR is not set}/lock-screen"
+ready_file="${state_dir}/ready"
+launch_lock="${state_dir}/launch.lock"
+
+umask 077
+mkdir -p "$state_dir"
+
+exec {lock_fd}>"$launch_lock"
+flock "$lock_fd"
+
+if ! pidof hyprlock >/dev/null; then
+  rm -f "$ready_file"
+
+  hyprlock_args=()
+  if $wait_for_lock; then
+    hyprlock_args+=(--immediate-render)
+  fi
+
+  (
+    exec {lock_fd}>&-
+    trap 'rm -f "$ready_file"' EXIT
+    hyprlock "${hyprlock_args[@]}" 2>&1 |
+      while IFS= read -r line; do
+        printf '%s\n' "$line"
+        if [[ "$line" == *"onLockLocked called"* ]]; then
+          : >"$ready_file"
+        fi
+      done
+  ) &
+fi
+
+flock -u "$lock_fd"
+exec {lock_fd}>&-
+
+if ! $wait_for_lock; then
+  exit 0
+fi
+
+for ((attempt = 0; attempt < 80; attempt++)); do
+  if [[ -e "$ready_file" ]]; then
+    exit 0
+  fi
+
+  sleep 0.05
+done
+
+echo "lock-screen: hyprlock did not acquire the session lock within 4 seconds" >&2
+exit 1

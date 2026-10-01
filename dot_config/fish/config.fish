@@ -12,7 +12,6 @@ set fish_greeting
 
 set -gx EDITOR nvim
 set -gx VISUAL nvim
-set -gx DOCKER_HOST "unix://$XDG_RUNTIME_DIR/podman/podman.sock"
 set -gx LESS "--mouse --wheel-lines=1 -RX"
 set -g fish_key_bindings fish_hybrid_key_bindings
 
