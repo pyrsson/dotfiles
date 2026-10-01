@@ -6,10 +6,10 @@ return {
       "nvim-lua/plenary.nvim", -- required
 
       {
-        "barrettruth/diffs.nvim",
+        "https://forge.barrettruth.com/barrettruth/diffs.nvim",
       },
       {
-        "sindrets/diffview.nvim", -- optional
+        "dlyongemallo/diffview-plus.nvim", -- optional
         opts = {
           hooks = {
             view_leave = function(view)
