@@ -1,0 +1,30 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "enabled_providers": ["openai", "anthropic"],
+  "lsp": true,
+  "mcp": {
+    "basic-memory": {
+      "command": ["uvx", "basic-memory@0.23.2", "mcp"],
+      "enabled": true,
+      "type": "local"
+    }
+  },
+  "plugin": ["opencode-claude-auth@v2.2.1"],
+  "tools": {
+    "basic-memory_basic_memory_diagnostics": false,
+    "basic-memory_delete_note": false,
+    "basic-memory_read_content": false,
+    "basic-memory_view_note": false,
+    "basic-memory_list_directory": false,
+    "basic-memory_move_note": false,
+    "basic-memory_list_workspaces": false,
+    "basic-memory_list_memory_projects": false,
+    "basic-memory_create_memory_project": false,
+    "basic-memory_delete_project": false,
+    "basic-memory_search": false,
+    "basic-memory_fetch": false,
+    "basic-memory_schema_validate": false,
+    "basic-memory_schema_infer": false,
+    "basic-memory_schema_diff": false
+  }
+}
