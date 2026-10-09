@@ -8,7 +8,7 @@ binds {
     Mod+V repeat=false { spawn "walker" "-m" "clipboard"; }
     Mod+B repeat=false { spawn "walker" "-m" "bitwarden"; }
     Mod+I repeat=false { spawn "walker" "-m" "menus:niri"; }
-    Mod+E repeat=false { spawn "nautilus"; }
+    Mod+E repeat=false { spawn "strata"; }
     Mod+Shift+P repeat=false { spawn-sh "wl-mirror $(niri msg --json focused-output | jq -r .name)"; }
 
     Mod+N repeat=false { spawn "vibepanel" "popover" "toggle" "notifications"; }
