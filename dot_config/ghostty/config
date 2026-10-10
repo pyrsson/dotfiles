@@ -3,7 +3,6 @@ theme = dark:Nightfox,light:Dayfox
 font-family = Hack Nerd Font Mono
 font-size = 13
 background-opacity = 0.92
-#background-blur = true
 mouse-scroll-multiplier = precision:0.3,discrete:3
 window-padding-balance = true
 # gtk-wide-tabs = false
