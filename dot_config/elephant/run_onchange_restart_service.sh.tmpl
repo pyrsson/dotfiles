@@ -1,7 +1,0 @@
-#!/bin/bash
-
-{{ range (glob (joinPath .chezmoi.sourceDir "dot_config/elephant/**/*.*")) }}
-# hash {{.}} {{ include . | sha256sum }}
-{{- end }}
-
-systemctl --user restart elephant.service

@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Toggle vars.theme (dark/light) in the machine-local mise config and re-apply dotfiles.
+
+local_config="${XDG_CONFIG_HOME:-$HOME/.config}/mise/config.local.toml"
+
+current=$(mise config get -f "$local_config" vars.theme 2>/dev/null || echo dark)
+
+if [[ "$1" == "check" ]]; then
+  jq -ncj --arg theme "$current" '{"tooltip": "Current mode: "+$theme, "alt": $theme}'
+  exit 0
+fi
+
+if [[ "$current" == "dark" ]]; then
+  next=light
+else
+  next=dark
+fi
+
+touch "$local_config"
+mise config set -f "$local_config" vars.theme "$next"
+mise dot apply

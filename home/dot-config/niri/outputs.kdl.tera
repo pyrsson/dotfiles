@@ -1,0 +1,45 @@
+{%- if "sidearm" in mise_env | default(value=[]) %}
+output "DP-1" {
+    mode "3440x1440@99.982"
+    scale 1
+    variable-refresh-rate on-demand=true
+    transform "normal"
+    position x=0 y=840
+}
+
+output "DP-2" {
+    mode "2560x1440@119.998"
+    scale 1
+    transform "270"
+    position x=3440 y=0
+
+    layout {
+        default-column-width { proportion 1.0; }
+    }
+}
+
+output "DP-3" {
+    off
+    position x=0 y=2280
+}
+{%- endif %}
+
+{%- if "thinkpad-x1" in mise_env | default(value=[]) %}
+output "eDP-1" {
+    mode "1920x1200@60.026"
+    scale 1
+    transform "normal"
+    position x=0 y=0
+
+    layout {
+        default-column-width { proportion 1.0; }
+    }
+}
+
+output "DP-3" {
+    mode "3440x1440@99.982"
+    scale 1
+    transform "normal"
+    position x=1920 y=-600
+}
+{%- endif %}
