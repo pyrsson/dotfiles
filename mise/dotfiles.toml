@@ -29,7 +29,6 @@ exclude = [".gitkeep"]
 "~/.config/hypr/hyprlock.conf" = { source = "dot-config/hypr/hyprlock.conf.tera", mode = "template" }
 "~/.config/niri/config.kdl" = { source = "dot-config/niri/config.kdl.tera", mode = "template" }
 "~/.config/niri/outputs.kdl" = { source = "dot-config/niri/outputs.kdl.tera", mode = "template" }
-"~/.config/systemd/user/swaybg.service" = { source = "dot-config/systemd/user/swaybg.service.tera", mode = "template" }
 "~/.config/tmux/tmux.conf" = { source = "dot-config/tmux/tmux.conf.tera", mode = "template" }
 "~/.config/vibepanel/config.toml" = { source = "dot-config/vibepanel/config.toml.tera", mode = "template" }
 "~/.config/wlogout/style.css" = { source = "dot-config/wlogout/style.css.tera", mode = "template" }
@@ -59,14 +58,15 @@ exclude = [".gitkeep"]
   { profile = "sidearm" },
 ] }
 
-# Units started with the niri session (equivalent of `systemctl --user add-wants niri.service ...`).
-# Own units point at the repo directly: on a fresh machine the ~/.config links do not exist yet.
-"~/.config/systemd/user/niri.service.wants/awww.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/awww.service", mode = "symlink" }
+# Units started with the graphical session, reached by both niri and uwsm-managed Hyprland
+"~/.config/systemd/user/graphical-session.target.wants/awww.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/awww.service", mode = "symlink" }
+"~/.config/systemd/user/graphical-session.target.wants/elephant.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/elephant.service", mode = "symlink" }
+"~/.config/systemd/user/graphical-session.target.wants/playerctld.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/playerctld.service", mode = "symlink" }
+"~/.config/systemd/user/graphical-session.target.wants/vibepanel.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/vibepanel.service", mode = "symlink" }
+"~/.config/systemd/user/graphical-session.target.wants/walker.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/walker.service", mode = "symlink" }
+
+# niri only.
 "~/.config/systemd/user/niri.service.wants/awww-bg.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/awww-bg.service", mode = "symlink" }
-"~/.config/systemd/user/niri.service.wants/elephant.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/elephant.service", mode = "symlink" }
-"~/.config/systemd/user/niri.service.wants/playerctld.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/playerctld.service", mode = "symlink" }
-"~/.config/systemd/user/niri.service.wants/swayidle.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/swayidle.service", mode = "symlink" }
-"~/.config/systemd/user/niri.service.wants/vibepanel.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/vibepanel.service", mode = "symlink" }
 "~/.config/systemd/user/niri.service.wants/xdg-desktop-portal-gnome.service" = { source = "/usr/lib/systemd/user/xdg-desktop-portal-gnome.service", mode = "symlink" }
 
 # onchange hashes the deployed contents after every apply and runs a
