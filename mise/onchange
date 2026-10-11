@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+# Run commands when the contents of deployed files change, like chezmoi's run_onchange_.
+#
+# Runs as the post-dotfiles hook of `mise dot apply` (see dotfiles.toml). Each rule hashes
+# the files under its paths, following symlinks, so edits to linked sources, package updates
+# behind /usr/share links and re-rendered templates are all detected. A command runs when
+# the hash differs from the one stored after its last successful run.
+#
+# Usage: onchange [--force]   (--force runs every rule)
+
+set -uo pipefail
+
+state_dir="${XDG_STATE_HOME:-$HOME/.local/state}/dotfiles-onchange"
+mkdir -p "$state_dir"
+
+force=false
+[[ "${1:-}" == "--force" ]] && force=true
+
+# onchange <name> <command> <path>...
+onchange() {
+  local name=$1 cmd=$2
+  shift 2
+
+  local hash
+  hash=$(
+    for path in "$@"; do
+      if [[ -e "$path" ]]; then
+        find -L "$path" -type f -print0 | sort -z | xargs -0r sha256sum
+      else
+        echo "missing $path"
+      fi
+    done | sha256sum | cut -d' ' -f1
+  )
+
+  local stamp="$state_dir/$name"
+  if ! $force && [[ -f "$stamp" && "$(<"$stamp")" == "$hash" ]]; then
+    return 0
+  fi
+
+  echo "onchange: $name"
+  if bash -c "$cmd"; then
+    echo "$hash" >"$stamp"
+  else
+    echo "onchange: $name failed: $cmd" >&2
+  fi
+}
+
+# First, so the restarts below use the current unit files.
+onchange systemd "systemctl --user daemon-reload" \
+  ~/.config/systemd/user
+onchange bat "bat cache --build" \
+  ~/.config/bat/themes
+onchange elephant "systemctl --user restart elephant.service" \
+  ~/.config/elephant
+onchange walker "systemctl --user restart walker.service" \
+  ~/.config/walker
+onchange tmux "! pgrep -x tmux >/dev/null || tmux source-file ~/.config/tmux/tmux.conf" \
+  ~/.config/tmux/tmux.conf
+onchange nwg-look "nwg-look -a -x 2>/dev/null" \
+  ~/.local/share/nwg-look/gsettings
+onchange omarchy-theme 'ln -sfn ~/.config/strata/omarchy-themes/"$(cat ~/.local/state/omarchy/current/theme.name)"/ ~/.local/state/omarchy/current/theme' \
+  ~/.local/state/omarchy/current/theme.name
+
+exit 0

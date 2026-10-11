@@ -4,7 +4,9 @@ My collection of dotfiles, scripts and configurations. Keep in mind that these f
 
 Files are deployed with [mise dotfiles](https://mise.jdx.dev/dotfiles.html). Everything under `home/` is
 linked file by file into `~` (`dot-config` becomes `.config`), `*.tera` files are rendered as templates,
-and extra links and reload hooks are declared in [`mise/dotfiles.toml`](mise/dotfiles.toml).
+and extra links are declared in [`mise/dotfiles.toml`](mise/dotfiles.toml). After every apply,
+[`mise/onchange`](mise/onchange) runs reload commands (restart services, rebuild caches) for files whose
+contents changed since the last run.
 
 ## Installation
 
@@ -26,5 +28,6 @@ mise dot apply --force   # --force replaces existing real files with links
 
 - `mise dot status` / `mise dot diff` - show what differs
 - `mise dot apply` - apply changes (needed after adding files or editing `*.tera` templates)
+- `mise/onchange --force` - run every reload command regardless of changes
 - `swap-theme` - toggle `vars.theme` between dark and light in `~/.config/mise/config.local.toml` and re-apply
 - Host-specific template blocks use `{% if "sidearm" in mise_env | default(value=[]) %}`
