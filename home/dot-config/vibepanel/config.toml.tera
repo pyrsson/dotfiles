@@ -85,6 +85,7 @@ light = "dark_mode"
 
 [theme]
 mode = "auto"
+scheme = "{{ vars.theme }}"
 blur = true
 outline = true
 outline_width = 2
