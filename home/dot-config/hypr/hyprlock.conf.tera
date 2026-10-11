@@ -1,6 +1,6 @@
 $text_color = rgba(FFFFFFFF)
 $entry_background_color = rgba(33333399)
-$entry_border_color = rgba(7AA2F7FF)
+$entry_border_color = rgba(4fd6beaa)
 $entry_color = rgba(FFFFFFFF)
 $font_family = Hack NFP
 $font_family_clock = Hack NFP
@@ -30,8 +30,7 @@ label { # lock icon
 {%- endif %}
 
 background {
-  path = screenshot
-  path = ~/Pictures/wallpaper.png
+  path = ~/Pictures/wallpapers/pcb-teal.png
   blur_size = 5
   blur_passes = 3
 }

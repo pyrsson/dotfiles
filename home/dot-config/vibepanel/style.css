@@ -4,3 +4,6 @@
 .qs-toggle-subtitle {
   font-weight: normal;
 }
+:root {
+  --color-click-catcher-overlay: rgba(0, 0, 0, 0.004);
+}
