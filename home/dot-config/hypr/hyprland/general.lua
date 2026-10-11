@@ -29,7 +29,7 @@ hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 
 hl.config({
     binds = {
-        scroll_event_delay = 0,
+        scroll_event_delay = 150, -- niri: cooldown-ms=150 on wheel binds
     },
 
     input = {
