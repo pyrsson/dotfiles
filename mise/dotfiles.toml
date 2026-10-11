@@ -64,6 +64,7 @@ exclude = [".gitkeep"]
 "~/.config/systemd/user/graphical-session.target.wants/playerctld.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/playerctld.service", mode = "symlink" }
 "~/.config/systemd/user/graphical-session.target.wants/vibepanel.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/vibepanel.service", mode = "symlink" }
 "~/.config/systemd/user/graphical-session.target.wants/walker.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/walker.service", mode = "symlink" }
+"~/.config/systemd/user/graphical-session.target.wants/hypridle.service" = { source = "/usr/lib/systemd/user/hypridle.service", mode = "symlink" }
 
 # niri only.
 "~/.config/systemd/user/niri.service.wants/awww-bg.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/awww-bg.service", mode = "symlink" }

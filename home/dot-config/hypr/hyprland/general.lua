@@ -1,6 +1,12 @@
 -- General config
 -- Every variable: https://wiki.hypr.land/Configuring/Basics/Variables/
 
+-- Laptop touchpad: adaptive accel (global input uses flat)
+hl.device({
+  name = "elan0673:00-04f3:3188-touchpad",
+  accel_profile = "adaptive",
+})
+
 -- monitors
 
 hl.monitor({ output = "eDP-1", mode = "preferred", position = "0x0", scale = 1 })
@@ -11,7 +17,8 @@ hl.monitor({
   scale = 1,
   vrr = 0,
 })
-hl.monitor({ output = "DP-3", mode = "3440x1440@100", position = "auto", scale = 1, vrr = 2 })
+-- hl.monitor({ output = "DP-3", mode = "3440x1440@100", position = "auto", scale = 1, vrr = 2 })
+hl.monitor({ output = "DP-3", disabled = true })
 hl.monitor({
   output = "desc:Microstep MSI G273Q",
   mode = "2560x1440@120",
@@ -26,6 +33,7 @@ hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 hl.config({
   binds = {
     scroll_event_delay = 150, -- rate-limit wheel binds
+    movefocus_cycles_fullscreen = true,
   },
 
   input = {
@@ -37,8 +45,8 @@ hl.config({
     sensitivity = 0.4,
     follow_mouse = 1,
 
-    repeat_delay = 250,
-    repeat_rate = 25,
+    repeat_delay = 230,
+    repeat_rate = 30,
 
     touchpad = {
       disable_while_typing = false,
@@ -66,7 +74,7 @@ hl.config({
     border_size = 3,
 
     col = {
-      active_border = { colors = { "rgba(82aaffaa)", "rgba(4fd6beaa)" }, angle = 200 },
+      active_border = "rgba(4fd6beaa)", -- { colors = { "rgba(82aaffaa)", "rgba(4fd6beaa)" }, angle = 200 },
       inactive_border = "rgba(2f334daa)",
     },
 
@@ -163,22 +171,3 @@ anim("workspaces", 7, "menu_decel", "slide")
 -- anim("workspaces",    7,   "menu_decel",  "slidefade 15%")
 anim("specialWorkspace", 3, "md3_decel", "slidefadevert 15%")
 -- anim("specialWorkspace", 3, "md3_decel",  "slidevert")
-
--- plugins
-
-if hl.plugin.hyprexpo ~= nil then
-  hl.config({
-    plugin = {
-      hyprexpo = {
-        columns = 3,
-        gap_size = 5,
-        bg_col = "rgb(000000)",
-        workspace_method = "first 1", -- [center/first] [workspace] e.g. first 1 or center m+1
-
-        enable_gesture = false, -- laptop touchpad, 4 fingers
-        gesture_distance = 300, -- how far is the "max"
-        gesture_positive = false,
-      },
-    },
-  })
-end

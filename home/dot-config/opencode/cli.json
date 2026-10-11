@@ -1,0 +1,33 @@
+{
+  "$schema": "https://opencode.ai/v2/cli.json",
+  "theme": {
+    "name": "system"
+  },
+  "keybinds": {
+    "session.new": "<leader>ctrl+n",
+    "session.list": "<leader>ctrl+l,ctrl+q",
+    "model.list": "<leader>ctrl+m,ctrl+l",
+    "dialog.select.prev": "up,ctrl+p,ctrl+k",
+    "dialog.select.next": "down,ctrl+n,ctrl+j"
+  },
+  "leader": {
+    "timeout": 2000
+  },
+  "scroll": {
+    "speed": 1
+  },
+  "diffs": {
+    "wrap": "word"
+  },
+  "session": {
+    "sidebar": "auto",
+    "scrollbar": false,
+    "thinking": "hide",
+    "markdown": "rendered",
+    "verbosity": "medium"
+  },
+  "animations": true,
+  "tabs": {
+    "scope": "cwd"
+  }
+}

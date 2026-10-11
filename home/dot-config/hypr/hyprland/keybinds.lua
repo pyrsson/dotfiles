@@ -71,25 +71,13 @@ bind("XF86AudioPrev", exec("playerctl previous"), locked)
 bind("XF86MonBrightnessUp", exec("brightnessctl --class=backlight set +10%"), lockrep)
 bind("XF86MonBrightnessDown", exec("brightnessctl --class=backlight set 10%-"), lockrep)
 
--- Kept from the old Hyprland config
 bind("SUPER + SHIFT + N", exec("playerctl next"), { locked = true, description = "Next track" })
 bind("SUPER + SHIFT + B", exec("playerctl previous"), { locked = true, description = "Previous track" })
 bind("SUPER + SHIFT + ALT + mouse:275", exec("playerctl previous"))
 bind("SUPER + SHIFT + ALT + mouse:276", exec("playerctl next"))
 
 -- windows
-
 bind("SUPER + Q", dsp.window.close())
-
--- Focus
-bind("SUPER + Left", dsp.focus({ direction = "left" }), repeating)
-bind("SUPER + Down", dsp.focus({ direction = "down" }), repeating)
-bind("SUPER + Up", dsp.focus({ direction = "up" }), repeating)
-bind("SUPER + Right", dsp.focus({ direction = "right" }), repeating)
-bind("SUPER + H", dsp.focus({ direction = "left" }), repeating)
-bind("SUPER + J", dsp.focus({ direction = "down" }), repeating)
-bind("SUPER + K", dsp.focus({ direction = "up" }), repeating)
-bind("SUPER + L", dsp.focus({ direction = "right" }), repeating)
 
 -- Move
 for _, d in ipairs({
@@ -103,37 +91,29 @@ for _, d in ipairs({
   { "L", "right" },
 }) do
   local key, dir = d[1], d[2]
+  bind("SUPER + " .. key, dsp.focus({ direction = dir }), repeating)
   bind("SUPER + SHIFT + " .. key, dsp.window.move({ direction = dir }))
   bind("SUPER + SHIFT + CTRL + " .. key, dsp.window.move({ monitor = dir, follow = true })) -- to monitor
+  -- Monitors
+  bind("SUPER + ALT + " .. key, dsp.focus({ monitor = dir }))
+  -- Move whole workspace to monitor
+  bind("SUPER + SHIFT + ALT + " .. key, dsp.workspace.move({ monitor = dir }))
 end
-
--- Monitors
-bind("SUPER + CTRL + Left", dsp.focus({ monitor = "left" }))
-bind("SUPER + CTRL + Down", dsp.focus({ monitor = "down" }))
-bind("SUPER + CTRL + Up", dsp.focus({ monitor = "up" }))
-bind("SUPER + CTRL + Right", dsp.focus({ monitor = "right" }))
-bind("SUPER + ALT + H", dsp.focus({ monitor = "left" }))
-bind("SUPER + ALT + L", dsp.focus({ monitor = "right" }))
-
--- Move whole workspace to monitor
-bind("SUPER + SHIFT + ALT + H", dsp.workspace.move({ monitor = "left" }))
-bind("SUPER + SHIFT + ALT + J", dsp.workspace.move({ monitor = "down" }))
-bind("SUPER + SHIFT + ALT + K", dsp.workspace.move({ monitor = "up" }))
-bind("SUPER + SHIFT + ALT + L", dsp.workspace.move({ monitor = "right" }))
 
 -- Groups
 bind("SUPER + Comma", dsp.window.move({ direction = "left", group_aware = true }))
 bind("SUPER + Period", dsp.window.move({ direction = "right", group_aware = true }))
 bind("SUPER + W", dsp.group.toggle(), { description = "Toggle tabbed (group)" })
+bind("SUPER + Tab", dsp.group.next())
+bind("SUPER + SHIFT + Tab", dsp.group.prev())
 
 -- Sizing
-bind("SUPER + R", dsp.layout("splitratio 1.33333 exact"), { description = "Split 67%" })
-bind("SUPER + SHIFT + R", dsp.layout("togglesplit"))
-bind("SUPER + CTRL + R", dsp.layout("splitratio 1.0 exact"))
-bind("SUPER + Minus", dsp.window.resize({ x = -resize_step, y = 0, relative = true }), repeating)
-bind("SUPER + plus", dsp.window.resize({ x = resize_step, y = 0, relative = true }), repeating)
-bind("SUPER + SHIFT + Minus", dsp.window.resize({ x = 0, y = -resize_step, relative = true }), repeating)
-bind("SUPER + SHIFT + plus", dsp.window.resize({ x = 0, y = resize_step, relative = true }), repeating)
+bind("SUPER + R", dsp.layout("splitratio 1.0 exact"))
+bind("SUPER + CTRL + R", dsp.layout("togglesplit"))
+bind("SUPER + CTRL + H", dsp.window.resize({ x = -resize_step, y = 0, relative = true }), repeating)
+bind("SUPER + CTRL + L", dsp.window.resize({ x = resize_step, y = 0, relative = true }), repeating)
+bind("SUPER + CTRL + K", dsp.window.resize({ x = 0, y = -resize_step, relative = true }), repeating)
+bind("SUPER + CTRL + J", dsp.window.resize({ x = 0, y = resize_step, relative = true }), repeating)
 
 bind("SUPER + F", dsp.window.fullscreen({ mode = "maximized" }))
 bind("SUPER + M", dsp.window.fullscreen_state({ internal = 2, client = 0 }), { description = "Maximize to edges" })
@@ -155,7 +135,6 @@ bind(
   { description = "Toggle fake fullscreen" }
 )
 bind("SUPER + SHIFT + ALT + Q", exec("hyprctl kill"), { description = "Pick and kill a window" })
-bind("CTRL + SUPER + Minus", dsp.window.resize({ x = 640, y = 480 }))
 
 -- workspaces
 

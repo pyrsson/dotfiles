@@ -26,10 +26,6 @@ local WS = require("hyprland.workspaces")
 -- Top-right corner panel placement (below the bar)
 local panel = { move = { "monitor_w-window_w-5", 44 }, size = { 640, "monitor_h*0.5" } }
 
--- borrowed
-
-rule({ class = "^(steam)$" }, { float = true })
-rule({ class = "^(guifetch)$" }, { float = true }) -- FlafyDev/guifetch
 rule({ title = [[^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$]] }, { float = true })
 
 -- Picture-in-Picture
@@ -59,9 +55,8 @@ rule({ class = games, title = [[negative:^Battle\.net]] }, {
 
 rule({ tag = "unfocused" }, { render_unfocused = true })
 
--- my rules
-
 rule({ class = "^(blueman-manager)$" }, { float = true, move = panel.move, size = panel.size })
+-- rule({ class = "com.mitchellh.ghostty" }, { xray = true })
 
 rule({ class = "^(nm-connection-editor)$" }, { float = true })
 rule({ class = "^(nm-openconnect-auth-dialog)$" }, { float = true, stay_focused = true })
@@ -94,6 +89,10 @@ rule({ class = ".*" }, { persistent_size = true })
 hl.layer_rule({ match = { namespace = ".*" }, xray = false })
 hl.layer_rule({ match = { namespace = "walker" }, blur = true, ignore_alpha = 0, animation = "fade" })
 hl.layer_rule({ match = { namespace = "logout_dialog" }, blur = true, animation = "fade" }) -- wlogout
+hl.layer_rule({
+  match = { namespace = "^vibepanel-(.*popover|click-catcher|tooltip)$" },
+  no_anim = true,
+})
 
 -- workspaces
 
@@ -111,19 +110,19 @@ local layout = layouts[host.name] or {}
 
 -- workspace -> scrolling layout direction (portrait monitor: windows stack downwards)
 local scrolling = {
-	["sidearm"] = { chat = "down" },
+  ["sidearm"] = { chat = "down", gaming = "right" },
 }
 local scroll = scrolling[host.name] or {}
 
 for name, id in pairs(WS) do
-	local spec = { workspace = tostring(id), default_name = name }
-	if layout[name] ~= nil then
-		spec.monitor = layout[name][1]
-		spec.default = layout[name][2] or nil
-	end
-	if scroll[name] ~= nil then
-		spec.layout = "scrolling"
-		spec.layout_opts = { direction = scroll[name] }
-	end
+  local spec = { workspace = tostring(id), default_name = name }
+  if layout[name] ~= nil then
+    spec.monitor = layout[name][1]
+    spec.default = layout[name][2] or nil
+  end
+  if scroll[name] ~= nil then
+    spec.layout = "scrolling"
+    spec.layout_opts = { direction = scroll[name] }
+  end
   hl.workspace_rule(spec)
 end
