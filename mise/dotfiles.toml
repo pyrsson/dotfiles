@@ -40,10 +40,6 @@ exclude = [".gitkeep"]
 # This file itself.
 "~/.config/mise/conf.d/dotfiles.toml" = { source = "~/Projects/personal/dotfiles/mise/dotfiles.toml", mode = "symlink" }
 
-# Previously chezmoi `private_` directories.
-"~/.local/share" = { permissions = "0700" }
-"~/.local/state" = { permissions = "0700" }
-
 # Theme files shipped by the tokyonight-extra package.
 "~/.config/bat/themes/tokyonight_day.tmTheme" = { source = "/usr/share/tokyonight-extra/sublime/tokyonight_day.tmTheme", mode = "symlink" }
 "~/.config/bat/themes/tokyonight_night.tmTheme" = { source = "/usr/share/tokyonight-extra/sublime/tokyonight_night.tmTheme", mode = "symlink" }
@@ -71,12 +67,9 @@ exclude = [".gitkeep"]
 "~/.config/systemd/user/niri.service.wants/playerctld.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/playerctld.service", mode = "symlink" }
 "~/.config/systemd/user/niri.service.wants/swayidle.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/swayidle.service", mode = "symlink" }
 "~/.config/systemd/user/niri.service.wants/vibepanel.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/vibepanel.service", mode = "symlink" }
-"~/.config/systemd/user/niri.service.wants/plasma-polkit-agent.service" = { mode = "absent" }
 "~/.config/systemd/user/niri.service.wants/xdg-desktop-portal-gnome.service" = { source = "/usr/lib/systemd/user/xdg-desktop-portal-gnome.service", mode = "symlink" }
 
-# Replaces chezmoi run_onchange_ scripts. [history.reload] only fires when
-# mise writes a target, so edits behind existing symlinks would be missed.
-# Instead, onchange hashes the deployed contents after every apply and runs a
+# onchange hashes the deployed contents after every apply and runs a
 # rule's command when its hash changed. Rules are defined in mise/onchange.
 [bootstrap.hooks]
 post-dotfiles = "~/Projects/personal/dotfiles/mise/onchange"
