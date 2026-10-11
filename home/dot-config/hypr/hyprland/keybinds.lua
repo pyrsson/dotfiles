@@ -138,7 +138,6 @@ bind("SUPER + Escape", exec("loginctl lock-session"), { dont_inhibit = true, des
 
 bind("SUPER + V", exec("walker -m clipboard"))
 bind("SUPER + B", exec("walker -m bitwarden"))
-bind("SUPER + I", exec("walker -m menus:hyprland"))
 bind("SUPER + E", exec("uwsm-app -- strata"))
 bind("SUPER + SHIFT + P", exec([[wl-mirror "$(hyprctl -j monitors | jq -r '.[] | select(.focused) | .name')"]]))
 
