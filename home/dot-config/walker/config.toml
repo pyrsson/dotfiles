@@ -14,10 +14,6 @@ default = ["desktopapplications", "calc", "websearch"]
   { action = "close", label = "close", bind = "ctrl w", after = "AsyncClearReload" },
   { action = "select", default = true, bind = "Return" },
 ]
-"menus:hyprland" = [
-  { action = "close", label = "close", bind = "ctrl w", after = "AsyncClearReload" },
-  { action = "select", default = true, bind = "Return" },
-]
 
 
 fallback = [
