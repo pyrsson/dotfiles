@@ -1,0 +1,86 @@
+# Dotfiles managed by `mise dot apply`.
+#
+# Link this file into the global mise config:
+#   ln -s ~/Projects/personal/dotfiles/mise/dotfiles.toml ~/.config/mise/conf.d/dotfiles.toml
+#
+# Per-machine, untracked settings:
+#   ~/.config/mise/miserc.local.toml  ->  env = ["sidearm"]   (or "thinkpad-x1")
+#   ~/.config/mise/config.local.toml  ->  [vars] theme = "light"   (managed by swap-theme)
+
+[settings]
+dotfiles.root = "~/Projects/personal/dotfiles"
+
+[vars]
+theme = "dark"
+
+# Everything under home/ is linked file by file into ~ (dot-foo -> .foo).
+[dotfile_groups.home]
+root = "home"
+target = "~"
+mode = "symlink-each"
+dot_prefix = true
+exclude = [".gitkeep"]
+
+# Rendered templates. Their .tera sources are skipped by the group walk.
+[dotfile_groups.home.entries]
+"~/.npmrc" = { source = "dot-npmrc.tera", mode = "template", permissions = "0600" }
+"~/.Xresources" = { source = "dot-Xresources.tera", mode = "template" }
+"~/.config/environment.d/common.conf" = { source = "dot-config/environment.d/common.conf.tera", mode = "template" }
+"~/.config/hypr/hyprlock.conf" = { source = "dot-config/hypr/hyprlock.conf.tera", mode = "template" }
+"~/.config/niri/config.kdl" = { source = "dot-config/niri/config.kdl.tera", mode = "template" }
+"~/.config/niri/outputs.kdl" = { source = "dot-config/niri/outputs.kdl.tera", mode = "template" }
+"~/.config/systemd/user/swaybg.service" = { source = "dot-config/systemd/user/swaybg.service.tera", mode = "template" }
+"~/.config/tmux/tmux.conf" = { source = "dot-config/tmux/tmux.conf.tera", mode = "template" }
+"~/.config/vibepanel/config.toml" = { source = "dot-config/vibepanel/config.toml.tera", mode = "template" }
+"~/.config/wlogout/style.css" = { source = "dot-config/wlogout/style.css.tera", mode = "template" }
+"~/.local/share/nwg-look/gsettings" = { source = "dot-local/share/nwg-look/gsettings.tera", mode = "template" }
+"~/.local/state/omarchy/current/theme.name" = { source = "dot-local/state/omarchy/current/theme.name.tera", mode = "template" }
+
+[dotfiles]
+# This file itself.
+"~/.config/mise/conf.d/dotfiles.toml" = { source = "~/Projects/personal/dotfiles/mise/dotfiles.toml", mode = "symlink" }
+
+# Previously chezmoi `private_` directories.
+"~/.local/share" = { permissions = "0700" }
+"~/.local/state" = { permissions = "0700" }
+
+# Theme files shipped by the tokyonight-extra package.
+"~/.config/bat/themes/tokyonight_day.tmTheme" = { source = "/usr/share/tokyonight-extra/sublime/tokyonight_day.tmTheme", mode = "symlink" }
+"~/.config/bat/themes/tokyonight_night.tmTheme" = { source = "/usr/share/tokyonight-extra/sublime/tokyonight_night.tmTheme", mode = "symlink" }
+"~/.config/bat/themes/tokyonight_storm.tmTheme" = { source = "/usr/share/tokyonight-extra/sublime/tokyonight_storm.tmTheme", mode = "symlink" }
+"~/.config/ghostty/themes/tokyonight_day" = { source = "/usr/share/tokyonight-extra/ghostty/tokyonight_day", mode = "symlink" }
+"~/.config/ghostty/themes/tokyonight_night" = { source = "/usr/share/tokyonight-extra/ghostty/tokyonight_night", mode = "symlink" }
+
+# Autostart. A missing source fails the whole apply, so every entry here
+# requires the app to be installed on the machines it applies to.
+"~/.config/autostart/bitwarden.desktop" = { source = "/usr/share/applications/bitwarden.desktop", mode = "symlink" }
+"~/.config/autostart/ghostty.desktop" = { source = "/usr/share/applications/com.mitchellh.ghostty.desktop", mode = "symlink" }
+"~/.config/autostart/zen.desktop" = { source = "/usr/share/applications/zen.desktop", mode = "symlink" }
+"~/.config/autostart/steam.desktop" = { source = "/usr/share/applications/steam.desktop", mode = "symlink", variants = [
+  { profile = "sidearm" },
+] }
+"~/.config/autostart/vesktop.desktop" = { source = "/usr/share/applications/vesktop.desktop", mode = "symlink", variants = [
+  { profile = "sidearm" },
+] }
+
+# Units started with the niri session (equivalent of `systemctl --user add-wants niri.service ...`).
+# Own units point at the repo directly: on a fresh machine the ~/.config links do not exist yet.
+"~/.config/systemd/user/niri.service.wants/awww.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/awww.service", mode = "symlink" }
+"~/.config/systemd/user/niri.service.wants/awww-bg.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/awww-bg.service", mode = "symlink" }
+"~/.config/systemd/user/niri.service.wants/elephant.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/elephant.service", mode = "symlink" }
+"~/.config/systemd/user/niri.service.wants/playerctld.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/playerctld.service", mode = "symlink" }
+"~/.config/systemd/user/niri.service.wants/swayidle.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/swayidle.service", mode = "symlink" }
+"~/.config/systemd/user/niri.service.wants/vibepanel.service" = { source = "~/Projects/personal/dotfiles/home/dot-config/systemd/user/vibepanel.service", mode = "symlink" }
+"~/.config/systemd/user/niri.service.wants/plasma-polkit-agent.service" = { mode = "absent" }
+"~/.config/systemd/user/niri.service.wants/xdg-desktop-portal-gnome.service" = { source = "/usr/lib/systemd/user/xdg-desktop-portal-gnome.service", mode = "symlink" }
+
+# Replaces chezmoi run_onchange_ scripts. These run when `mise dot apply`
+# writes a matching path (new link, re-rendered template), not when a linked
+# source file is edited in place.
+[history.reload]
+"~/.config/bat/themes/**" = "bat cache --build"
+"~/.config/elephant/**" = "systemctl --user restart elephant.service"
+"~/.config/walker/**" = "systemctl --user restart walker.service"
+"~/.config/tmux/tmux.conf" = "pgrep tmux >/dev/null && tmux source-file ~/.config/tmux/tmux.conf"
+"~/.local/share/nwg-look/gsettings" = "nwg-look -a -x 2>/dev/null"
+"~/.local/state/omarchy/current/theme.name" = "ln -sfn ~/.config/strata/omarchy-themes/$(cat ~/.local/state/omarchy/current/theme.name)/ ~/.local/state/omarchy/current/theme"

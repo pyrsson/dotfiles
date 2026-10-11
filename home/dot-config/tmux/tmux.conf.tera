@@ -1,0 +1,171 @@
+unbind C-b
+set-option -g prefix C-Space
+bind-key C-Space send-prefix
+
+set -ga update-environment ' SSH_AGENT_PID SSH_AUTH_SOCK'
+set -g default-shell /bin/fish
+
+# keybinds
+bind-key r source-file "~/.config/tmux/tmux.conf"
+
+bind-key -n M-1 select-window -t 1
+bind-key -n M-2 select-window -t 2
+bind-key -n M-3 select-window -t 3
+bind-key -n M-4 select-window -t 4
+bind-key -n M-5 select-window -t 5
+bind-key -n M-6 select-window -t 6
+bind-key -n M-7 select-window -t 7
+bind-key -n M-8 select-window -t 8
+bind-key -n M-9 select-window -t 9
+bind-key -n M-0 select-window -t 10
+
+unbind .
+bind-key - split-pane -v -c "#{pane_current_path}"
+bind-key V split-window -vf -c "#{pane_current_path}"
+bind-key . split-pane -h -c "#{pane_current_path}"
+bind-key H split-window -hf -c "#{pane_current_path}"
+
+# vim-tmux-navigator
+# Smart pane switching with awareness of Vim splits.
+# See: https://github.com/christoomey/vim-tmux-navigator
+is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?)(diff)?$'"
+
+bind-key -n M-Left if-shell "$is_vim" 'send-keys M-Left'  'select-pane -L'
+bind-key -n M-Down if-shell "$is_vim" 'send-keys M-Down'  'select-pane -D'
+bind-key -n M-Up if-shell "$is_vim" 'send-keys M-Up'  'select-pane -U'
+bind-key -n M-Right if-shell "$is_vim" 'send-keys M-Right'  'select-pane -R'
+
+bind-key -n M-h if-shell "$is_vim" 'send-keys M-h'  'select-pane -L'
+bind-key -n M-j if-shell "$is_vim" 'send-keys M-j'  'select-pane -D'
+bind-key -n M-k if-shell "$is_vim" 'send-keys M-k'  'select-pane -U'
+bind-key -n M-l if-shell "$is_vim" 'send-keys M-l'  'select-pane -R'
+
+bind-key -n M-w select-pane -l
+
+bind -n C-PPage if-shell "$is_vim" "send-keys Pageup" "copy-mode -u"
+
+bind-key -T copy-mode-vi 'M-Left' select-pane -L
+bind-key -T copy-mode-vi 'M-Down' select-pane -D
+bind-key -T copy-mode-vi 'M-Up' select-pane -U
+bind-key -T copy-mode-vi 'M-Right' select-pane -R
+
+bind-key -T copy-mode-vi 'M-h' select-pane -L
+bind-key -T copy-mode-vi 'M-j' select-pane -D
+bind-key -T copy-mode-vi 'M-k' select-pane -U
+bind-key -T copy-mode-vi 'M-l' select-pane -R
+
+bind-key S set-window-option synchronize-panes #\; display-message "synchronize-panes is now #{?pane_synchronized,on,off}"
+
+# session management
+bind C-k run-shell -b "ta >/dev/null || true"
+bind X confirm-before -p "Kill #S (y/n)?" kill-session
+bind -n C-M-n switch-client -n
+bind -n C-M-p switch-client -p
+bind -n M-p switch-client -l
+bind -n M-z resize-pane -Z
+bind -n M-m switch-client -t main
+bind -n M-n split-window\; select-layout
+bind -n M-t new-window
+
+bind -n C-M-Space if-shell '[[ #{@LAYOUT} = tiled ]]'\
+  'set -w @LAYOUT "main-horizontal"; select-layout main-horizontal; display-message "Layout: main-horizontal"'\
+  'set -w @LAYOUT "tiled"; select-layout tiled; display-message "Layout: tiled"'
+
+
+bind-key -n M-S-H resize-pane -L 5
+bind-key -n M-S-J resize-pane -D 3
+bind-key -n M-S-K resize-pane -U 3
+bind-key -n M-S-L resize-pane -R 5
+
+# copy mode
+unbind [
+unbind ]
+unbind p
+bind-key v copy-mode
+bind-key p paste-buffer
+unbind-key -T copy-mode-vi 'v'
+unbind-key -T copy-mode-vi 'Enter'
+unbind-key -T copy-mode-vi 'Space'
+unbind-key -T copy-mode-vi 'Escape'
+bind-key -T copy-mode-vi 'v' if-shell -F "#{selection_present}" 'send -X clear-selection' 'send -X begin-selection; send -X rectangle-off'
+bind-key -T copy-mode-vi 'C-v' send -X begin-selection\; send -X rectangle-on
+bind-key -T copy-mode-vi 'Escape' send -X clear-selection
+bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel
+bind-key -T copy-mode-vi MouseDragEnd1Pane if-shell -F "#{scroll_position}" '' 'send-keys -X copy-pipe-and-cancel'
+bind-key -T copy-mode-vi Escape send-keys -X cancel
+bind-key -T copy-mode-vi WheelUpPane send -N1 -X scroll-up
+bind-key -T copy-mode-vi WheelDownPane send -N1 -X scroll-down
+
+# use vi mode keys
+setw -g mode-keys vi
+
+# Enable mouse control (clickable windows, panes, resizable panes)
+set -g mouse on
+set -g focus-events on
+
+# scrollback
+set -g history-limit 10000
+set -g detach-on-destroy off
+
+# undercurl support
+set -g default-terminal "${TERM}"
+set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
+set -as terminal-overrides ',*:Setulc=\E[58::2::::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
+set -sag terminal-overrides ",xterm-256color:Tc"
+
+# behaviour
+set -s extended-keys on
+set -s extended-keys-format csi-u
+set -as terminal-features 'xterm-ghostty:extkeys'
+
+set -g word-separators " |{}()[]<>`='\"!@#$%^&*:;,?"
+
+set -g escape-time 10
+
+set -g default-terminal "tmux-256color"
+set -g base-index 1
+setw -g pane-base-index 1
+
+# quiet
+set -g visual-activity off
+set -g visual-bell off
+set -g visual-silence off
+setw -g monitor-activity off
+set -g bell-action none
+
+# status bar
+set -g set-titles on
+set -g set-titles-string "#S: #W"
+
+set -g renumber-windows on
+set -g main-pane-height 80%
+
+set -g status-position top
+set -g status-justify left
+set -g status-interval 5
+
+set -g automatic-rename on
+set -g automatic-rename-format '#{pane_current_command}: #{b;s/simon|spersson/~/:pane_current_path}'
+
+
+# popups
+set -g popup-border-lines "rounded"
+set -g popup-border-style "fg=#82aaff"
+
+# plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
+set -g @plugin 'Morantron/tmux-fingers'
+
+source-file ~/.local/share/nvim/lazy/tokyonight.nvim/extras/tmux/tokyonight_{% if vars.theme == "dark" %}night{% else %}day{% endif %}.tmux
+
+set -g @prefix_highlight_show_copy_mode 'on'
+set -g @prefix_highlight_show_sync_mode 'on'
+set -g @prefix_highlight_prefix_prompt ' WAIT '
+set -g @prefix_highlight_copy_prompt ' #{scroll_position}/#{history_size} '
+set -g @prefix_highlight_sync_prompt ' SYNC '
+
+set -g status-right '#{prefix_highlight} #[fg={% if vars.theme == "dark" %}black{% else %}gray{% endif %},bg=blue,bold] #h '
+
+run '~/.tmux/plugins/tpm/tpm'

@@ -1,0 +1,2 @@
+{%- if vars.theme == "dark" %}{% set variant = "night" %}{% else %}{% set variant = "day" %}{% endif -%}
+{{ read_file(path="/usr/share/tokyonight-extra/xresources/tokyonight_" ~ variant ~ ".Xresources") }}

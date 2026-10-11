@@ -1,9 +1,0 @@
-#!/bin/bash
-
-{{ range (glob (joinPath .chezmoi.homeDir ".config/bat/themes/*")) }}
-# hash {{.}} {{ include . | sha256sum }}
-{{- end }}
-
-set -euo pipefail
-
-bat cache --build

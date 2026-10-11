@@ -1,7 +1,0 @@
-[".cache/chezmoi/Tokyonight-GTK-Theme"]
-type = "archive"
-url = "https://github.com/Fausto-Korpsvart/Tokyonight-GTK-Theme/archive/refs/heads/master.zip"
-exact = true
-stripComponents = 1
-refreshPeriod = "744h"
-include = ["*/themes/**"]
