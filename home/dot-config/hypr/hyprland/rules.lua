@@ -109,11 +109,21 @@ local layouts = {
 }
 local layout = layouts[host.name] or {}
 
+-- workspace -> scrolling layout direction (portrait monitor: windows stack downwards)
+local scrolling = {
+	["sidearm"] = { chat = "down" },
+}
+local scroll = scrolling[host.name] or {}
+
 for name, id in pairs(WS) do
-  local spec = { workspace = tostring(id), default_name = name }
-  if layout[name] ~= nil then
-    spec.monitor = layout[name][1]
-    spec.default = layout[name][2] or nil
-  end
+	local spec = { workspace = tostring(id), default_name = name }
+	if layout[name] ~= nil then
+		spec.monitor = layout[name][1]
+		spec.default = layout[name][2] or nil
+	end
+	if scroll[name] ~= nil then
+		spec.layout = "scrolling"
+		spec.layout_opts = { direction = scroll[name] }
+	end
   hl.workspace_rule(spec)
 end
