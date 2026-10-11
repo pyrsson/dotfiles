@@ -68,7 +68,7 @@ workspace_separator_label = "number"
 [widgets.custom-ddcutil]
 label = "Switch input"
 icon = "output"
-show_if = "niri msg -j outputs |grep UK02338064882"
+show_if = "{ niri msg -j outputs || hyprctl -j monitors; } 2>/dev/null | grep UK02338064882"
 on_click = "ddcutil -n UK02338064882 setvcp 60 1"
 tooltip = "Switch input source"
 max_chars = 20

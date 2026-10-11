@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Turn monitors off/on in whichever compositor is running (niri or Hyprland).
+# usage: monitors-power off|on
+
+set -u
+
+case "${1:-}" in
+  off) niri_action=power-off-monitors; hypr_action=disable ;;
+  on) niri_action=power-on-monitors; hypr_action=enable ;;
+  *)
+    echo "usage: monitors-power off|on" >&2
+    exit 2
+    ;;
+esac
+
+compositor="${XDG_CURRENT_DESKTOP:-}"
+if [[ -z "$compositor" ]]; then
+  if [[ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]]; then
+    compositor=Hyprland
+  elif [[ -n "${NIRI_SOCKET:-}" ]]; then
+    compositor=niri
+  fi
+fi
+
+case "$compositor" in
+  *Hyprland*) exec hyprctl dispatch "hl.dsp.dpms({ action = \"$hypr_action\" })" ;;
+  *niri*) exec niri msg action "$niri_action" ;;
+  *)
+    echo "monitors-power: unknown compositor '${compositor}'" >&2
+    exit 1
+    ;;
+esac
