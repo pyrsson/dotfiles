@@ -1,2 +1,82 @@
-[tools]
-stylua = "latest"
+# Dotfiles managed by `mise dot apply`.
+#
+# Link this repository into the global mise config:
+#   ln -s ~/Projects/personal/dotfiles ~/.config/mise/conf.d/dotfiles
+#
+# Per-machine, untracked settings:
+#   ~/.config/mise/miserc.local.toml  ->  env = ["sidearm"]   (or "thinkpad-x1")
+#   ~/.config/mise/config.local.toml  ->  [vars] theme = "light"   (managed by swap-theme)
+
+[vars]
+theme = "dark"
+
+[dotfiles]
+# The repository is linked file by file into ~ (dot-foo -> .foo). Template sources
+# are skipped here and rendered by the entries below.
+"~" = { source = ".", mode = "symlink-each", dot_prefix = true, exclude = [
+  "/.git",
+  "/.gitignore",
+  "/.luarc.json",
+  "/README.md",
+  "/mise.toml",
+  "/mise",
+  "/tests",
+  "*.tera",
+  ".gitkeep",
+  "dot-config/opencode/cli.json",
+] }
+
+# Rendered templates.
+"~/.npmrc" = { source = "dot-npmrc.tera", mode = "template", permissions = "0600" }
+"~/.Xresources" = { source = "dot-Xresources.tera", mode = "template" }
+"~/.config/environment.d/common.conf" = { source = "dot-config/environment.d/common.conf.tera", mode = "template" }
+"~/.config/hypr/hyprlock.conf" = { source = "dot-config/hypr/hyprlock.conf.tera", mode = "template" }
+"~/.config/niri/config.kdl" = { source = "dot-config/niri/config.kdl.tera", mode = "template" }
+"~/.config/niri/outputs.kdl" = { source = "dot-config/niri/outputs.kdl.tera", mode = "template" }
+"~/.config/tmux/tmux.conf" = { source = "dot-config/tmux/tmux.conf.tera", mode = "template" }
+"~/.config/vibepanel/config.toml" = { source = "dot-config/vibepanel/config.toml.tera", mode = "template" }
+"~/.config/wlogout/style.css" = { source = "dot-config/wlogout/style.css.tera", mode = "template" }
+"~/.local/share/nwg-look/gsettings" = { source = "dot-local/share/nwg-look/gsettings.tera", mode = "template" }
+"~/.local/state/omarchy/current/theme.name" = { source = "dot-local/state/omarchy/current/theme.name.tera", mode = "template" }
+
+# Theme files shipped by the tokyonight-extra package.
+"~/.config/bat/themes/tokyonight_day.tmTheme" = { source = "/usr/share/tokyonight-extra/sublime/tokyonight_day.tmTheme", mode = "symlink" }
+"~/.config/bat/themes/tokyonight_night.tmTheme" = { source = "/usr/share/tokyonight-extra/sublime/tokyonight_night.tmTheme", mode = "symlink" }
+"~/.config/bat/themes/tokyonight_storm.tmTheme" = { source = "/usr/share/tokyonight-extra/sublime/tokyonight_storm.tmTheme", mode = "symlink" }
+"~/.config/ghostty/themes/tokyonight_day" = { source = "/usr/share/tokyonight-extra/ghostty/tokyonight_day", mode = "symlink" }
+"~/.config/ghostty/themes/tokyonight_night" = { source = "/usr/share/tokyonight-extra/ghostty/tokyonight_night", mode = "symlink" }
+"~/.config/opencode/cli.json/shared" = { source = "dot-config/opencode/cli.json", merge = true }
+
+# hyprtagger (dwl-style tags), single-monitor hosts only
+"~/.config/hypr/hyprtagger.lua" = { source = "../hyprtagger/hyprtagger.lua", mode = "symlink", variants = [
+  { profile = "thinkpad-x1" },
+] }
+
+# Autostart. A missing source fails the whole apply, so every entry here
+# requires the app to be installed on the machines it applies to.
+"~/.config/autostart/bitwarden.desktop" = { source = "/usr/share/applications/bitwarden.desktop", mode = "symlink" }
+"~/.config/autostart/ghostty.desktop" = { source = "/usr/share/applications/com.mitchellh.ghostty.desktop", mode = "symlink" }
+"~/.config/autostart/zen.desktop" = { source = "/usr/share/applications/zen.desktop", mode = "symlink" }
+"~/.config/autostart/steam.desktop" = { source = "/usr/share/applications/steam.desktop", mode = "symlink", variants = [
+  { profile = "sidearm" },
+] }
+"~/.config/autostart/vesktop.desktop" = { source = "/usr/share/applications/vesktop.desktop", mode = "symlink", variants = [
+  { profile = "sidearm" },
+] }
+
+# Units started with the graphical session, reached by both niri and uwsm-managed Hyprland
+"~/.config/systemd/user/graphical-session.target.wants/awww.service" = { source = "dot-config/systemd/user/awww.service", mode = "symlink" }
+"~/.config/systemd/user/graphical-session.target.wants/elephant.service" = { source = "dot-config/systemd/user/elephant.service", mode = "symlink" }
+"~/.config/systemd/user/graphical-session.target.wants/playerctld.service" = { source = "dot-config/systemd/user/playerctld.service", mode = "symlink" }
+"~/.config/systemd/user/graphical-session.target.wants/vibepanel.service" = { source = "dot-config/systemd/user/vibepanel.service", mode = "symlink" }
+"~/.config/systemd/user/graphical-session.target.wants/walker.service" = { source = "dot-config/systemd/user/walker.service", mode = "symlink" }
+"~/.config/systemd/user/graphical-session.target.wants/hypridle.service" = { source = "/usr/lib/systemd/user/hypridle.service", mode = "symlink" }
+
+# niri only.
+"~/.config/systemd/user/niri.service.wants/awww-bg.service" = { source = "dot-config/systemd/user/awww-bg.service", mode = "symlink" }
+"~/.config/systemd/user/niri.service.wants/xdg-desktop-portal-gnome.service" = { source = "/usr/lib/systemd/user/xdg-desktop-portal-gnome.service", mode = "symlink" }
+
+# onchange hashes the deployed contents after every apply and runs a
+# rule's command when its hash changed. Rules are defined in mise/onchange.
+[bootstrap.hooks]
+post-dotfiles = "mise/onchange"

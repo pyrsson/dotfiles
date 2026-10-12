@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Run commands when the contents of deployed files change, like chezmoi's run_onchange_.
 #
-# Runs as the post-dotfiles hook of `mise dot apply` (see dotfiles.toml). Each rule hashes
+# Runs as the post-dotfiles hook of `mise dot apply` (see mise.toml). Each rule hashes
 # the files under its paths, following symlinks, so edits to linked sources, package updates
 # behind /usr/share links and re-rendered templates are all detected. A command runs when
 # the hash differs from the one stored after its last successful run.
