@@ -6,7 +6,7 @@ local locked = { locked = true }
 local repeating = { repeating = true }
 local lockrep = { locked = true, repeating = true }
 
-local WS = require("hyprland.workspaces")
+local host = require("hyprland.host")
 
 local screenshot_path = [[~/Pictures/Screenshots/"Screenshot from $(date '+%Y-%m-%d %H-%M-%S').png"]]
 
@@ -14,8 +14,8 @@ local resize_step = 100
 
 -- gestures
 
-hl.gesture({ fingers = 4, direction = "horizontal", action = "workspace" })
-hl.gesture({ fingers = 4, direction = "vertical", action = "special" })
+hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
+hl.gesture({ fingers = 3, direction = "vertical", action = "special", workspace_name = "overlay" })
 
 -- Mod + 2-finger swipe: next/previous track
 hl.gesture({
@@ -37,8 +37,8 @@ hl.gesture({
 
 -- apps / tools
 
-bind("SUPER + Space", exec("walker"), { description = "Run an Application" })
-bind("SUPER + Return", exec("uwsm-app -- ghostty +new-window"), { description = "Open a Terminal: ghostty" })
+bind("SUPER + A", exec("walker"), { description = "Run an Application" })
+bind("SUPER + T", exec("uwsm-app -- ghostty +new-window"), { description = "Open a Terminal: ghostty" })
 bind("SUPER + Escape", exec("loginctl lock-session"), { dont_inhibit = true, description = "Lock the Screen" })
 
 bind("SUPER + V", exec("walker -m clipboard"))
@@ -79,20 +79,24 @@ bind("SUPER + SHIFT + ALT + mouse:276", exec("playerctl next"))
 -- windows
 bind("SUPER + Q", dsp.window.close())
 
--- Move
+-- Move (with hyprtagger, SUPER + arrows and SUPER + SHIFT + Up/Down are tag binds, see below)
 for _, d in ipairs({
-  { "Left", "left" },
-  { "Down", "down" },
-  { "Up", "up" },
-  { "Right", "right" },
+  { "Left", "left", true },
+  { "Down", "down", true },
+  { "Up", "up", true },
+  { "Right", "right", true },
   { "H", "left" },
   { "J", "down" },
   { "K", "up" },
   { "L", "right" },
 }) do
-  local key, dir = d[1], d[2]
-  bind("SUPER + " .. key, dsp.focus({ direction = dir }), repeating)
-  bind("SUPER + SHIFT + " .. key, dsp.window.move({ direction = dir }))
+  local key, dir, arrow = d[1], d[2], d[3]
+  if not (host.tagger and arrow) then
+    bind("SUPER + " .. key, dsp.focus({ direction = dir }), repeating)
+  end
+  if not (host.tagger and (key == "Up" or key == "Down")) then
+    bind("SUPER + SHIFT + " .. key, dsp.window.move({ direction = dir }))
+  end
   bind("SUPER + SHIFT + CTRL + " .. key, dsp.window.move({ monitor = dir, follow = true })) -- to monitor
   -- Monitors
   bind("SUPER + ALT + " .. key, dsp.focus({ monitor = dir }))
@@ -104,12 +108,14 @@ end
 bind("SUPER + Comma", dsp.window.move({ direction = "left", group_aware = true }))
 bind("SUPER + Period", dsp.window.move({ direction = "right", group_aware = true }))
 bind("SUPER + W", dsp.group.toggle(), { description = "Toggle tabbed (group)" })
-bind("SUPER + Tab", dsp.group.next())
-bind("SUPER + SHIFT + Tab", dsp.group.prev())
+bind("SUPER + O", dsp.group.next())
+bind("SUPER + SHIFT + O", dsp.group.prev())
 
 -- Sizing
-bind("SUPER + R", dsp.layout("splitratio 1.0 exact"))
-bind("SUPER + CTRL + R", dsp.layout("togglesplit"))
+if not host.tagger then
+  bind("SUPER + R", dsp.layout("splitratio 1.0 exact"))
+  bind("SUPER + CTRL + R", dsp.layout("togglesplit"))
+end
 bind("SUPER + CTRL + H", dsp.window.resize({ x = -resize_step, y = 0, relative = true }), repeating)
 bind("SUPER + CTRL + L", dsp.window.resize({ x = resize_step, y = 0, relative = true }), repeating)
 bind("SUPER + CTRL + K", dsp.window.resize({ x = 0, y = -resize_step, relative = true }), repeating)
@@ -121,7 +127,7 @@ bind("SUPER + SHIFT + F", dsp.window.fullscreen({ mode = "fullscreen" }))
 bind("SUPER + C", dsp.window.center())
 
 -- Floating
-bind("SUPER + D", dsp.window.float({ action = "toggle" }))
+bind("SUPER + G", dsp.window.float({ action = "toggle" }))
 bind("SUPER + SHIFT + D", dsp.focus({ window = "floating" }))
 
 -- Mouse
@@ -139,11 +145,39 @@ bind("SUPER + SHIFT + ALT + Q", exec("hyprctl kill"), { description = "Pick and 
 -- workspaces
 
 -- Number row by keycode (layout independent): code:10 = 1 ... code:18 = 9
+-- With hyprtagger, SUPER (+ SHIFT/CTRL) + 1-9 are tags instead of workspaces
+local tags = host.tagger and require("hyprtagger")
 for i = 1, 9 do
   local key = "code:" .. (i + 9)
-  bind("SUPER + " .. key, dsp.focus({ workspace = i }))
-  bind("SUPER + SHIFT + " .. key, dsp.window.move({ workspace = i, follow = true }))
+  if tags then
+    bind("SUPER + " .. key, tags.action.view(i))
+    bind("SUPER + SHIFT + " .. key, tags.action.tag(i))
+    bind("SUPER + CTRL + " .. key, tags.action.toggleview(i))
+    bind("SUPER + CTRL + SHIFT + " .. key, tags.action.toggletag(i))
+  else
+    bind("SUPER + " .. key, dsp.focus({ workspace = i }))
+    bind("SUPER + SHIFT + " .. key, dsp.window.move({ workspace = i, follow = true }))
+  end
   bind("SUPER + ALT + " .. key, dsp.workspace.move({ monitor = i - 1 })) -- old: move workspace to monitor N
+end
+
+-- hyprtagger: dwl-style tags and master/stack layout
+if tags then
+  local a = tags.action
+  bind("SUPER + code:19", a.view_all(), { description = "View all tags" }) -- 0
+  bind("SUPER + SHIFT + code:19", a.tag_all(), { description = "Tag window with all tags" })
+  bind("SUPER + Tab", a.view_prev(), { description = "Previous tag view" })
+
+  bind("SUPER + Return", a.zoom(), { description = "Swap with master" })
+  bind("SUPER + Down", a.focusstack(1), repeating)
+  bind("SUPER + Up", a.focusstack(-1), repeating)
+  bind("SUPER + SHIFT + Down", a.movestack(1))
+  bind("SUPER + SHIFT + Up", a.movestack(-1))
+  bind("SUPER + Left", a.setmfact(-0.05), repeating)
+  bind("SUPER + Right", a.setmfact(0.05), repeating)
+  bind("SUPER + I", a.incnmaster(1), { description = "More masters" })
+  bind("SUPER + D", a.incnmaster(-1), { description = "Fewer masters" })
+  bind("SUPER + Space", a.cycle_layout(), { description = "Cycle layout" })
 end
 
 bind("SUPER + P", dsp.focus({ workspace = "previous" }))

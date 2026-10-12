@@ -70,7 +70,7 @@ hl.config({
   general = {
     gaps_in = 4,
     gaps_out = 8,
-    gaps_workspaces = 50,
+    gaps_workspaces = 30,
     border_size = 3,
 
     col = {
@@ -101,7 +101,7 @@ hl.config({
       enabled = true,
       size = 3,
       passes = 1,
-      xray = true,
+      xray = false,
     },
 
     shadow = {
@@ -151,6 +151,7 @@ bezier("easeOutCirc", 0, 0.55, 0.45, 1)
 bezier("easeOutExpo", 0.16, 1, 0.3, 1)
 bezier("softAcDecel", 0.26, 0.26, 0.15, 1)
 bezier("md2", 0.4, 0, 0.2, 1) -- use with .2s duration
+bezier("easeOutQuint", 0.23, 1, 0.32, 1)
 
 local function anim(leaf, speed, curve, style)
   hl.animation({ leaf = leaf, enabled = true, speed = speed, bezier = curve, style = style })
@@ -167,7 +168,13 @@ anim("layersIn", 3, "menu_decel", "slide")
 anim("layersOut", 1.6, "menu_accel")
 anim("fadeLayersIn", 2, "menu_decel")
 anim("fadeLayersOut", 2, "menu_accel")
-anim("workspaces", 7, "menu_decel", "slide")
+if require("hyprland.host").tagger then
+  -- combined tag views assemble off-screen, then slide in
+  anim("workspaces", 3, "easeOutQuint", "slidefade 20%")
+  anim("windowsMove", 3, "easeOutQuint")
+else
+  anim("workspaces", 7, "menu_decel", "slide")
+end
 -- anim("workspaces",    2.5, "softAcDecel", "slide")
 -- anim("workspaces",    7,   "menu_decel",  "slidefade 15%")
 anim("specialWorkspace", 3, "md3_decel", "slidefadevert 15%")
