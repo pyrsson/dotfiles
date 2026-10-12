@@ -8,7 +8,8 @@
     "session.list": "<leader>ctrl+l,ctrl+q",
     "model.list": "<leader>ctrl+m,ctrl+l",
     "dialog.select.prev": "up,ctrl+p,ctrl+k",
-    "dialog.select.next": "down,ctrl+n,ctrl+j"
+    "dialog.select.next": "down,ctrl+n,ctrl+j",
+    "agent.cycle": "tab"
   },
   "leader": {
     "timeout": 2000

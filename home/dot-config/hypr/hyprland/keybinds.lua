@@ -147,7 +147,7 @@ for i = 1, 9 do
 end
 
 bind("SUPER + P", dsp.focus({ workspace = "previous" }))
-bind("SUPER + S", dsp.focus({ workspace = WS.chat }))
+bind("SUPER + S", dsp.workspace.toggle_special("overlay"))
 
 bind("SUPER + Page_Down", dsp.focus({ workspace = "r+1" }))
 bind("SUPER + Page_Up", dsp.focus({ workspace = "r-1" }))

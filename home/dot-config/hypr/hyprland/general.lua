@@ -118,7 +118,7 @@ hl.config({
     animate_manual_resizes = false,
     animate_mouse_windowdragging = false,
     enable_swallow = false,
-    swallow_regex = "(foot|kitty|allacritty|Alacritty)",
+    swallow_regex = "(foot|kitty|alacritty|Alacritty)",
 
     disable_hyprland_logo = true,
     force_default_wallpaper = 0,
@@ -127,6 +127,7 @@ hl.config({
 
     initial_workspace_tracking = false,
     background_color = "rgba(131318FF)",
+    focus_on_activate = true,
   },
 })
 
