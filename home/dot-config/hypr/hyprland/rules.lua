@@ -22,6 +22,7 @@ local chat =
   [[^([Ss]potify|vesktop|discord|com\.slack\.Slack|[Ss]lack|com\.github\.IsmaelMartinez\.teams_for_linux|teams-for-linux)$]]
 
 local WS = require("hyprland.workspaces")
+local host = require("hyprland.host")
 
 -- Top-right corner panel placement (below the bar)
 local panel = { move = { "monitor_w-window_w-5", 44 }, size = { 640, "monitor_h*0.5" } }
@@ -124,7 +125,11 @@ rule({ class = [[^io\.github\.lgse\.Strata$]] }, { float = true })
 rule({ class = "^(zen)$", workspace = "w[tv2-10]" }, { float = true })
 
 -- Chat apps -> "chat" workspace (native + flatpak class names)
-rule({ class = chat }, { workspace = WS.chat .. " silent" })
+if host.tagger then
+  rule({ class = chat }, { tags = tostring(WS.chat) }) -- hyprtagger plugin effect
+else
+  rule({ class = chat }, { workspace = WS.chat .. " silent" })
+end
 rule(
   { class = [[^(com\.slack\.Slack|[Ss]lack|com\.github\.IsmaelMartinez\.teams_for_linux|teams-for-linux)$]] },
   { tag = "+unfocused" }
@@ -133,6 +138,8 @@ rule(
 rule({ class = "^steam$" }, { workspace = WS.gaming .. " silent" })
 
 rule({ class = ".*" }, { persistent_size = true })
+-- xray is enabled per-window instead of globally: layer fadeouts ignore layer xray rules and fall back to the global setting
+rule({ class = ".*" }, { xray = true })
 
 -- layers
 
@@ -147,7 +154,6 @@ hl.layer_rule({
 -- workspaces
 
 -- Workspace -> monitor layout per host
-local host = require("hyprland.host")
 local philips = "desc:Philips Consumer Electronics Company PHL 346P1C"
 local msi = "desc:Microstep MSI G273Q"
 

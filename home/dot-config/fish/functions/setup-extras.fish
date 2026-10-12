@@ -7,7 +7,11 @@ function setup-extras -d 'setup extras'
     # direnv hook
     type -q direnv && direnv hook fish >$HOME/.config/fish/conf.d/direnv.fish
 
+    # mise hook
+    type -q mise && mise activate fish >$HOME/.config/fish/conf.d/mise.fish
+
     # non-standard style command completion
     type -q zellij && zellij setup --generate-completion fish >$HOME/.config/fish/completions/zellij.fish
     type -q stern && stern --completion fish >$HOME/.config/fish/completions/stern.fish
+    type -q opencode && opencode --completions fish >$HOME/.config/fish/completions/opencode.fish
 end

@@ -19,7 +19,7 @@ root = "home"
 target = "~"
 mode = "symlink-each"
 dot_prefix = true
-exclude = [".gitkeep"]
+exclude = [".gitkeep", "dot-config/opencode/cli.json"]
 
 # Rendered templates. Their .tera sources are skipped by the group walk.
 [dotfile_groups.home.entries]
@@ -36,7 +36,6 @@ exclude = [".gitkeep"]
 "~/.local/state/omarchy/current/theme.name" = { source = "dot-local/state/omarchy/current/theme.name.tera", mode = "template" }
 
 [dotfiles]
-# This file itself.
 "~/.config/mise/conf.d/dotfiles.toml" = { source = "~/Projects/personal/dotfiles/mise/dotfiles.toml", mode = "symlink" }
 
 # Theme files shipped by the tokyonight-extra package.
@@ -45,6 +44,12 @@ exclude = [".gitkeep"]
 "~/.config/bat/themes/tokyonight_storm.tmTheme" = { source = "/usr/share/tokyonight-extra/sublime/tokyonight_storm.tmTheme", mode = "symlink" }
 "~/.config/ghostty/themes/tokyonight_day" = { source = "/usr/share/tokyonight-extra/ghostty/tokyonight_day", mode = "symlink" }
 "~/.config/ghostty/themes/tokyonight_night" = { source = "/usr/share/tokyonight-extra/ghostty/tokyonight_night", mode = "symlink" }
+"~/.config/opencode/cli.json/shared" = { source = "~/Projects/personal/dotfiles/home/dot-config/opencode/cli.json", merge = true }
+
+# hyprtagger (dwl-style tags), single-monitor hosts only
+"~/.config/hypr/hyprtagger.lua" = { source = "~/Projects/personal/hyprtagger/hyprtagger.lua", mode = "symlink", variants = [
+  { profile = "thinkpad-x1" },
+] }
 
 # Autostart. A missing source fails the whole apply, so every entry here
 # requires the app to be installed on the machines it applies to.

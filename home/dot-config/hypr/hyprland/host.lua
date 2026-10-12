@@ -10,6 +10,10 @@ local function read_hostname()
   return name
 end
 
+local name = read_hostname()
+
 return {
-  name = read_hostname(),
+  name = name,
+  -- hyprtagger (dwl-style tags) is single-monitor only
+  tagger = name == "thinkpad-x1",
 }
