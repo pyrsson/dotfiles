@@ -1,6 +1,6 @@
 import { expect, test } from "bun:test"
-import { createTransport } from "../../home/dot-config/opencode/extensions/claude-auth/transport.js"
-import { loadUpstream } from "../../home/dot-config/opencode/extensions/claude-auth/upstream.js"
+import { createTransport } from "../../dot-config/opencode/extensions/claude-auth/transport.js"
+import { loadUpstream } from "../../dot-config/opencode/extensions/claude-auth/upstream.js"
 
 // Protocol helpers are real; credentials and network are isolated from user accounts.
 const helpers = await loadUpstream()
