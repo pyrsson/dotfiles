@@ -13,7 +13,7 @@ theme = "dark"
 [dotfiles]
 # The repository is linked file by file into ~ (dot-foo -> .foo). Template sources
 # are skipped here and rendered by the entries below.
-"~" = { source = ".", mode = "symlink-each", dot_prefix = true, exclude = [
+"~" = { source = "", mode = "symlink-each", dot_prefix = true, exclude = [
   "/.git",
   "/.gitignore",
   "/.luarc.json",
