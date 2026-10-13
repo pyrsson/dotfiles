@@ -1,0 +1,14 @@
+# Loaded on top of mise.toml when miserc.local.toml has env = ["thinkpad-x1"].
+
+[vars]
+bar_position = "left"
+fingerprint = true
+niri_web_output = "eDP-1"
+niri_chat_output = "eDP-1"
+
+[dotfiles]
+"~/.config/hypr/hyprland/monitors.lua" = { source = "hosts/thinkpad-x1/hypr/monitors.lua", mode = "symlink" }
+"~/.config/niri/outputs.kdl" = { source = "hosts/thinkpad-x1/niri/outputs.kdl", mode = "symlink" }
+
+# hyprtagger (dwl-style tags), single-monitor hosts only
+"~/.config/hypr/hyprtagger.lua" = { source = "../hyprtagger/hyprtagger.lua", mode = "symlink" }

@@ -5,10 +5,21 @@
 #
 # Per-machine, untracked settings:
 #   ~/.config/mise/miserc.local.toml  ->  env = ["sidearm"]   (or "thinkpad-x1")
-#   ~/.config/mise/config.local.toml  ->  [vars] theme = "light"   (managed by swap-theme)
+#   ./mise.local.toml                 ->  [vars] theme = "light"   (managed by swap-theme, gitignored)
+#
+# The env selects mise.<env>.toml, which holds that host's entries and vars and
+# links its files from hosts/<env>/.
 
+# Defaults, overridden per host in mise.<env>.toml. An empty output skips the
+# open-on-output line (or the whole workspace, for gaming).
 [vars]
 theme = "dark"
+bar_position = "top"
+fingerprint = false
+mesa_shader_cache_max_size = ""
+niri_web_output = ""
+niri_chat_output = ""
+niri_gaming_output = ""
 
 [dotfiles]
 # The repository is linked file by file into ~ (dot-foo -> .foo). Template sources
@@ -18,8 +29,9 @@ theme = "dark"
   "/.gitignore",
   "/.luarc.json",
   "/README.md",
-  "/mise.toml",
+  "/mise*.toml",
   "/mise",
+  "/hosts",
   "/tests",
   "*.tera",
   ".gitkeep",
@@ -32,12 +44,16 @@ theme = "dark"
 "~/.config/environment.d/common.conf" = { source = "dot-config/environment.d/common.conf.tera", mode = "template" }
 "~/.config/hypr/hyprlock.conf" = { source = "dot-config/hypr/hyprlock.conf.tera", mode = "template" }
 "~/.config/niri/config.kdl" = { source = "dot-config/niri/config.kdl.tera", mode = "template" }
-"~/.config/niri/outputs.kdl" = { source = "dot-config/niri/outputs.kdl.tera", mode = "template" }
 "~/.config/tmux/tmux.conf" = { source = "dot-config/tmux/tmux.conf.tera", mode = "template" }
 "~/.config/vibepanel/config.toml" = { source = "dot-config/vibepanel/config.toml.tera", mode = "template" }
 "~/.config/wlogout/style.css" = { source = "dot-config/wlogout/style.css.tera", mode = "template" }
 "~/.local/share/nwg-look/gsettings" = { source = "dot-local/share/nwg-look/gsettings.tera", mode = "template" }
 "~/.local/state/omarchy/current/theme.name" = { source = "dot-local/state/omarchy/current/theme.name.tera", mode = "template" }
+
+# Per-host files, defaults for hosts without a mise.<env>.toml. The env file
+# replaces these entries (same target) with links into hosts/<env>/.
+"~/.config/hypr/hyprland/monitors.lua" = { source = "hosts/default/hypr/monitors.lua", mode = "symlink" }
+"~/.config/niri/outputs.kdl" = { source = "hosts/default/niri/outputs.kdl", mode = "symlink" }
 
 # Theme files shipped by the tokyonight-extra package.
 "~/.config/bat/themes/tokyonight_day.tmTheme" = { source = "/usr/share/tokyonight-extra/sublime/tokyonight_day.tmTheme", mode = "symlink" }
@@ -47,22 +63,11 @@ theme = "dark"
 "~/.config/ghostty/themes/tokyonight_night" = { source = "/usr/share/tokyonight-extra/ghostty/tokyonight_night", mode = "symlink" }
 "~/.config/opencode/cli.json/shared" = { source = "dot-config/opencode/cli.json", merge = true }
 
-# hyprtagger (dwl-style tags), single-monitor hosts only
-"~/.config/hypr/hyprtagger.lua" = { source = "../hyprtagger/hyprtagger.lua", mode = "symlink", variants = [
-  { profile = "thinkpad-x1" },
-] }
-
 # Autostart. A missing source fails the whole apply, so every entry here
 # requires the app to be installed on the machines it applies to.
 "~/.config/autostart/bitwarden.desktop" = { source = "/usr/share/applications/bitwarden.desktop", mode = "symlink" }
 "~/.config/autostart/ghostty.desktop" = { source = "/usr/share/applications/com.mitchellh.ghostty.desktop", mode = "symlink" }
 "~/.config/autostart/zen.desktop" = { source = "/usr/share/applications/zen.desktop", mode = "symlink" }
-"~/.config/autostart/steam.desktop" = { source = "/usr/share/applications/steam.desktop", mode = "symlink", variants = [
-  { profile = "sidearm" },
-] }
-"~/.config/autostart/vesktop.desktop" = { source = "/usr/share/applications/vesktop.desktop", mode = "symlink", variants = [
-  { profile = "sidearm" },
-] }
 
 # Units started with the graphical session, reached by both niri and uwsm-managed Hyprland
 "~/.config/systemd/user/graphical-session.target.wants/awww.service" = { source = "dot-config/systemd/user/awww.service", mode = "symlink" }

@@ -1,0 +1,2 @@
+// No output config for hosts without their own file; niri uses its defaults.
+// Linked to ~/.config/niri/outputs.kdl by mise.toml; mise.<env>.toml overrides the link.

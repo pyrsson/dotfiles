@@ -1,9 +1,5 @@
 [bar]
-{% if "thinkpad-x1" in mise_env | default(value=[]) %}
-position = "left"
-{% else %}
-position = "top"
-{% endif %}
+position = "{{ vars.bar_position }}"
 
 # Spacing between widgets within each section (in pixels)
 spacing = 6

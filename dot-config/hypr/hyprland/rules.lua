@@ -153,22 +153,10 @@ hl.layer_rule({
 
 -- workspaces
 
--- Workspace -> monitor layout per host
-local philips = "desc:Philips Consumer Electronics Company PHL 346P1C"
-local msi = "desc:Microstep MSI G273Q"
-
--- workspace -> { monitor, default-for-monitor? }
-local layouts = {
-  ["sidearm"] = { web = { philips, true }, gaming = { philips }, chat = { msi, true } },
-  ["thinkpad-x1"] = { web = { "eDP-1", true }, chat = { "eDP-1" } },
-}
-local layout = layouts[host.name] or {}
-
--- workspace -> scrolling layout direction (portrait monitor: windows stack downwards)
-local scrolling = {
-  ["sidearm"] = { chat = "down", gaming = "right" },
-}
-local scroll = scrolling[host.name] or {}
+-- Workspace -> monitor layout and scrolling direction, from the per-host monitors file
+local monitors = require("hyprland.monitors")
+local layout = monitors.workspaces
+local scroll = monitors.scrolling
 
 for name, id in pairs(WS) do
   local spec = { workspace = tostring(id), default_name = name }

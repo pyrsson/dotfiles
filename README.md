@@ -29,8 +29,9 @@ mise dot apply --force   # --force replaces existing real files with links
 - `mise dot status` / `mise dot diff` - show what differs
 - `mise dot apply` - apply changes (needed after adding files or editing `*.tera` templates)
 - `mise/onchange --force` - run every reload command regardless of changes
-- `swap-theme` - toggle `vars.theme` between dark and light in `~/.config/mise/config.local.toml` and re-apply
-- Host-specific template blocks use `{% if "sidearm" in mise_env | default(value=[]) %}`
+- `swap-theme` - toggle `vars.theme` between dark and light in the repo's untracked `mise.local.toml` and re-apply
+- Host-specific config lives in `mise.<env>.toml` (selected by `miserc.local.toml`): per-host `[vars]`
+  used by templates, and links to whole per-host files under `hosts/<env>/` (monitors, niri outputs)
 
 ## OpenCode V2
 
