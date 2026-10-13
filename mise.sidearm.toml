@@ -1,0 +1,15 @@
+# Loaded on top of mise.toml when miserc.local.toml has env = ["sidearm"].
+
+[vars]
+mesa_shader_cache_max_size = "12G"
+niri_web_output = "DP-1"
+niri_chat_output = "DP-2"
+niri_gaming_output = "DP-1"
+
+[dotfiles]
+"~/.config/hypr/hyprland/monitors.lua" = { source = "hosts/sidearm/hypr/monitors.lua", mode = "symlink" }
+"~/.config/niri/outputs.kdl" = { source = "hosts/sidearm/niri/outputs.kdl", mode = "symlink" }
+
+# Autostart. A missing source fails the whole apply.
+"~/.config/autostart/steam.desktop" = { source = "/usr/share/applications/steam.desktop", mode = "symlink" }
+"~/.config/autostart/vesktop.desktop" = { source = "/usr/share/applications/vesktop.desktop", mode = "symlink" }

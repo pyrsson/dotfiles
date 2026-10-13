@@ -176,16 +176,14 @@ prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 workspace "web" {
-    {%- if "thinkpad-x1" in mise_env | default(value=[]) %}
-    open-on-output "eDP-1"
-    {%- elif "sidearm" in mise_env | default(value=[]) %}
-    open-on-output "DP-1"
+    {%- if vars.niri_web_output %}
+    open-on-output "{{ vars.niri_web_output }}"
     {%- endif %}
 }
 
-{%- if "sidearm" in mise_env | default(value=[]) %}
+{%- if vars.niri_gaming_output %}
 workspace "gaming" {
-    open-on-output "DP-1"
+    open-on-output "{{ vars.niri_gaming_output }}"
 }
 
 window-rule {
@@ -195,10 +193,8 @@ window-rule {
 {%- endif %}
 
 workspace "chat" {
-    {%- if "sidearm" in mise_env | default(value=[]) %}
-    open-on-output "DP-2"
-    {%- elif "thinkpad-x1" in mise_env | default(value=[]) %}
-    open-on-output "eDP-1"
+    {%- if vars.niri_chat_output %}
+    open-on-output "{{ vars.niri_chat_output }}"
     {%- endif %}
 }
 

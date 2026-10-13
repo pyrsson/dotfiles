@@ -9,23 +9,8 @@ hl.device({
 
 -- monitors
 
-hl.monitor({ output = "eDP-1", mode = "preferred", position = "0x0", scale = 1 })
-hl.monitor({
-  output = "desc:Philips Consumer Electronics Company PHL 346P1C",
-  mode = "3440x1440@100",
-  position = "0x0",
-  scale = 1,
-  vrr = 0,
-})
--- hl.monitor({ output = "DP-3", mode = "3440x1440@100", position = "auto", scale = 1, vrr = 2 })
-hl.monitor({ output = "DP-3", disabled = true })
-hl.monitor({
-  output = "desc:Microstep MSI G273Q",
-  mode = "2560x1440@120",
-  position = "3440x-640",
-  scale = 1,
-  transform = 3,
-})
+-- Per-host monitors, linked from hosts/<env>/hypr/monitors.lua (hosts/default/ otherwise)
+require("hyprland.monitors")
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 
 -- config

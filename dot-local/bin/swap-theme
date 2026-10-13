@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
-# Toggle vars.theme (dark/light) in the machine-local mise config and re-apply dotfiles.
+# Toggle vars.theme (dark/light) in the dotfiles repo's untracked mise.local.toml and
+# re-apply dotfiles. It has to live beside mise.toml: from inside the repo, mise.toml
+# loads after ~/.config/mise/config.local.toml and would override it.
 
-local_config="${XDG_CONFIG_HOME:-$HOME/.config}/mise/config.local.toml"
+local_config="${XDG_CONFIG_HOME:-$HOME/.config}/mise/conf.d/dotfiles/mise.local.toml"
 
 current=$(mise config get -f "$local_config" vars.theme 2>/dev/null || echo dark)
 

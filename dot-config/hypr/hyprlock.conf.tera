@@ -6,7 +6,7 @@ $font_family = Hack NFP
 $font_family_clock = Hack NFP
 $font_material_symbols = Material Symbols Rounded
 
-{%- if "thinkpad-x1" in mise_env | default(value=[]) %}
+{%- if vars.fingerprint %}
 auth {
   fingerprint {
     enabled = true
@@ -30,7 +30,7 @@ label { # lock icon
 {%- endif %}
 
 background {
-  path = ~/Pictures/wallpapers/pcb-teal.png
+  path = ~/Wallpapers/pcb-teal.png
   blur_size = 5
   blur_passes = 3
 }

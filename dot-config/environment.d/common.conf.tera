@@ -11,6 +11,6 @@ SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
 XCURSOR_SIZE=24
 XCURSOR_THEME=Bibata-Modern-Ice
 
-{%- if "sidearm" in mise_env | default(value=[]) %}
-MESA_SHADER_CACHE_MAX_SIZE=12G
+{%- if vars.mesa_shader_cache_max_size %}
+MESA_SHADER_CACHE_MAX_SIZE={{ vars.mesa_shader_cache_max_size }}
 {%- endif %}
