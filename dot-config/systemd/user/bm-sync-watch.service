@@ -1,0 +1,11 @@
+[Unit]
+Description=Sync basic-memory to B2 after local changes
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/bm-sync watch
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,115 @@
+#!/usr/bin/env bash
+# Two-way sync of basic-memory projects (~/basic-memory/<project>) with an rclone crypt remote.
+#
+# Only projects listed in the untracked allowlist are synced, one name per line:
+#   ~/.config/bm-sync/projects
+# The crypt remote is created by hand with `rclone config` (default name: bm-crypt).
+#
+# Usage: bm-sync          sync every allowlisted project
+#        bm-sync watch    start bm-sync.service ~30s after local changes settle
+
+set -uo pipefail
+
+root="$HOME/basic-memory"
+remote="${BM_SYNC_REMOTE:-bm-crypt}"
+allowlist="${XDG_CONFIG_HOME:-$HOME/.config}/bm-sync/projects"
+state_dir="${XDG_STATE_HOME:-$HOME/.local/state}/bm-sync"
+bm_config="${XDG_CONFIG_HOME:-$HOME/.config}/basic-memory/config.json"
+bm=(uvx -q basic-memory@0.23.2)
+debounce=30
+
+mkdir -p "$state_dir" "$root"
+
+if [[ "${1:-}" == "watch" ]]; then
+  inotifywait -mrq -e close_write,create,delete,moved_to,moved_from "$root" | while read -r _; do
+    while read -r -t "$debounce" _; do :; done
+    systemctl --user start --no-block bm-sync.service
+  done
+  exit 1
+fi
+
+notify() {
+  notify-send -a bm-sync "$@" 2>/dev/null || true
+}
+
+fingerprint() {
+  find "$1" -type f -printf '%P %s %T@\n' 2>/dev/null | sort | sha256sum
+}
+
+exec 9>"$state_dir/lock"
+flock 9
+
+if [[ ! -f "$allowlist" ]]; then
+  echo "bm-sync: no allowlist at $allowlist, nothing to do"
+  exit 0
+fi
+if ! rclone listremotes | grep -qx "$remote:"; then
+  echo "bm-sync: rclone remote '$remote' is not configured, nothing to do"
+  exit 0
+fi
+if ! getent hosts api.backblazeb2.com >/dev/null; then
+  echo "bm-sync: offline, skipping"
+  exit 0
+fi
+
+failed=()
+while read -r project; do
+  project="${project%%#*}"
+  project="${project//[[:space:]]/}"
+  [[ -z "$project" ]] && continue
+
+  local_dir="$root/$project"
+  remote_dir="$remote:$project"
+  mkdir -p "$local_dir"
+
+  if ! jq -e --arg p "$project" '.projects[$p]' "$bm_config" >/dev/null 2>&1; then
+    echo "bm-sync: registering basic-memory project $project"
+    "${bm[@]}" project add "$project" "$local_dir"
+  fi
+
+  args=(
+    --create-empty-src-dirs
+    --conflict-resolve newer
+    --conflict-loser num
+    --conflict-suffix conflict
+    --resilient
+    --recover
+    --max-lock 5m
+    --exclude '.basic-memory/**'
+    --exclude '*.swp'
+    --exclude '*~'
+    --exclude '.#*'
+    --exclude '4913'
+  )
+  marker="$state_dir/$project.initialized"
+  if [[ ! -f "$marker" ]]; then
+    rclone mkdir "$remote_dir"
+    args+=(--resync --resync-mode newer)
+  fi
+
+  before=$(fingerprint "$local_dir")
+  echo "bm-sync: $project"
+  if ! rclone bisync "$local_dir" "$remote_dir" "${args[@]}"; then
+    failed+=("$project")
+    continue
+  fi
+  touch "$marker"
+
+  if [[ "$(fingerprint "$local_dir")" != "$before" ]]; then
+    "${bm[@]}" reindex -p "$project"
+  fi
+
+  seen="$state_dir/$project.conflicts"
+  touch "$seen"
+  current=$(cd "$local_dir" && find . -type f -name '*.conflict[0-9]*' -printf '%P\n' | sort)
+  new=$(comm -13 "$seen" <(printf '%s\n' "$current" | sed '/^$/d'))
+  if [[ -n "$new" ]]; then
+    notify -u critical "basic-memory sync conflict in $project" "$new"
+  fi
+  printf '%s\n' "$current" | sed '/^$/d' >"$seen"
+done <"$allowlist"
+
+if ((${#failed[@]})); then
+  notify -u critical "basic-memory sync failed" "${failed[*]} (see journalctl --user -u bm-sync)"
+  exit 1
+fi

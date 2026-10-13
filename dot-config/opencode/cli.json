@@ -17,18 +17,12 @@
   "scroll": {
     "speed": 1
   },
-  "diffs": {
-    "wrap": "word"
-  },
   "session": {
-    "sidebar": "auto",
+    "sidebar": "hide",
     "scrollbar": false,
     "thinking": "hide",
     "markdown": "rendered",
     "verbosity": "medium"
   },
-  "animations": true,
-  "tabs": {
-    "scope": "cwd"
-  }
+  "animations": true
 }

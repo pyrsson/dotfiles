@@ -48,6 +48,8 @@ onchange() {
 # First, so the restarts below use the current unit files.
 onchange systemd "systemctl --user daemon-reload" \
   ~/.config/systemd/user
+onchange bm-sync "systemctl --user restart bm-sync.timer bm-sync-watch.service" \
+  ~/.local/bin/bm-sync ~/.config/systemd/user/bm-sync.timer ~/.config/systemd/user/bm-sync-watch.service
 onchange bat "bat cache --build" \
   ~/.config/bat/themes
 onchange elephant "systemctl --user restart elephant.service" \

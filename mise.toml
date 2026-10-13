@@ -72,6 +72,10 @@ theme = "dark"
 "~/.config/systemd/user/graphical-session.target.wants/walker.service" = { source = "dot-config/systemd/user/walker.service", mode = "symlink" }
 "~/.config/systemd/user/graphical-session.target.wants/hypridle.service" = { source = "/usr/lib/systemd/user/hypridle.service", mode = "symlink" }
 
+# basic-memory sync to B2. Per-host allowlist: ~/.config/bm-sync/projects
+"~/.config/systemd/user/timers.target.wants/bm-sync.timer" = { source = "dot-config/systemd/user/bm-sync.timer", mode = "symlink" }
+"~/.config/systemd/user/default.target.wants/bm-sync-watch.service" = { source = "dot-config/systemd/user/bm-sync-watch.service", mode = "symlink" }
+
 # niri only.
 "~/.config/systemd/user/niri.service.wants/awww-bg.service" = { source = "dot-config/systemd/user/awww-bg.service", mode = "symlink" }
 "~/.config/systemd/user/niri.service.wants/xdg-desktop-portal-gnome.service" = { source = "/usr/lib/systemd/user/xdg-desktop-portal-gnome.service", mode = "symlink" }

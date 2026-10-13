@@ -1,1 +1,3 @@
-Keep responses concise; no preamble or recap.
+- Keep responses concise; no preamble or recap.
+- Basic Memory: in `~/Projects/<group>/<repo>`, use project `<group>` and put notes under folder `<repo>/`. Cross-cutting notes (preferences, general knowledge) go in project `global`.
+- Writing to Basic Memory (write_note/edit_note) is allowed in plan mode; it doesn't count as modifying files.

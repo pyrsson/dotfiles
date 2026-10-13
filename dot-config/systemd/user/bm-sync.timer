@@ -1,0 +1,9 @@
+[Unit]
+Description=Pull basic-memory changes from B2 periodically
+
+[Timer]
+OnStartupSec=2min
+OnUnitActiveSec=30min
+
+[Install]
+WantedBy=timers.target
