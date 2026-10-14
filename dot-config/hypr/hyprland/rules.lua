@@ -117,7 +117,7 @@ rule({ title = "^(Easy Effects)$" }, { float = true })
 rule({ title = "^(Extension)(.*)$" }, { float = true })
 
 -- Floating tools
-rule({ class = "Bitwarden" }, { float = true })
+rule({ class = "bitwarden" }, { float = true })
 rule({ class = "^steam$", title = "^Friends List$" }, { float = true })
 rule({ class = [[^com\.github\.finefindus\.eyedropper$]] }, { float = true })
 rule({ class = [[^io\.github\.lgse\.Strata$]] }, { float = true })
@@ -140,6 +140,8 @@ rule({ class = "^steam$" }, { workspace = WS.gaming .. " silent" })
 rule({ class = ".*" }, { persistent_size = true })
 -- xray is enabled per-window instead of globally: layer fadeouts ignore layer xray rules and fall back to the global setting
 rule({ class = ".*" }, { xray = true })
+-- XWayland menus are untitled windows whose transparent shadow margin would show blurred wallpaper
+rule({ xwayland = true, title = "^$" }, { no_blur = true })
 
 -- layers
 
