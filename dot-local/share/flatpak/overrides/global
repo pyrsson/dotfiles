@@ -1,0 +1,8 @@
+[Context]
+sockets=wayland;fallback-x11;!x11;
+unset-environment=ICON_THEME;
+filesystems=~/.config/gtk-3.0:ro;~/.config/gtk-4.0:ro;~/.themes:ro
+
+[Environment]
+ELECTRON_OZONE_PLATFORM_HINT=auto
+QT_QPA_PLATFORM=wayland;xcb
