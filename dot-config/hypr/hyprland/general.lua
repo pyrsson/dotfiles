@@ -59,8 +59,8 @@ hl.config({
     border_size = 3,
 
     col = {
-      active_border = "rgba(4fd6beaa)", -- { colors = { "rgba(82aaffaa)", "rgba(4fd6beaa)" }, angle = 200 },
-      inactive_border = "rgba(2f334daa)",
+      active_border = "rgba(8dd5b2aa)", -- { colors = { "rgba(82aaffaa)", "rgba(4fd6beaa)" }, angle = 200 },
+      inactive_border = "rgba(303632aa)",
     },
 
     resize_on_border = true,

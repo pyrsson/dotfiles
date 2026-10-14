@@ -14,6 +14,5 @@ local name = read_hostname()
 
 return {
   name = name,
-  -- hyprtagger (dwl-style tags) is single-monitor only
   tagger = name == "thinkpad-x1",
 }

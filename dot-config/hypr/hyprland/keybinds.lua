@@ -94,7 +94,7 @@ for _, d in ipairs({
   if not (host.tagger and arrow) then
     bind("SUPER + " .. key, dsp.focus({ direction = dir }), repeating)
   end
-  if not (host.tagger and (key == "Up" or key == "Down")) then
+  if not host.tagger then
     bind("SUPER + SHIFT + " .. key, dsp.window.move({ direction = dir }))
   end
   bind("SUPER + SHIFT + CTRL + " .. key, dsp.window.move({ monitor = dir, follow = true })) -- to monitor
@@ -169,12 +169,12 @@ if tags then
   bind("SUPER + Tab", a.view_prev(), { description = "Previous tag view" })
 
   bind("SUPER + Return", a.zoom(), { description = "Swap with master" })
-  bind("SUPER + Down", a.focusstack(1), repeating)
-  bind("SUPER + Up", a.focusstack(-1), repeating)
-  bind("SUPER + SHIFT + Down", a.movestack(1))
-  bind("SUPER + SHIFT + Up", a.movestack(-1))
-  bind("SUPER + Left", a.setmfact(-0.05), repeating)
-  bind("SUPER + Right", a.setmfact(0.05), repeating)
+  bind("SUPER + J", a.focusstack(1), repeating)
+  bind("SUPER + K", a.focusstack(-1), repeating)
+  bind("SUPER + SHIFT + J", a.movestack(1))
+  bind("SUPER + SHIFT + K", a.movestack(-1))
+  bind("SUPER + SHIFT + H", a.setmfact(-0.05), repeating)
+  bind("SUPER + SHIFT + L", a.setmfact(0.05), repeating)
   bind("SUPER + I", a.incnmaster(1), { description = "More masters" })
   bind("SUPER + D", a.incnmaster(-1), { description = "Fewer masters" })
   bind("SUPER + Space", a.cycle_layout(), { description = "Cycle layout" })
