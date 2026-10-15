@@ -31,22 +31,5 @@
         "type": "local"
       }
     }
-  },
-  "permissions": [
-    { "action": "basic-memory_basic_memory_diagnostics", "resource": "*", "effect": "deny" },
-    { "action": "basic-memory_delete_note", "resource": "*", "effect": "deny" },
-    { "action": "basic-memory_read_content", "resource": "*", "effect": "deny" },
-    { "action": "basic-memory_view_note", "resource": "*", "effect": "deny" },
-    { "action": "basic-memory_list_directory", "resource": "*", "effect": "deny" },
-    { "action": "basic-memory_move_note", "resource": "*", "effect": "deny" },
-    { "action": "basic-memory_list_workspaces", "resource": "*", "effect": "deny" },
-    { "action": "basic-memory_list_memory_projects", "resource": "*", "effect": "deny" },
-    { "action": "basic-memory_create_memory_project", "resource": "*", "effect": "deny" },
-    { "action": "basic-memory_delete_project", "resource": "*", "effect": "deny" },
-    { "action": "basic-memory_search", "resource": "*", "effect": "deny" },
-    { "action": "basic-memory_fetch", "resource": "*", "effect": "deny" },
-    { "action": "basic-memory_schema_validate", "resource": "*", "effect": "deny" },
-    { "action": "basic-memory_schema_infer", "resource": "*", "effect": "deny" },
-    { "action": "basic-memory_schema_diff", "resource": "*", "effect": "deny" }
-  ]
+  }
 }
