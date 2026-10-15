@@ -19,7 +19,6 @@ background_opacity = 0.7
 padding = 4
 outline = false
 
-
 [widgets]
 border_radius = 50
 background_opacity = 0.7
@@ -58,8 +57,8 @@ icon_size = 20
 filter_by_output = true
 workspace_separator_label = "number"
 
-[widgets.workspaces]
-# label_type = "index"
+# [widgets.workspaces]
+# label_type = "name"
 
 [widgets.custom-ddcutil]
 label = "Switch input"
