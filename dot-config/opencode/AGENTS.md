@@ -11,7 +11,7 @@ You have persistent memory through Basic Memory's MCP tools.
   it doesn't count as modifying files.
 - Before answering questions about prior work or decisions, search first:
   `search_notes`, then `build_context` on relevant `memory://` URLs.
-- Capture important decisions, findings, and context as notes with
+- Capture important decisions and context as notes with
   `write_note` during the conversation — don't wait to be asked.
 - Structure notes semantically: observations as `- [category] fact #tag`
   and relations as `- relates_to [[Other Note]]`. Use exact titles of
