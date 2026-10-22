@@ -12,3 +12,4 @@ niri_chat_output = "eDP-1"
 
 # hyprtagger (dwl-style tags), single-monitor hosts only
 "~/.config/hypr/hyprtagger.lua" = { source = "../hyprtagger/hyprtagger.lua", mode = "symlink" }
+"~/.config/hypr/hyprtagger.so" = { source = "../hyprtagger/hyprtagger.so", mode = "symlink" }

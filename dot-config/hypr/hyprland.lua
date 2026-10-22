@@ -6,7 +6,7 @@ local host = require("hyprland.host")
 
 -- Must load before any window rule using its `tags` effect
 if host.tagger then
-  hl.plugin.load("/home/pyrsson/Projects/personal/hyprtagger/hyprtagger.so")
+  hl.plugin.load(os.getenv("HOME") .. "/.config/hypr/hyprtagger.so")
 end
 
 require("hyprland.general")

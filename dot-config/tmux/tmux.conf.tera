@@ -146,7 +146,7 @@ set -g status-justify left
 set -g status-interval 5
 
 set -g automatic-rename on
-set -g automatic-rename-format '#{pane_current_command}: #{b;s/pyrsson|pyrsson/~/:pane_current_path}'
+set -g automatic-rename-format '#{pane_current_command}: #{?#{==:#{pane_current_path},{{ env.HOME }}},~,#{b:pane_current_path}}'
 
 
 # popups
