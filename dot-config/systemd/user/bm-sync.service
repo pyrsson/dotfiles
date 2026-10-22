@@ -1,6 +1,0 @@
-[Unit]
-Description=Sync basic-memory projects with B2
-
-[Service]
-Type=oneshot
-ExecStart=%h/.local/bin/bm-sync

@@ -43,6 +43,7 @@ bind("SUPER + Escape", exec("loginctl lock-session"), { dont_inhibit = true, des
 
 bind("SUPER + V", exec("walker -m clipboard"))
 bind("SUPER + B", exec("walker -m bitwarden"))
+bind("SUPER + CTRL + B", exec("1password --quick-access"))
 bind("SUPER + E", exec("uwsm-app -- strata"))
 bind("SUPER + SHIFT + P", exec([[wl-mirror "$(hyprctl -j monitors | jq -r '.[] | select(.focused) | .name')"]]))
 
@@ -169,8 +170,6 @@ if tags then
   bind("SUPER + Tab", a.view_prev(), { description = "Previous tag view" })
 
   bind("SUPER + Return", a.zoom(), { description = "Swap with master" })
-  bind("SUPER + J", a.focusstack(1), repeating)
-  bind("SUPER + K", a.focusstack(-1), repeating)
   bind("SUPER + SHIFT + J", a.movestack(1))
   bind("SUPER + SHIFT + K", a.movestack(-1))
   bind("SUPER + SHIFT + H", a.setmfact(-0.05), repeating)

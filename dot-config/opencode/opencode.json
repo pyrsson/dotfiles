@@ -12,9 +12,13 @@
   "mcp": {
     "servers": {
       "basic-memory": {
-        "command": ["uvx", "basic-memory@0.23.2", "mcp"],
-        "disabled": false,
-        "type": "local"
+        "type": "remote",
+        "url": "{file:~/.config/opencode/secrets/basic-memory-url}",
+        "oauth": false,
+        "headers": {
+          "x-api-key": "{file:~/.config/opencode/secrets/basic-memory-key}"
+        },
+        "disabled": false
       }
     }
   }

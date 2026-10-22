@@ -60,6 +60,9 @@ workspace_separator_label = "number"
 # [widgets.workspaces]
 # label_type = "name"
 
+[widgets.media]
+visualizer = false
+
 [widgets.custom-ddcutil]
 label = "Switch input"
 icon = "output"
@@ -86,7 +89,7 @@ outline = true
 outline_width = 2
 
 [theme.typography]
-font_family = "Hack Nerd Font Mono"
+font_family = "JetBrainsMono NF"
 
 [osd]
 position = "left"

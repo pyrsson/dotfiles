@@ -24,8 +24,7 @@ local chat =
 local WS = require("hyprland.workspaces")
 local host = require("hyprland.host")
 
--- Top-right corner panel placement (below the bar)
-local panel = { move = { "monitor_w-window_w-5", 44 }, size = { 640, "monitor_h*0.5" } }
+local panel = { size = { 640, "monitor_h*0.5" } }
 
 rule({ title = [[^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$]] }, { float = true })
 
@@ -94,7 +93,7 @@ for _, title in ipairs(dialogs) do
 end
 
 -- Settings
-rule({ class = "^(org.pulseaudio.pavucontrol)$" }, { float = true, move = panel.move, size = panel.size })
+rule({ class = "^(org.pulseaudio.pavucontrol)$" }, { float = true, size = panel.size })
 
 -- Games: tearing, fullscreen, "gaming" workspace, keep rendering when unfocused
 rule({ class = games, title = [[negative:^Battle\.net]] }, {
@@ -106,12 +105,11 @@ rule({ class = games, title = [[negative:^Battle\.net]] }, {
 
 rule({ tag = "unfocused" }, { render_unfocused = true })
 
-rule({ class = "^(blueman-manager)$" }, { float = true, move = panel.move, size = panel.size })
 -- rule({ class = "com.mitchellh.ghostty" }, { xray = true })
 
 rule({ class = "^(nm-connection-editor)$" }, { float = true })
 rule({ class = "^(nm-openconnect-auth-dialog)$" }, { float = true, stay_focused = true })
-rule({ title = "^(Network Connections)$" }, { move = panel.move, size = panel.size })
+rule({ title = "^(Network Connections)$" }, { size = panel.size })
 
 rule({ title = "^(Easy Effects)$" }, { float = true })
 rule({ title = "^(Extension)(.*)$" }, { float = true })
