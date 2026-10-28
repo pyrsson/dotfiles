@@ -9,6 +9,7 @@
     ]
   },
   "lsp": true,
+  "plugins": ["opencode-claude-auth@3.0.0"],
   "mcp": {
     "servers": {
       "basic-memory": {
