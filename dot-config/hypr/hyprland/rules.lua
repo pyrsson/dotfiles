@@ -119,6 +119,7 @@ rule({ class = "bitwarden" }, { float = true })
 rule({ class = "^steam$", title = "^Friends List$" }, { float = true })
 rule({ class = [[^com\.github\.finefindus\.eyedropper$]] }, { float = true })
 rule({ class = [[^io\.github\.lgse\.Strata$]] }, { float = true })
+rule({ class = [[^io\.github\.pyrsson\.QuadcastGtk$]] }, { float = true })
 
 rule({ class = "^(zen)$", workspace = "w[tv2-10]" }, { float = true })
 

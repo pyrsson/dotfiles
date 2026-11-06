@@ -13,5 +13,6 @@ function setup-extras -d 'setup extras'
     # non-standard style command completion
     type -q zellij && zellij setup --generate-completion fish >$HOME/.config/fish/completions/zellij.fish
     type -q stern && stern --completion fish >$HOME/.config/fish/completions/stern.fish
+    TASK_EXE='go-task' type -q task && task --completion fish >$HOME/.config/fish/completions/task.fish
     type -q opencode && opencode --completions fish >$HOME/.config/fish/completions/opencode.fish
 end
