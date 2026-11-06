@@ -9,6 +9,7 @@ niri_chat_output = "eDP-1"
 [dotfiles]
 "~/.config/hypr/hyprland/monitors.lua" = { source = "hosts/thinkpad-x1/hypr/monitors.lua", mode = "symlink" }
 "~/.config/niri/outputs.kdl" = { source = "hosts/thinkpad-x1/niri/outputs.kdl", mode = "symlink" }
+"~/.config/systemd/user/graphical-session.target.wants/tailscale-systray.service" = { source = "hosts/thinkpad-x1/systemd/tailscale-systray.service", mode = "symlink" }
 
 # hyprtagger (dwl-style tags), single-monitor hosts only
 "~/.config/hypr/hyprtagger.lua" = { source = "../hyprtagger/hyprtagger.lua", mode = "symlink" }
